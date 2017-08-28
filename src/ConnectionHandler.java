@@ -28,7 +28,7 @@ public class ConnectionHandler {
 		user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
 		user.sendKeys("barbaroto96@gmail.com");
 		passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
-		passw.sendKeys("2xxbff3823");
+		passw.sendKeys("senha");
 		passw.submit();
 		
 	}
