@@ -12,6 +12,10 @@ Tecnicamente, este programa, dadas as informações de uma conta, realiza na pá
 Sumariamente, o programa deve colher da página:
 
 1. Dados sobre última corrida
+    * Piloto
+        - Todos os skills do piloto antes da corrida (total (média), concentração, talento, agressividade, experiência, conhecimento técnico, resistência, carisma, motivação, reputação, peso e idade)
+        - Nível de energia (0% a 100%) antes e depois da corrida
+        - Pontos de skills dado ao piloto depois da corrida
     * Voltas de treinamento
         - Tempo de volta
         - Erro do piloto
@@ -68,7 +72,12 @@ Sumariamente, o programa deve colher da página:
      * Desgaste das peças do carro
          - Desgaste de todas as peças do carro antes e depois das voltas de teste
   
-E conseguir depois exibir cada um destes dados depois ao usuário, caso seja pedido
+E conseguir depois exibir cada um destes dados depois ao usuário, caso seja pedido, sob as seguintes perspectivas:
+
+    * Todas as voltas dadas em uma determinada pista (sendo de uma única corrida, ou todas já feitas)
+    * Estratégia(s) utilizada(s) em uma determinada pista, podendo ser em função de clima, desgaste de peças do carro, skills do piloto, ou resultados da corrida (posição de largada e chegada)
+    * Histórico de skills do piloto em função das corridas
+    
 
 ## Equipe
 #### Marcelo Augusto Stefanini Faria
