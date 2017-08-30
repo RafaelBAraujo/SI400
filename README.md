@@ -74,9 +74,11 @@ Sumariamente, o programa deve colher da página:
   
 E conseguir depois exibir cada um destes dados depois ao usuário, caso seja pedido, sob as seguintes perspectivas:
 
-    * Todas as voltas dadas em uma determinada pista (sendo de uma única corrida, ou todas já feitas)
-    * Estratégia(s) utilizada(s) em uma determinada pista, podendo ser em função de clima, desgaste de peças do carro, skills do piloto, ou resultados da corrida (posição de largada e chegada)
-    * Histórico de skills do piloto em função das corridas
+* Todas as voltas dadas em uma determinada pista (sendo de uma única corrida, ou todas já feitas)
+
+* Estratégia(s) utilizada(s) em uma determinada pista, podendo ser em função de clima, desgaste de peças do carro, skills do piloto, ou resultados da corrida (posição de largada e chegada)
+
+* Histórico de skills do piloto em função das corridas
     
 
 ## Equipe
