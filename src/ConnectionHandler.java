@@ -28,7 +28,7 @@ public class ConnectionHandler {
 		user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
 		user.sendKeys("barbaroto96@gmail.com");
 		passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
-		passw.sendKeys("senha");
+		passw.sendKeys("2xxbff3823");
 		passw.submit();
 		
 	}
@@ -56,25 +56,31 @@ public class ConnectionHandler {
 			return false;
 		
 	}
+	
+	public void openHome(){
+		if(!this.checkURL("https://www.gpro.net/gb/gpro.asp")){
+			this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
+		}
+	}
         
-        public void openRaceAnalisys(){
-            if(this.checkURL("https://www.gpro.net/gb/gpro.asp")){
-            	this.getDriver().findElement(By.xpath("//a[@href='RaceAnalysis.asp']")).click();
-            }
-            else{
-            	this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
-            	this.getDriver().findElement(By.xpath("//a[@href='RaceAnalysis.asp']")).click();
-            }
-        }	
+	public void openRaceAnalisys(){
+		if(this.checkURL("https://www.gpro.net/gb/gpro.asp")){
+			this.getDriver().findElement(By.xpath("//a[@href='RaceAnalysis.asp']")).click();
+		}
+		else{
+			this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
+			this.getDriver().findElement(By.xpath("//a[@href='RaceAnalysis.asp']")).click();
+		}
+	}	
         
-        public void openTrackList(){
-            if(this.checkURL("https://www.gpro.net/gb/gpro.asp")){
-            	this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
-            }
-            else{
-            	this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
-            	this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
-            }
-        }
+	public void openTrackList(){
+		if(this.checkURL("https://www.gpro.net/gb/gpro.asp")){
+			this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
+		}
+		else{
+			this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
+			this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
+		}
+	}
         
 }

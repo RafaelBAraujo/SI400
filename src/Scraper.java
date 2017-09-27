@@ -218,42 +218,75 @@ public class Scraper {
 		myRisk.setCtWet(risks.get(38).getText());
 		myRisk.setMalfunc(risks.get(39).getText());
 		
+		
+		
 	}
 	
-	public void readPilot(){
+	public Pilot readPilot(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
 		
 		List<WebElement> stats = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
-		
+        
+		int driverIndex = 0;
+        for(int j = 0; j < stats.size(); j++){
+        	if(stats.get(j).getText().compareTo("Race") == 0){
+        		driverIndex = j + 14;
+        		break;
+        	}
+		}
+
+        if(driverIndex == 0){
+        	System.out.println("Could not scrape pilot!");
+        	return null;
+        }
+                
 		Pilot myPilot = new Pilot();
-		myPilot.setName(Integer.parseInt(stats.get(39).getText()));
-		myPilot.setOa(Integer.parseInt(stats.get(40).getText()));
-		myPilot.setCon(Integer.parseInt(stats.get(41).getText()));
-		myPilot.setTal(Integer.parseInt(stats.get(42).getText()));
-		myPilot.setAgr(Integer.parseInt(stats.get(43).getText()));
-		myPilot.setExp(Integer.parseInt(stats.get(44).getText()));
-		myPilot.setTeI(Integer.parseInt(stats.get(45).getText()));
-		myPilot.setSta(Integer.parseInt(stats.get(46).getText()));
-		myPilot.setCha(Integer.parseInt(stats.get(47).getText()));
-		myPilot.setMot(Integer.parseInt(stats.get(48).getText()));
-		myPilot.setRep(Integer.parseInt(stats.get(49).getText()));
-		myPilot.setWeight(Integer.parseInt(stats.get(50).getText()));
+		myPilot.setName(stats.get(driverIndex).getText());
+		myPilot.setOa(Integer.parseInt(stats.get(driverIndex+1).getText()));
+		myPilot.setCon(Integer.parseInt(stats.get(driverIndex+2).getText()));
+		myPilot.setTal(Integer.parseInt(stats.get(driverIndex+3).getText()));
+		myPilot.setAgr(Integer.parseInt(stats.get(driverIndex+4).getText()));
+		myPilot.setExp(Integer.parseInt(stats.get(driverIndex+5).getText()));
+		myPilot.setTeI(Integer.parseInt(stats.get(driverIndex+6).getText()));
+		myPilot.setSta(Integer.parseInt(stats.get(driverIndex+7).getText()));
+		myPilot.setCha(Integer.parseInt(stats.get(driverIndex+8).getText()));
+		myPilot.setMot(Integer.parseInt(stats.get(driverIndex+9).getText()));
+		myPilot.setRep(Integer.parseInt(stats.get(driverIndex+10).getText()));
+		myPilot.setWeight(Integer.parseInt(stats.get(driverIndex+11).getText()));
 		
-		String[] newPoints = new String[11];
+		String[] newPtsStrings = new String[11];
+		int[] newPoints = new int[11];
 		
 		for(int i = 0; i < 11; i++){
-			newPoints[i] = stats.get(52 + i).getText().split("[\\(\\)]")[1];
-			System.out.println(newPoints[i].indexOf('+'));
+			newPtsStrings[i] = stats.get(52 + i).getText().split("[\\(\\)]")[1];
+			if(newPtsStrings[i].indexOf('-') == (-1) && newPtsStrings[i].indexOf('+') == (-1)){
+				newPoints[i] = 0;
+			}
+			else if(newPtsStrings[i].indexOf('+') == 0){
+				String numberString = newPtsStrings[i].substring(newPtsStrings[i].indexOf('+')+1);
+				newPoints[i] = Integer.parseInt(numberString);
+			}
+			else if(newPtsStrings[i].indexOf('-') == 0){
+				String numberString = newPtsStrings[i].substring(newPtsStrings[i].indexOf('-')+1);
+				newPoints[i] = (Integer.parseInt(numberString)*(-1));
+			}
+			//System.out.println(newPtsStrings[i].indexOf('+')+":" + newPtsStrings[i]);
+			//System.out.println("new: "+newPoints[i].charAt(0));
                         //indexOf
                         //charAt
                         
 		}
 		
+		for(int d : newPoints){
+			System.out.println(d);
+		}
 		List<WebElement> raceEnergy = h.getDriver().findElements(By.cssSelector("div.barLabel"));
-		myPilot.setStartEnergy(Integer.parseInt(raceEnergy.get(0).getText()));
-		myPilot.setEndEnergy(Integer.parseInt(raceEnergy.get(1).getText()));
+		myPilot.setStartEnergy(raceEnergy.get(0).getText());
+		myPilot.setEndEnergy(raceEnergy.get(1).getText());
+                
+        return myPilot;
 
 	}
 	
@@ -350,19 +383,38 @@ public class Scraper {
 		
 	}
 
-	public void readRace(){
+	public Race readRace(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
+		h.openHome();
+		
+		List<WebElement> rank = h.getDriver().findElements
+				(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
+		
+		Race r = new Race();
+		String[] substrings = rank.get(1).getText().split(" - ");
+		r.setRank(substrings[0]);
+		r.setRankDivision(Integer.parseInt(substrings[1]));
+		
 		h.openRaceAnalisys();
+		
+		List<WebElement> info = h.getDriver().findElements
+				(By.cssSelector("div.inner div h1.block.center"));
+		
+		substrings = info.get(0).getText().split(" - ");
+		
+		r.setSeason(Integer.parseInt(substrings[1].substring(substrings[1].indexOf(" ")+1)));
+		r.setRaceNumber(Integer.parseInt(substrings[2].substring(substrings[2].indexOf(" ")+1)));
+		info = null;
 		
 		List<WebElement> race = h.getDriver().findElements
 		(By.cssSelector("div.column.right.fiftyfive table.styled.borderbottom tbody tr td"));
 		
-		for(int j = 0; j < race.size(); j++){
-			System.out.println(j+": " + race.get(j).getText());
-		}
-		System.out.println("\n\n\nFUCKING SHIT  " + race.size() + "\n\n");
-		Race r = new Race();
+		
+		/*for(int j = 0; j < raceTrack.size(); j++){
+			System.out.println(j+": " + raceTrack.get(j).getText());
+		}*/
+		//System.out.println("\n\n\nFUCKING SHIT  " + race.size() + "\n\n");
 		
 		int x = 8;
 		Lap l;
@@ -377,7 +429,7 @@ public class Scraper {
 			l.weather = race.get(x+4).getText();
 			l.temp = race.get(x+5).getText();
 			l.Hum = race.get(x+6).getText();
-			l.Events = race.get(x+7).getText();
+			l.events = race.get(x+7).getText();
 			
 			x+=8;
 			r.getLaps().add(l);
@@ -398,7 +450,7 @@ public class Scraper {
 				continue;
 		}
 		
-		System.out.println("\n\nTOTAL DE DINHEIRO GANHADO: " + r.getMoneyEarned() + "\n\n\n");
+		return r;
 		
 	}
 	

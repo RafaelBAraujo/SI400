@@ -1,8 +1,13 @@
 package gproscraping;
 
-public class Pilot {
+public class Pilot implements java.io.Serializable{
 
-	private int name;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4764452809528419303L;
+	private String name;
 	private int oa;
 	private int con;
 	private int tal;
@@ -14,13 +19,13 @@ public class Pilot {
 	private int mot;
 	private int rep;
 	private int weight;
-	private int startEnergy;
-	private int endEnergy;
+	private String startEnergy;
+	private String endEnergy;
 	
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public int getOa() {
@@ -89,16 +94,16 @@ public class Pilot {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public int getStartEnergy() {
+	public String getStartEnergy() {
 		return startEnergy;
 	}
-	public void setStartEnergy(int startEnergy) {
+	public void setStartEnergy(String startEnergy) {
 		this.startEnergy = startEnergy;
 	}
-	public int getEndEnergy() {
+	public String getEndEnergy() {
 		return endEnergy;
 	}
-	public void setEndEnergy(int endEnergy) {
+	public void setEndEnergy(String endEnergy) {
 		this.endEnergy = endEnergy;
 	}
 	

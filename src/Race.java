@@ -12,7 +12,7 @@ class Lap{
 	public String weather;
 	public String temp;
 	public String Hum;
-	public String Events;
+	public String events;
 	
 	public void printLap(){
 		System.out.println(lapNumber);
@@ -22,7 +22,7 @@ class Lap{
 		System.out.println(weather);
 		System.out.println(temp);
 		System.out.println(Hum);
-		System.out.println(Events);
+		System.out.println(events);
 	}
 	
 }
@@ -30,7 +30,12 @@ class Lap{
 public class Race {
 
 	private List<Lap> laps;
+	private int season;
+	private int raceNumber;
+	private String rank;
+	private int rankDivision;
 	private String moneyEarned;
+	private Track track;
 
 	Race(){
 		laps = new ArrayList<Lap>();
@@ -59,7 +64,45 @@ public class Race {
 	public void setMoneyEarned(String moneyEarned) {
 		this.moneyEarned = moneyEarned;
 	}
-	
-	
+
+	public int getSeason() {
+		return season;
+	}
+
+	public void setSeason(int season) {
+		this.season = season;
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
+	public int getRankDivision() {
+		return rankDivision;
+	}
+
+	public void setRankDivision(int rankDivision) {
+		this.rankDivision = rankDivision;
+	}
+
+	public int getRaceNumber() {
+		return raceNumber;
+	}
+
+	public void setRaceNumber(int raceNumber) {
+		this.raceNumber = raceNumber;
+	}
+
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
+	}
 	
 }
