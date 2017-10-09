@@ -18,6 +18,7 @@ public class Setup{
 		System.out.println(this.Bra);
 		System.out.println(this.Gear);
 		System.out.println(this.Susp);
+		System.out.println(this.Tyres);
 		
 	}
 	

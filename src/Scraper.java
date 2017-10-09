@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class Scraper {
 
-	public void readPractice(){
+	public Practice readPractice(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
@@ -15,7 +15,7 @@ public class Scraper {
 		
 		Practice p = new Practice();
 		int x = 0;
-        int numLaps = 0;
+        //int numLaps = 0;
 		
         for (int j = 0; j < 8; j++) {
         	
@@ -24,7 +24,7 @@ public class Scraper {
         	if((x+1) > training.size())
         		break;
         	
-        	numLaps++;
+        	//numLaps++;
         	
         	l.setLapTime(training.get(x+1).getText());
         	l.setDriverMistake(training.get(x+2).getText());
@@ -42,104 +42,53 @@ public class Scraper {
         	
         }
         
-        p.printLaps(numLaps);
+        //p.printLaps(numLaps);
+        return p;
 	}
 	
-	public void readCarWear(){
+	public RaceWear readRaceWear(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
 		
 		List<WebElement> carWear = h.getDriver().findElements(By.cssSelector("div.column.right.fiftyfive table.styled.bordered.center tbody tr td"));
-        
-        Wear partsLevels = new Wear();
+      
         Wear startWear = new Wear();
         Wear endWear = new Wear();
-
-        partsLevels.Cha = carWear.get(11).getText();
-        partsLevels.Eng = carWear.get(12).getText();
-        partsLevels.FWing = carWear.get(13).getText();
-        partsLevels.RWing = carWear.get(14).getText();
-        partsLevels.Underb = carWear.get(15).getText();
-        partsLevels.Sidep = carWear.get(16).getText();
-        partsLevels.Cool = carWear.get(17).getText();
-        partsLevels.Gear = carWear.get(18).getText();
-        partsLevels.Bra = carWear.get(19).getText();
-        partsLevels.Susp = carWear.get(20).getText();
-        partsLevels.Elec = carWear.get(21).getText();
         
-        startWear.Cha = carWear.get(22).getText();
-        startWear.Eng = carWear.get(23).getText();
-        startWear.FWing = carWear.get(24).getText();
-        startWear.RWing = carWear.get(25).getText();
-        startWear.Underb = carWear.get(26).getText();
-        startWear.Sidep = carWear.get(27).getText();
-        startWear.Cool = carWear.get(28).getText();
-        startWear.Gear = carWear.get(29).getText();
-        startWear.Bra = carWear.get(30).getText();
-        startWear.Susp = carWear.get(31).getText();
-        startWear.Elec = carWear.get(32).getText();
+        startWear.setCha(carWear.get(22).getText());
+        startWear.setEng(carWear.get(23).getText());
+        startWear.setfWing(carWear.get(24).getText());
+        startWear.setrWing(carWear.get(25).getText());
+        startWear.setUnderb(carWear.get(26).getText());
+        startWear.setSidep(carWear.get(27).getText());
+        startWear.setCool(carWear.get(28).getText());
+        startWear.setGear(carWear.get(29).getText());
+        startWear.setBra(carWear.get(30).getText());
+        startWear.setSusp(carWear.get(31).getText());
+        startWear.setElec(carWear.get(32).getText());
         
-        endWear.Cha = carWear.get(33).getText();
-        endWear.Eng = carWear.get(34).getText();
-        endWear.FWing = carWear.get(35).getText();
-        endWear.RWing = carWear.get(36).getText();
-        endWear.Underb = carWear.get(37).getText();
-        endWear.Sidep = carWear.get(38).getText();
-        endWear.Cool = carWear.get(39).getText();
-        endWear.Gear = carWear.get(40).getText();
-        endWear.Bra = carWear.get(41).getText();
-        endWear.Susp = carWear.get(42).getText();
-        endWear.Elec = carWear.get(43).getText();
-
-        partsLevels.printAll();
-        startWear.printAll();
-        endWear.printAll();
+        endWear.setCha(carWear.get(33).getText());
+        endWear.setEng(carWear.get(34).getText());
+        endWear.setfWing(carWear.get(35).getText());
+        endWear.setrWing(carWear.get(36).getText());
+        endWear.setUnderb(carWear.get(37).getText());
+        endWear.setSidep(carWear.get(38).getText());
+        endWear.setCool(carWear.get(39).getText());
+        endWear.setGear(carWear.get(40).getText());
+        endWear.setBra(carWear.get(41).getText());
+        endWear.setSusp(carWear.get(42).getText());
+        endWear.setElec(carWear.get(43).getText());
         
+        RaceWear rw = new RaceWear();
+        rw.setStartWear(startWear);
+        rw.setFinalWear(endWear);
         
-        /*Car myCar = new Car();
-        myCar.setPartLevels(partsLevels);
-        myCar.setStartWear(startWear);
-        myCar.setEndWear(endWear);*/
-        
-        /*System.out.println(a.Cha);
-        System.out.println(a.Eng);
-        System.out.println(a.FWing);
-        System.out.println(a.RWing);
-        System.out.println(a.Underb);
-        System.out.println(a.Sidep);
-        System.out.println(a.Cool);
-        System.out.println(a.Gear);
-        System.out.println(a.Bra);
-        System.out.println(a.Susp);
-        System.out.println(a.Elec);
-        
-        System.out.println(b.Cha);
-        System.out.println(b.Eng);
-        System.out.println(b.FWing);
-        System.out.println(b.RWing);
-        System.out.println(b.Underb);
-        System.out.println(b.Sidep);
-        System.out.println(b.Cool);
-        System.out.println(b.Gear);
-        System.out.println(b.Bra);
-        System.out.println(b.Susp);
-        System.out.println(b.Elec);
-		
-        System.out.println(c.Cha);
-        System.out.println(c.Eng);
-        System.out.println(c.FWing);
-        System.out.println(c.RWing);
-        System.out.println(c.Underb);
-        System.out.println(c.Sidep);
-        System.out.println(c.Cool);
-        System.out.println(c.Gear);
-        System.out.println(c.Bra);
-        System.out.println(c.Susp);
-        System.out.println(c.Elec);*/
+        return rw;
+      
 	}
 	
-	public void readQualifying(){
+	public Qualifyings readQualifying(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
@@ -180,45 +129,57 @@ public class Scraper {
         
         Q2.setSetup(q2Setup);
         
-        Qualifying Race = new Qualifying();
-        Race.setLapTime(null);
+        Qualifyings qualifyings = new Qualifyings();
+        qualifyings.setQ1(Q1);
+        qualifyings.setQ2(Q2);
         
-        Setup raceSetup = new Setup();
+        return qualifyings;
         
-        raceSetup.FWing = qualifying.get(27).getText();
+	}
+	
+	public Strategy readStrategy(){
+		
+		ConnectionHandler h = ConnectionHandler.getHandler();
+		h.openRaceAnalisys();
+		
+		List<WebElement> qualifying = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+		
+		Strategy myStrategy = new Strategy();
+		Setup raceSetup = new Setup();
+		
+		raceSetup.FWing = qualifying.get(27).getText();
         raceSetup.RWing = qualifying.get(28).getText();
         raceSetup.Eng = qualifying.get(29).getText();
         raceSetup.Bra = qualifying.get(30).getText();
         raceSetup.Gear = qualifying.get(31).getText();
         raceSetup.Susp = qualifying.get(32).getText();
         raceSetup.Tyres = qualifying.get(33).getText();
-		
-        Race.setSetup(raceSetup);
         
-        System.out.println("Q1 lap time: " + Q1.getLapTime());
-        Q1.getSetup().printAll();
-        System.out.println("Q2 lap time: " + Q2.getLapTime());
-        Q2.getSetup().printAll();
-        Race.getSetup().printAll();
-        
-	}
-	
-	public void readRisk(){
-		
-		ConnectionHandler h = ConnectionHandler.getHandler();
-		h.openRaceAnalisys();
+        myStrategy.setRaceSetup(raceSetup);
 		
 		List<WebElement> risks = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
 		
-		Risk myRisk = new Risk();
-		myRisk.setStartingRisk(risks.get(34).getText());
-		myRisk.setOvertake(risks.get(35).getText());
-		myRisk.setDefend(risks.get(36).getText());
-		myRisk.setCtDry(risks.get(37).getText());
-		myRisk.setCtWet(risks.get(38).getText());
-		myRisk.setMalfunc(risks.get(39).getText());
+		myStrategy.setStartingRisk(risks.get(34).getText());
+		myStrategy.setOvertake(risks.get(35).getText());
+		myStrategy.setDefend(risks.get(36).getText());
+		myStrategy.setCtDry(risks.get(37).getText());
+		myStrategy.setCtWet(risks.get(38).getText());
+		myStrategy.setMalfunc(risks.get(39).getText());
 		
+		List<WebElement> startFuel = h.getDriver().findElements(
+				By.cssSelector(
+						"div#contentinner div.inner div div.column.left.fortyfive.nomargin div.inner b"));
 		
+		String regex = "\\d{0,3}+\\s+liters";
+		
+		for (WebElement s : startFuel){
+			if(s.getText().matches(regex)){
+				myStrategy.setStartFuel(s.getText());
+				break;
+			}
+		}
+		
+		return myStrategy;
 		
 	}
 	
@@ -279,9 +240,9 @@ public class Scraper {
                         
 		}
 		
-		for(int d : newPoints){
-			System.out.println(d);
-		}
+		//for(int d : newPoints){
+			//System.out.println(d);
+		//}
 		List<WebElement> raceEnergy = h.getDriver().findElements(By.cssSelector("div.barLabel"));
 		myPilot.setStartEnergy(raceEnergy.get(0).getText());
 		myPilot.setEndEnergy(raceEnergy.get(1).getText());
@@ -290,71 +251,137 @@ public class Scraper {
 
 	}
 	
-	public void readWeather(){
+	public void readWeather(Qualifyings qual, Race race){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
 		
-		Weather q1 = new Weather();
-		Weather q2 = new Weather();
+		WebElement weather = h.getDriver().findElement(By.name("WeatherQ"));
+		qual.getQ1().getWeather().setDescription(weather.getAttribute("alt"));
+		//System.out.println(weather.getAttribute("alt"));
+
+		weather = h.getDriver().findElement(By.name("WeatherR"));
+		qual.getQ2().getWeather().setDescription(weather.getAttribute("alt"));
+		//System.out.println(weather.getAttribute("alt"));
+
+		List<WebElement> weathers = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+
+		qual.getQ1().getWeather().setWeather(weathers.get(68).getText());
+
+		qual.getQ2().getWeather().setWeather(weathers.get(69).getText());
+
+		race.getRaceForecast().setWeather(qual.getQ2().getWeather());
+
+		for(int t = 0; t < 4; t++){
+			race.getRaceForecast().setRainProb(weathers.get(70+t).getText(), t);
+		}
+		
+	}
+	
+	public Weather readQ1Weather(){
+		
+		ConnectionHandler h = ConnectionHandler.getHandler();
+		h.openRaceAnalisys();
 		
 		WebElement weather = h.getDriver().findElement(By.name("WeatherQ"));
-		q1.setDescription(weather.getAttribute("alt"));
-		System.out.println(q1.getDescription());
 		
-		weather = h.getDriver().findElement(By.name("WeatherR"));
-		q2.setDescription(weather.getAttribute("alt"));
-		System.out.println(q2.getDescription());
+		Weather q1 = new Weather();
+		q1.setDescription(weather.getAttribute("alt"));
 		
 		List<WebElement> weathers = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
 		
 		q1.setWeather(weathers.get(68).getText());
 		
-		q2.setWeather(weathers.get(69).getText());
-		
-		RaceForecast raceForecast = new RaceForecast();
-		raceForecast.setWeather(q2);
-		System.out.println(q1.getWeather());
-		System.out.println(q2.getWeather());
-		
-		for(int t = 0; t < 4; t++){
-			raceForecast.setRainProb(weathers.get(70+t).getText(), t);
-		}
-		
-		for(int t = 0; t < 4; t++){
-			System.out.println(raceForecast.getRainProb(t));
-		}
-		
-		
+		return q1;
 	}
 	
-	public void readCar(){
+	public Weather readQ2Weather(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
 		
-		List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+		WebElement weather = h.getDriver().findElement(By.name("WeatherR"));
 		
-		Car myCar = new Car();
-		myCar.setPower(carCharac.get(65).getText());
-		myCar.setHandling(carCharac.get(66).getText());
-		myCar.setAcceleration(carCharac.get(67).getText());
+		Weather q2 = new Weather();
+		q2.setDescription(weather.getAttribute("alt"));
 		
-		List<WebElement> fuel = h.getDriver().findElements(
-				By.cssSelector("div.column.left.fortyfive.nomargin div.inner b"));
+				
+		List<WebElement> weathers = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+		q2.setWeather(weathers.get(69).getText());
 		
-		for(int j = 0; j < fuel.size(); j++){
-			System.out.println(j+": " + fuel.get(j).getText());
+		return q2;
+	}
+	
+	public RaceForecast readForecast(){
+		
+		ConnectionHandler h = ConnectionHandler.getHandler();
+		h.openRaceAnalisys();
+		
+		RaceForecast rf = new RaceForecast();
+		
+		Weather raceStart = this.readQ2Weather();
+		rf.setWeather(raceStart);
+		
+		List<WebElement> weathers = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+		
+		for(int t = 0; t < 4; t++){
+			rf.setRainProb(weathers.get(70+t).getText(), t);
 		}
 		
-		myCar.setTyreSupplier(fuel.get(8).getText());
-		myCar.setStartFuel(fuel.get(11).getText());
-		myCar.setEndFuel(fuel.get(21).getText());
-		myCar.setEndTyreWear(fuel.get(20).getText());
+		return rf;
+	}
+	
+	public Car readCar(){
 		
+		try{
+		
+			ConnectionHandler h = ConnectionHandler.getHandler();
+			h.openRaceAnalisys();
+			
+			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+			
+			Car myCar = new Car();
+			myCar.setPower(carCharac.get(65).getText());
+			myCar.setHandling(carCharac.get(66).getText());
+			myCar.setAcceleration(carCharac.get(67).getText());
+			
+			/*List<WebElement> fuel = h.getDriver().findElements(
+					By.cssSelector("div.column.left.fortyfive.nomargin div.inner b"));
+			
+			for(int j = 0; j < fuel.size(); j++){
+				System.out.println(j+": " + fuel.get(j).getText());
+			}
+			
+			myCar.setTyreSupplier(fuel.get(8).getText());
+			myCar.setStartFuel(fuel.get(11).getText());
+			myCar.setEndFuel(fuel.get(21).getText());
+			myCar.setEndTyreWear(fuel.get(20).getText());*/
+			
+			List<WebElement> partsLevels = h.getDriver().findElements(By.cssSelector("div.column.right.fiftyfive table.styled.bordered.center tbody tr td"));
+			
+			myCar.setCha(partsLevels.get(11).getText());
+			myCar.setEng(partsLevels.get(12).getText());
+			myCar.setfWing(partsLevels.get(13).getText());
+			myCar.setrWing(partsLevels.get(14).getText());
+			myCar.setUnderb(partsLevels.get(15).getText());
+			myCar.setSidep(partsLevels.get(16).getText());
+			myCar.setCool(partsLevels.get(17).getText());
+			myCar.setGear(partsLevels.get(18).getText());
+			myCar.setBra(partsLevels.get(19).getText());
+			myCar.setSusp(partsLevels.get(20).getText());
+			myCar.setElec(partsLevels.get(21).getText());
+			
+			
+			return myCar;
+		}
+		catch(Exception e){
+			System.out.println("The program could not read/save the car data!");
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
-	public void readPit(){
+	public PitStop readPitStops(){
 		
 		ConnectionHandler h = ConnectionHandler.getHandler();
 		h.openRaceAnalisys();
@@ -363,7 +390,7 @@ public class Scraper {
 		(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table#Table4.styled.bordered.leftalign tbody tr td"));
 		
 		Pit p;
-		PitStop pS = new PitStop();
+		PitStop ps = new PitStop();
 		int x = 0;
 		
 		for(int i = 0; i < ((pit.size()+1)/6); i++){
@@ -376,10 +403,12 @@ public class Scraper {
 			p.refill = pit.get(x+4).getText();
 			p.pitTime = pit.get(x+5).getText();
 			x+=6;
-			pS.getP().add(p);
+			ps.getP().add(p);
 		}
 		
-		pS.printAllPits();
+		//ps.printAllPits();
+		
+		return ps;
 		
 	}
 
@@ -436,7 +465,7 @@ public class Scraper {
 
 		}
 		
-		r.printAllLaps();
+		//r.printAllLaps();
 		
 		List<WebElement> finances = h.getDriver().findElements
 		(By.cssSelector("div#dvFinAnalisysTable table#Table1.styled.bordered tbody tr td"));

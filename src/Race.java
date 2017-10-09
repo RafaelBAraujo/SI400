@@ -36,6 +36,15 @@ public class Race {
 	private int rankDivision;
 	private String moneyEarned;
 	private Track track;
+	private RaceForecast raceForecast;
+
+	public RaceForecast getRaceForecast() {
+		return raceForecast;
+	}
+
+	public void setRaceForecast(RaceForecast raceForecast) {
+		this.raceForecast = raceForecast;
+	}
 
 	Race(){
 		laps = new ArrayList<Lap>();

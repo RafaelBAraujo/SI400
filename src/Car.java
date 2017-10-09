@@ -6,10 +6,89 @@ public class Car {
 	private String power;
 	private String handling;
 	private String acceleration;
-	private String startFuel;
+	/*private String startFuel;
 	private String endFuel;
 	private String tyreSupplier;
-	private String endTyreWear;
+	private String endTyreWear;*/
+	
+	private String cha;
+	private String eng;
+	private String fWing;
+	private String rWing;
+	private String underb;
+	private String sidep;
+	private String cool;
+	private String gear;
+	private String bra;
+	private String susp;
+	private String elec;
+	
+	public String getCha() {
+		return cha;
+	}
+	public void setCha(String cha) {
+		this.cha = cha;
+	}
+	public String getEng() {
+		return eng;
+	}
+	public void setEng(String eng) {
+		this.eng = eng;
+	}
+	public String getfWing() {
+		return fWing;
+	}
+	public void setfWing(String fWing) {
+		this.fWing = fWing;
+	}
+	public String getrWing() {
+		return rWing;
+	}
+	public void setrWing(String rWing) {
+		this.rWing = rWing;
+	}
+	public String getUnderb() {
+		return underb;
+	}
+	public void setUnderb(String underb) {
+		this.underb = underb;
+	}
+	public String getSidep() {
+		return sidep;
+	}
+	public void setSidep(String sidep) {
+		this.sidep = sidep;
+	}
+	public String getCool() {
+		return cool;
+	}
+	public void setCool(String cool) {
+		this.cool = cool;
+	}
+	public String getGear() {
+		return gear;
+	}
+	public void setGear(String gear) {
+		this.gear = gear;
+	}
+	public String getBra() {
+		return bra;
+	}
+	public void setBra(String bra) {
+		this.bra = bra;
+	}
+	public String getSusp() {
+		return susp;
+	}
+	public void setSusp(String susp) {
+		this.susp = susp;
+	}
+	public String getElec() {
+		return elec;
+	}
+	public void setElec(String elec) {
+		this.elec = elec;
+	}
 	
 	
 	public String getPower() {
@@ -29,30 +108,6 @@ public class Car {
 	}
 	public void setAcceleration(String acceleration) {
 		this.acceleration = acceleration;
-	}
-	public String getStartFuel() {
-		return startFuel;
-	}
-	public void setStartFuel(String startFuel) {
-		this.startFuel = startFuel;
-	}
-	public String getEndFuel() {
-		return endFuel;
-	}
-	public void setEndFuel(String endFuel) {
-		this.endFuel = endFuel;
-	}
-	public String getTyreSupplier() {
-		return tyreSupplier;
-	}
-	public void setTyreSupplier(String tyreSupplier) {
-		this.tyreSupplier = tyreSupplier;
-	}
-	public String getEndTyreWear() {
-		return endTyreWear;
-	}
-	public void setEndTyreWear(String endTyreWear) {
-		this.endTyreWear = endTyreWear;
 	}
 	
 	
