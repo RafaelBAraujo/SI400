@@ -338,12 +338,16 @@ public class Scraper {
 			ConnectionHandler h = ConnectionHandler.getHandler();
 			h.openRaceAnalisys();
 			
-			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div table.styled.nobordered.center tbody tr td table tbody tr td"));
 			
+                        for(int j = 0; j < carCharac.size(); j++){
+				System.out.println(j+": " + carCharac.get(j).getText());
+			}
+                        
 			Car myCar = new Car();
-			myCar.setPower(carCharac.get(65).getText());
-			myCar.setHandling(carCharac.get(66).getText());
-			myCar.setAcceleration(carCharac.get(67).getText());
+			myCar.setPower(carCharac.get(2).getText());
+			myCar.setHandling(carCharac.get(3).getText());
+			myCar.setAcceleration(carCharac.get(4).getText());
 			
 			/*List<WebElement> fuel = h.getDriver().findElements(
 					By.cssSelector("div.column.left.fortyfive.nomargin div.inner b"));

@@ -45,12 +45,11 @@ public class GproScrape {
 
         SerializingDAO dao = new PracticeDAO("practice.ser");
         dao.save(practice);
-
         
         long fTime = System.nanoTime();
         
         System.out.println("Pronto!");
-        System.out.println("Tempo de execução: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
+        System.out.println("Tempo de execuï¿½ï¿½o: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
         
        //Tracks t = new Tracks();
         //t.checkUpdate();
