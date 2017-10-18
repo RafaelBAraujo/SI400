@@ -1,5 +1,6 @@
 package gproscraping;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.impl.io.SocketOutputBuffer;
@@ -26,7 +27,7 @@ public class GproScrape {
         
         System.out.println("Practice...");
         practice = scraper.readPractice();
-        System.out.println("Wear...");
+        /*System.out.println("Wear...");
         raceWear = scraper.readRaceWear();
         System.out.println("Qualifying...");
         qualifyings = scraper.readQualifying();
@@ -40,7 +41,11 @@ public class GproScrape {
         System.out.println("Car...");
         car = scraper.readCar();
         System.out.println("Pitstops...");
-        pitstop = scraper.readPitStops();
+        pitstop = scraper.readPitStops();*/
+
+        SerializingDAO dao = new PracticeDAO("practice.ser");
+        dao.save(practice);
+
         
         long fTime = System.nanoTime();
         

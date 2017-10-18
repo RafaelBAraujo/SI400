@@ -1,7 +1,13 @@
 package gproscraping;
 
-public class Practice {
+import java.io.Serializable;
 
+public class Practice implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PracticeLap[] l = new PracticeLap[8];
 	private int numLaps;
 	

@@ -1,7 +1,13 @@
 package gproscraping;
 
-public class PracticeLap {
+import java.io.Serializable;
+
+public class PracticeLap implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String getLapTime() {
 		return lapTime;
 	}
