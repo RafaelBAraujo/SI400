@@ -23,7 +23,7 @@ public class GproScrape {
         System.out.println("Iniciando scraping...");
 
         long iTime = System.nanoTime();
-        
+        /*
         System.out.println("Practice...");
         practice = scraper.readPractice();
         System.out.println("Wear...");
@@ -41,11 +41,12 @@ public class GproScrape {
         car = scraper.readCar();
         System.out.println("Pitstops...");
         pitstop = scraper.readPitStops();
+        */        
         
         long fTime = System.nanoTime();
         
         System.out.println("Pronto!");
-        System.out.println("Tempo de execução: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
+        System.out.println("Tempo de execuï¿½ï¿½o: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
         
        //Tracks t = new Tracks();
         //t.checkUpdate();

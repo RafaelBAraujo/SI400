@@ -65,6 +65,12 @@ public class Race {
 		}
 		
 	}
+        
+        public void printOneLap(int lap){
+            
+            laps.get(lap).printLap();
+            
+        }
 
 	public String getMoneyEarned() {
 		return moneyEarned;

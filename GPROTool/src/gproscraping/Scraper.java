@@ -338,20 +338,31 @@ public class Scraper {
 			ConnectionHandler h = ConnectionHandler.getHandler();
 			h.openRaceAnalisys();
 			
-			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
-			
+			//List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
+			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div table.styled.nobordered.center tbody tr td table tbody tr td"));
+                        
 			Car myCar = new Car();
-			myCar.setPower(carCharac.get(65).getText());
+
+                        /*for(int j = 0; j < carCharac1.size(); j++){
+				System.out.println(j+": " + carCharac1.get(j).getText());
+                        }*/
+
+                        myCar.setPower(carCharac.get(2).getText());
+                        myCar.setHandling(carCharac.get(3).getText());
+                        myCar.setAcceleration(carCharac.get(4).getText());
+
+                        
+			/*myCar.setPower(carCharac.get(65).getText());
 			myCar.setHandling(carCharac.get(66).getText());
-			myCar.setAcceleration(carCharac.get(67).getText());
+			myCar.setAcceleration(carCharac.get(67).getText());*/
 			
 			/*List<WebElement> fuel = h.getDriver().findElements(
 					By.cssSelector("div.column.left.fortyfive.nomargin div.inner b"));
 			
 			for(int j = 0; j < fuel.size(); j++){
 				System.out.println(j+": " + fuel.get(j).getText());
-			}
-			
+			}*/
+			/*
 			myCar.setTyreSupplier(fuel.get(8).getText());
 			myCar.setStartFuel(fuel.get(11).getText());
 			myCar.setEndFuel(fuel.get(21).getText());
