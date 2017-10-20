@@ -1,7 +1,10 @@
 package gproscraping;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -42,6 +45,18 @@ public abstract class SerializingDAO implements DAO {
 		}
 	}
 	
+        public void retrieve(Object o) throws ClassNotFoundException {
+            ObjectInputStream ois;
+            try{
+                ois = new ObjectInputStream(Files.newInputStream(this.file));
+		o = (Object)ois.readObject(); 
+                System.out.println(o);
+            } catch(IOException e){
+                    e.printStackTrace();
+                    
+                }
+                        
+        }
 	public TreeMap<Integer, Practice> load(){
 		
 		return null;

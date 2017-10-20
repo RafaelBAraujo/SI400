@@ -25,8 +25,8 @@ public class GproScrape {
 
         long iTime = System.nanoTime();
         
-        System.out.println("Practice...");
-        practice = scraper.readPractice();
+        /*System.out.println("Practice...");
+        practice = scraper.readPractice();*/
         /*System.out.println("Wear...");
         raceWear = scraper.readRaceWear();
         System.out.println("Qualifying...");
@@ -43,9 +43,17 @@ public class GproScrape {
         System.out.println("Pitstops...");
         pitstop = scraper.readPitStops();*/
 
-        SerializingDAO dao = new PracticeDAO("practice.ser");
-        dao.save(practice);
+        /*SerializingDAO dao = new PracticeDAO("practice.ser");
+        dao.save(practice)*/
+        /*
+        pilot = scraper.readPilot();
+        System.out.println(pilot.getTal());
+        */
         
+        PilotDAO P = new PilotDAO("pilot.ser");
+        //P.createPilot(pilot);
+        P.retrievePilot(pilot);
+
         long fTime = System.nanoTime();
         
         System.out.println("Pronto!");

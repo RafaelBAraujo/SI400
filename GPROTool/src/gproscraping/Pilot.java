@@ -2,10 +2,6 @@ package gproscraping;
 
 public class Pilot implements java.io.Serializable{
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4764452809528419303L;
 	private String name;
 	private int oa;
@@ -22,6 +18,9 @@ public class Pilot implements java.io.Serializable{
 	private String startEnergy;
 	private String endEnergy;
 	
+        public void getAll(){
+        //??????
+        }
 	public String getName() {
 		return name;
 	}
@@ -106,5 +105,6 @@ public class Pilot implements java.io.Serializable{
 	public void setEndEnergy(String endEnergy) {
 		this.endEnergy = endEnergy;
 	}
+
 	
 }
