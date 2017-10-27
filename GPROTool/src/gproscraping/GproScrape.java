@@ -7,7 +7,7 @@ import org.apache.http.impl.io.SocketOutputBuffer;
 
 public class GproScrape {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
 
         ConnectionHandler handler = new ConnectionHandler();
         Scraper scraper = new Scraper();
@@ -50,9 +50,13 @@ public class GproScrape {
         System.out.println(pilot.getTal());
         */
         
-        PilotDAO P = new PilotDAO("pilot.ser");
-        //P.createPilot(pilot);
-        P.retrievePilot(pilot);
+        //PilotDAO P = new PilotDAO("pilot.ser");
+        
+        //P.retrievePilot(pilot);
+        
+        CarDAO C = new CarDAO("car.ser");
+        
+        C.retrieveCar(car, raceWear);
 
         long fTime = System.nanoTime();
         
