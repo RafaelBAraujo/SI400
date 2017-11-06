@@ -1,5 +1,15 @@
 package gproscraping;
 
+import gproscraping.Car;
+import gproscraping.ConnectionHandler;
+import gproscraping.Pilot;
+import gproscraping.PilotDAO;
+import gproscraping.PitStop;
+import gproscraping.Practice;
+import gproscraping.Qualifyings;
+import gproscraping.Race;
+import gproscraping.RaceWear;
+import gproscraping.Scraper;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -50,20 +60,20 @@ public class GproScrape {
         System.out.println(pilot.getTal());
         */
         
-        //PilotDAO P = new PilotDAO("pilot.ser");
+        PilotDAO P = new PilotDAO("pilot.ser");
         
-        //P.retrievePilot(pilot);
+        P.retrievePilot(pilot);
         
-        CarDAO C = new CarDAO("car.ser");
+        //CarDAO C = new CarDAO("car.ser");
         
-        C.retrieveCar(car, raceWear);
+        //C.retrieveCar(car, raceWear);
 
         long fTime = System.nanoTime();
         
         System.out.println("Pronto!");
-        System.out.println("Tempo de execu��o: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
+        System.out.println("Tempo de execucao: " + TimeUnit.MILLISECONDS.convert((fTime - iTime), TimeUnit.MILLISECONDS) + " milisegundos.");
         
-       //Tracks t = new Tracks();
+        //Tracks t = new Tracks();
         //t.checkUpdate();
         
         //Race r = new Race();
