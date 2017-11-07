@@ -2,7 +2,7 @@ package gproscraping;
 
 import java.io.Serializable;
 
-public class Practice implements Serializable {
+public class Practice extends GameObject implements Serializable {
 
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class Practice implements Serializable {
 	private PracticeLap[] l = new PracticeLap[8];
 	private int numLaps;
 	
-	Practice(){
+	public Practice(){
 		
 		numLaps = 0;
 		

@@ -10,7 +10,10 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class SerializingDAO implements DAO {
 
@@ -54,13 +57,28 @@ public abstract class SerializingDAO implements DAO {
             } catch(IOException e){
                     e.printStackTrace();
                     
-                }
+            }
                         
         }
-	public TreeMap<Integer, Practice> load(){
+	public TreeMap<Integer, GameObject> load() {
 		
-		return null;
-		
+            ArrayList<GameObject> lo = new ArrayList<>();
+            GameObject o;
+            TreeMap<Integer, GameObject> tmap = new TreeMap<>();
+            
+            ObjectInputStream ois;
+            try {
+                ois = new ObjectInputStream(Files.newInputStream(this.file));
+                o = (GameObject) ois.readObject();
+                tmap.put(o.getId(), o);
+                System.out.println(o);
+            } catch (IOException e) {
+                Logger.getLogger(SerializingDAO.class.getName()).log(Level.SEVERE, null, e);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SerializingDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return tmap;
 	}
 	
 }

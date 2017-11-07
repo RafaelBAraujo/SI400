@@ -21,7 +21,7 @@ public class ConnectionHandler {
 	private static WebElement user;
 	private static WebElement passw;
 	
-	ConnectionHandler(){
+	public ConnectionHandler(){
 		
 		driver = new SilentHtmlUnitDriver();
 		driver.get("https://www.gpro.net/gb/gpro.asp");
