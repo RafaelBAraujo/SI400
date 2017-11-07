@@ -9,6 +9,9 @@ import gproscraping.ConnectionHandler;
 import gproscraping.Practice;
 import gproscraping.PracticeDAO;
 import gproscraping.Scraper;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,13 +28,20 @@ public class GproTool {
         
         p = s.readPractice();
         
-        PracticeDAO pdao = PracticeDAO.getInstance();
+        PracticeDAO pdao;
+        try {
+            pdao = PracticeDAO.getInstance();
+            pdao.save(p);
+        } catch (IOException ex) {
+            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        pdao.save(p);
         
-        Practice x = pdao.readPractice(0);
+        //Practice x = pdao.readPractice(0);
         
-        System.out.println(x.getId());
+        //System.out.println(x.getId());
+        
+        //System.out.println(pdao.getLastId());
         
         GproToolController baseController = new GproToolController();
         baseController.start();

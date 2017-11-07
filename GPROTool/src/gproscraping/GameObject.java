@@ -14,7 +14,7 @@ public class GameObject {
     private int objectID;
     
     public GameObject(){
-        this.objectID = 0;
+        this.objectID = 8;
     }
     
     public int getId(){

@@ -20,12 +20,13 @@ import javax.swing.JOptionPane;
  */
 public class PilotDAO extends SerializingDAO{
     
-    public PilotDAO(String fileName) {
+    public PilotDAO(String fileName) throws IOException {
         super(fileName);
+        ser = new SerializingDAO("pilot.ser") {};
     }
     
     Scraper src = new Scraper();
-    SerializingDAO ser = new SerializingDAO("pilot.ser") {};
+    SerializingDAO ser;
     
     /*public void savePilot(Pilot phill){ 
     
@@ -43,7 +44,7 @@ public class PilotDAO extends SerializingDAO{
         
     }
     
-    public void retrievePilot(Pilot phill){
+    /*public void retrievePilot(Pilot phill){
         
        try {
             phill = src.readPilot();
@@ -106,5 +107,5 @@ public class PilotDAO extends SerializingDAO{
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PilotDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 }

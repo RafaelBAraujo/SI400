@@ -20,6 +20,10 @@ public class Practice extends GameObject implements Serializable {
 		}
 		
 	}
+        
+        public void setId(int id){
+                        
+        }
 	
 	public int getNumLaps() {
 		return numLaps;

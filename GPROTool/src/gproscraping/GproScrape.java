@@ -60,9 +60,9 @@ public class GproScrape {
         System.out.println(pilot.getTal());
         */
         
-        PilotDAO P = new PilotDAO("pilot.ser");
+        //PilotDAO P = new PilotDAO("pilot.ser");
         
-        P.retrievePilot(pilot);
+        //P.retrievePilot(pilot);
         
         //CarDAO C = new CarDAO("car.ser");
         

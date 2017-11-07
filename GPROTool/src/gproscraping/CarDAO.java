@@ -18,7 +18,7 @@ public class CarDAO extends SerializingDAO{
     Scraper src = new Scraper();
     SerializingDAO ser = new SerializingDAO("car.ser") {};
     
-    public void retrieveCar(Car c, RaceWear r) throws ClassNotFoundException{
+    /*public void retrieveCar(Car c, RaceWear r) throws ClassNotFoundException{
     
         c = src.readCar();
         System.out.println("Power:");
@@ -138,5 +138,5 @@ public class CarDAO extends SerializingDAO{
         
         System.out.println("...\n");
 
-    }
+    }*/
 }
