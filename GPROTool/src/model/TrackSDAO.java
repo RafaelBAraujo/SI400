@@ -111,15 +111,6 @@ public class TrackSDAO extends SDAO<Track> {
         }
         return null;
     }
-    
-    /*public Track get(String name) throws Exception {
-        for (Map.Entry<Integer, Track> entry : this.tracks.entrySet()) {
-            if (name.compareTo(entry.getValue().getTrackName()) == 0) {
-                return entry.getValue();
-            }
-        }
-        return null;
-    }*/
 
     @Override
     public void delete(Track b) {
@@ -128,7 +119,7 @@ public class TrackSDAO extends SDAO<Track> {
 
     @Override
     public void update(Track b) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

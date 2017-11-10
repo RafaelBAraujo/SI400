@@ -25,12 +25,6 @@ public class GproTool {
         //Scraper s = new Scraper();
 
         DAO dao = TrackSDAO.getInstance();
-        try {
-            Track t = (Track) dao.get("Interlagos");
-            System.out.println(t.getGPHeld());
-        } catch (Exception ex) {
-            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
  
         
         //System.out.println(pdao.getLastId());
