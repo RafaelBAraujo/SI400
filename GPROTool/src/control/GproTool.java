@@ -5,13 +5,13 @@
  */
 package control;
 
-import gproscraping.ConnectionHandler;
-import gproscraping.Practice;
-import gproscraping.PracticeDAO;
-import gproscraping.Scraper;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ConnectionHandler;
+import model.DAO;
+import model.TrackSDAO;
+import model.Scraper;
+import model.Track;
 
 /**
  *
@@ -21,25 +21,17 @@ public class GproTool {
     
     public static void main(String args[]){
         
-        ConnectionHandler handler = new ConnectionHandler();
-        Scraper s = new Scraper();
-        
-        Practice p = new Practice();
-        
-        p = s.readPractice();
-        
-        PracticeDAO pdao;
+        //ConnectionHandler handler = new ConnectionHandler();
+        //Scraper s = new Scraper();
+
+        DAO dao = TrackSDAO.getInstance();
         try {
-            pdao = PracticeDAO.getInstance();
-            pdao.save(p);
-        } catch (IOException ex) {
+            Track t = (Track) dao.get("Interlagos");
+            System.out.println(t.getGPHeld());
+        } catch (Exception ex) {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        //Practice x = pdao.readPractice(0);
-        
-        //System.out.println(x.getId());
+ 
         
         //System.out.println(pdao.getLastId());
         

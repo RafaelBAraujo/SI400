@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.awt.Toolkit;
+import javax.swing.UIManager;
+import java.awt.Dimension;
+
 /**
  *
  * @author Rafael
@@ -15,6 +19,8 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        setLookAndFeel();
+        centreWindow();
         initComponents();
     }
 
@@ -135,6 +141,19 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    public static void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            System.out.println("Error setting native LAF: " + e);
+        }
+    }
+    
+    public void centreWindow(){
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2 - 150, dim.height/2-this.getSize().height/2 - 150);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
