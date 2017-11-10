@@ -74,7 +74,7 @@ public class ConnectionHandler {
     }
 
     public void openRaceAnalisys() {
-        if (this.checkURL("https://www.gpro.net/gb/gpro.asp")) {
+        if (this.checkURL("gpro.net/gb/gpro.asp")) {
             this.getDriver().findElement(By.xpath("//a[@href='RaceAnalysis.asp']")).click();
         } else {
             this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
@@ -88,6 +88,16 @@ public class ConnectionHandler {
         } else {
             this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
             this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
+        }
+    }
+    
+    public void openManager() {
+        
+        if (this.checkURL("gpro.net/gb/gpro.asp")) {
+            this.getDriver().findElement(By.xpath("//a[@href='ManagerProfile.asp?IDM=\\d{6}']")).click();
+        } else {
+            this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
+            this.getDriver().findElement(By.xpath("//a[@href='ManagerProfile.asp?IDM=\\d{6}']")).click();
         }
     }
 

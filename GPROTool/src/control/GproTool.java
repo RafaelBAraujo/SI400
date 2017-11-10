@@ -24,42 +24,14 @@ public class GproTool {
         //Car myCar = s.readCar();
         //System.out.println(myCar.getManagerName());
         
-        DAO dao = CarSDAO.getInstance();
+        //DAO dao = CarSDAO.getInstance();
         //DAO dao = TrackSDAO.getInstance();
         /*DAO dao = RaceSDAO.getInstance();
         HashSet hs = new HashSet();
         hs.add(61);
         hs.add("Rookie");
         hs.add(59);*/
-        
-        HashSet hs = new HashSet();
-        hs.add(61);
-        hs.add("Rookie");
-        hs.add(59);
-        hs.add("Marcelo Farie");
-        
-        try {
-            //dao.add(myCar);
-            //dao.add(r);
-            Car rNew = (Car) dao.get(hs);
-            if(rNew != null)
-                System.out.println(rNew.getPower());
-            else{
-                System.out.println("n encontrei");
-            }
-            /*try {
-            dao.add(r);
-            } catch (Exception ex) {
-            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
-        } catch (Exception ex) {
-            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        //System.out.println(pdao.getLastId());
-        
-        GproToolController baseController = new GproToolController();
-        baseController.start();
     }
     
 }

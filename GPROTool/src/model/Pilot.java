@@ -19,10 +19,6 @@ public class Pilot implements java.io.Serializable {
     private String startEnergy;
     private String endEnergy;
 
-    public void getAll() {
-        //??????
-    }
-
     public String getName() {
         return name;
     }
