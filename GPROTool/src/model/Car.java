@@ -7,13 +7,20 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1444348458147851688L;
 
+    /* ID */
+    private int season;
+    private int raceNumber;
+    private String rank;
+    private int rankDivision;
+    private String managerName;
+    
     private String power;
     private String handling;
     private String acceleration;
-    /*private String startFuel;
-	private String endFuel;
-	private String tyreSupplier;
-	private String endTyreWear;*/
+  //private String startFuel;
+  //private String endFuel;
+  //private String tyreSupplier;
+  //private String endTyreWear;
 
     private String cha;
     private String eng;
@@ -139,5 +146,44 @@ public class Car implements Serializable {
         this.acceleration = acceleration;
     }
 
+    public int getSeason() {
+        return season;
+    }
 
+    public void setSeason(int season) {
+        this.season = season;
+    }
+
+    public int getRaceNumber() {
+        return raceNumber;
+    }
+
+    public void setRaceNumber(int raceNumber) {
+        this.raceNumber = raceNumber;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public int getRankDivision() {
+        return rankDivision;
+    }
+
+    public void setRankDivision(int rankDivision) {
+        this.rankDivision = rankDivision;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+    
 }

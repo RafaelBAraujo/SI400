@@ -333,14 +333,32 @@ public class Scraper {
         try {
 
             ConnectionHandler h = ConnectionHandler.getHandler();
+            h.openHome();
+            
+            // getting ID - season, rank, rankDivision, manager's name
+            List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
+
+            Car myCar = new Car();
+            String[] substrings = rank.get(1).getText().split(" - ");
+            myCar.setRank(substrings[0]);
+            myCar.setRankDivision(Integer.parseInt(substrings[1]));
+            
+            List<WebElement> managersName = h.getDriver().findElements(By.cssSelector("#item-1 h1 a.nobold"));
+            myCar.setManagerName(managersName.get(0).getText());
+ 
             h.openRaceAnalisys();
+
+            List<WebElement> seasonNumber = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));
+
+            substrings = seasonNumber.get(0).getText().split(" - ");
+
+            myCar.setSeason(Integer.parseInt(substrings[1].substring(substrings[1].indexOf(" ") + 1)));
 
             List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div table.styled.nobordered.center tbody tr td table tbody tr td"));
 
             /*for(int j = 0; j < carCharac.size(); j++){
 				System.out.println(j+": " + carCharac.get(j).getText());
 			}*/
-            Car myCar = new Car();
             myCar.setPower(carCharac.get(2).getText());
             myCar.setHandling(carCharac.get(3).getText());
             myCar.setAcceleration(carCharac.get(4).getText());
@@ -544,7 +562,6 @@ public class Scraper {
         
         return size;
     }
-    
     
     
 }

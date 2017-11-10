@@ -21,18 +21,29 @@ public class GproTool {
         //ConnectionHandler handler = new ConnectionHandler();
         //Scraper s = new Scraper();
         //Race r = s.readRace();
+        //Car myCar = s.readCar();
+        //System.out.println(myCar.getManagerName());
         
+        DAO dao = CarSDAO.getInstance();
         //DAO dao = TrackSDAO.getInstance();
-        DAO dao = RaceSDAO.getInstance();
+        /*DAO dao = RaceSDAO.getInstance();
+        HashSet hs = new HashSet();
+        hs.add(61);
+        hs.add("Rookie");
+        hs.add(59);*/
+        
         HashSet hs = new HashSet();
         hs.add(61);
         hs.add("Rookie");
         hs.add(59);
+        hs.add("Marcelo Farie");
+        
         try {
+            //dao.add(myCar);
             //dao.add(r);
-            Race rNew = (Race) dao.get(hs);
+            Car rNew = (Car) dao.get(hs);
             if(rNew != null)
-                System.out.println(rNew.getMoneyEarned());
+                System.out.println(rNew.getPower());
             else{
                 System.out.println("n encontrei");
             }
@@ -44,8 +55,7 @@ public class GproTool {
         } catch (Exception ex) {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
-        
+
         //System.out.println(pdao.getLastId());
         
         GproToolController baseController = new GproToolController();

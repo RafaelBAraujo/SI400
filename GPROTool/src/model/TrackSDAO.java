@@ -29,7 +29,7 @@ public class TrackSDAO extends SDAO<Track> {
     private final String fileName = "tracks.ser";
     private Integer numTracks;
     
-    TreeMap<Integer, Track> tracks;
+    private TreeMap<Integer, Track> tracks;
     
     public TrackSDAO(){
         this.tracks = new TreeMap<>();
