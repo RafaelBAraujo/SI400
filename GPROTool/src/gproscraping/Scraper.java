@@ -340,9 +340,9 @@ public class Scraper {
 			
 			List<WebElement> carCharac = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div table.styled.nobordered.center tbody tr td table tbody tr td"));
 			
-                        for(int j = 0; j < carCharac.size(); j++){
+                        /*for(int j = 0; j < carCharac.size(); j++){
 				System.out.println(j+": " + carCharac.get(j).getText());
-			}
+			}*/
                         
 			Car myCar = new Car();
 			myCar.setPower(carCharac.get(2).getText());

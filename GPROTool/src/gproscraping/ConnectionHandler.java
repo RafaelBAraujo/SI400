@@ -21,14 +21,14 @@ public class ConnectionHandler {
 	private static WebElement user;
 	private static WebElement passw;
 	
-	ConnectionHandler(){
+	public ConnectionHandler(){
 		
 		driver = new SilentHtmlUnitDriver();
 		driver.get("https://www.gpro.net/gb/gpro.asp");
 		user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
-		user.sendKeys("masf.faria@yahoo.com.br");
+		user.sendKeys("barbaroto96@gmail.com");
 		passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
-		passw.sendKeys("88349288farIA");
+		passw.sendKeys("2xxbff3823");
 		passw.submit();
 		
 	}
