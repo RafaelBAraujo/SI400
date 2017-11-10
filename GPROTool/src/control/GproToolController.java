@@ -5,7 +5,10 @@
  */
 package control;
 
-import model.ConnectionHandler;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.*;
 import view.Login;
 
 /**
@@ -29,6 +32,25 @@ public class GproToolController {
         ConnectionHandler.setPassword(pass);
         
         ConnectionHandler handler = ConnectionHandler.getHandler();
+        
+        return false;
+    }
+    
+    public boolean searchRace(Integer season, String rank, Integer rankDivision){
+        
+        DAO dao = RaceSDAO.getInstance();
+        HashSet searchingRace = new HashSet();
+        searchingRace.add(season);
+        searchingRace.add(rank);
+        searchingRace.add(rankDivision);
+        
+        try {
+            Race foundRace = (Race) dao.get(searchingRace);
+            if(foundRace != null)
+                return true;
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return false;
     }
