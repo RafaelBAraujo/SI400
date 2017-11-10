@@ -28,9 +28,9 @@ public class ConnectionHandler {
         driver = new SilentHtmlUnitDriver();
         driver.get("https://www.gpro.net/gb/gpro.asp");
         user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
-        user.sendKeys("barbaroto96@gmail.com");
+        user.sendKeys("masf.faria@yahoo.com.br");
         passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
-        passw.sendKeys("2xxbff3823");
+        passw.sendKeys("88349288farIA");
         passw.submit();
 
     }
@@ -68,7 +68,7 @@ public class ConnectionHandler {
     }
 
     public void openHome() {
-        if (!this.checkURL("https://www.gpro.net/gb/gpro.asp")) {
+        if (!this.checkURL("gpro.net/gb/gpro.asp")) {
             this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
         }
     }
@@ -83,7 +83,7 @@ public class ConnectionHandler {
     }
 
     public void openTrackList() {
-        if (this.checkURL("https://www.gpro.net/gb/gpro.asp")) {
+        if (this.checkURL("gpro.net/gb/gpro.asp")) {
             this.getDriver().findElement(By.xpath("//a[@href='ViewTracks.asp']")).click();
         } else {
             this.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();

@@ -29,7 +29,9 @@ class Lap implements java.io.Serializable {
 
 }
 
-public class Race {
+public class Race implements java.io.Serializable {
+
+    private static final long serialVersionUID = 7073558138861882881L;
 
     private List<Lap> laps;
     private int season;

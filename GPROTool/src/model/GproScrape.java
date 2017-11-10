@@ -18,8 +18,8 @@ public class GproScrape {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
-        ConnectionHandler handler = new ConnectionHandler();
-        Scraper scraper = new Scraper();
+        //ConnectionHandler handler = new ConnectionHandler();
+        //Scraper scraper = new Scraper();
         //scraper.readStrategy();
         
         Practice practice = new Practice();
@@ -83,7 +83,7 @@ public class GproScrape {
         //c.writeObject(p);
         //c.readObject();
 
-        handler.getDriver().quit();
+        //handler.getDriver().quit();
 
     }
 

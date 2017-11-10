@@ -54,9 +54,7 @@ public class TrackSDAO extends SDAO<Track> {
             this.tracks = tracksFile;
             this.numTracks = tracks.size();
             this.checkIfUpdated();
-        } catch(EOFException ex){
-            Logger.getLogger(TrackSDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException | ClassNotFoundException ex) {
+        } catch (EOFException | FileNotFoundException | ClassNotFoundException ex) {
             File f = new File(this.fileName);
             try {
                 boolean createNewFile = f.createNewFile();

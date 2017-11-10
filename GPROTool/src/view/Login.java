@@ -5,9 +5,13 @@
  */
 package view;
 
+import control.GproToolController;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.ConnectionHandler;
 
 /**
@@ -16,10 +20,14 @@ import model.ConnectionHandler;
  */
 public class Login extends javax.swing.JFrame {
 
+    
+    GproToolController baseController;
+    
     /**
      * Creates new form Login
      */
     public Login() {
+        this.baseController = new GproToolController();
         setLookAndFeel();
         centreWindow();
         initComponents();
@@ -117,8 +125,14 @@ public class Login extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String passwd = txtPassword.getPassword().toString();
         
-        ConnectionHandler.setEmail(email);
-        ConnectionHandler.setPassword(passwd); 
+        try {
+            if(this.baseController.autUsuario(email, passwd)){
+                MainScreen ms = new MainScreen();
+                ms.setVisible(true);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Failed to login. Please check your email and password.");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

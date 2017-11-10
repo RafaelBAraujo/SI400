@@ -5,6 +5,7 @@
  */
 package control;
 
+import model.ConnectionHandler;
 import view.Login;
 
 /**
@@ -13,13 +14,23 @@ import view.Login;
  */
 public class GproToolController {
     
-    GproToolController(){
+    public GproToolController(){
         
     }
     
     public void start(){
         Login loginScreen = new Login();
         loginScreen.setVisible(true);
+    }
+    
+    public boolean autUsuario(String email, String pass) throws Exception {
+        
+        ConnectionHandler.setEmail(email);
+        ConnectionHandler.setPassword(pass);
+        
+        ConnectionHandler handler = ConnectionHandler.getHandler();
+        
+        return false;
     }
     
 }
