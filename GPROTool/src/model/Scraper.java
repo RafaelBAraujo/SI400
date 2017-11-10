@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Scraper {
@@ -87,6 +88,38 @@ public class Scraper {
 
         return rw;
 
+    }
+    
+    public Manager readManager(){
+    
+        ConnectionHandler h = ConnectionHandler.getHandler();
+        
+        Manager ma = new Manager();
+
+        List<WebElement> m = h.getDriver().findElements(By.cssSelector("#item-1 h1 a.nobold"));
+        List<WebElement> m3 = h.getDriver().findElements(By.cssSelector("#item-1 table tbody tr:nth-child(1) td:nth-child(2) span"));
+        //System.out.println("Tamanho: " + m3.size());
+        /*for(int i = 0; i < m3.size(); i++){
+            System.out.println(m3.get(i).getAttribute("title"));
+        }*/
+        ma.setUsername(m3.get(0).getAttribute("title"));
+        
+        String href = m.get(0).getAttribute("href");
+        String[] subStrings = href.split("/");
+        String link = "//a[@href='" + subStrings[subStrings.length - 1] + "']";
+        
+        //System.out.println(m.get(0).getAttribute("href"));
+        h.getDriver().findElement(By.xpath(link)).click();
+        
+        List<WebElement> m1 = h.getDriver().findElements(By.cssSelector("div.column.left.thirty.nomargin.height250 table tbody tr:nth-child(1) td"));
+        //System.out.println(m1.get(0).getText());
+        ma.setName(m1.get(0).getText());
+        
+        List<WebElement> m2 = h.getDriver().findElements(By.cssSelector("div.column.left.forty.nomargin.height170 div.right.eighty.leftalign table tbody tr:nth-child(3) td a"));
+        //System.out.println(m2.get(0).getText());
+        ma.setCoutry(m2.get(0).getText());
+   
+        return ma;
     }
 
     public Qualifyings readQualifying() {
@@ -470,7 +503,7 @@ public class Scraper {
         return r;
 
     }
-
+    
     public Tracks readTracks() {
 
         ConnectionHandler h = ConnectionHandler.getHandler();

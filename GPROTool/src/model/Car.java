@@ -10,10 +10,13 @@ public class Car implements Serializable {
     private String power;
     private String handling;
     private String acceleration;
-    /*private String startFuel;
+    
+    /*
+        private String startFuel;
 	private String endFuel;
 	private String tyreSupplier;
-	private String endTyreWear;*/
+	private String endTyreWear;
+    */
 
     private String cha;
     private String eng;
