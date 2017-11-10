@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 *.log
 *.class
 GPROTool/build
-=======
 *.ser
-*.class
-ConnectionHandler.java
->>>>>>> 4f0631d95f04d7b3bae1ad385806aa1ca2f102bd
