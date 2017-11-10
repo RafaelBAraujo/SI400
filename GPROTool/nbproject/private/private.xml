@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/gproscraping/Pilot.java</file>
@@ -10,5 +13,6 @@
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/gproscraping/GproScrape.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/gproscraping/Practice.java</file>
         </group>
+>>>>>>> 4f0631d95f04d7b3bae1ad385806aa1ca2f102bd
     </open-files>
 </project-private>

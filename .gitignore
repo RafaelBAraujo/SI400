@@ -1,3 +1,4 @@
-*.ser
+*.log
 *.class
-ConnectionHandler.java
+GPROTool/build
+*.ser
