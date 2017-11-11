@@ -24,4 +24,60 @@ public class Setup implements java.io.Serializable {
 
     }
 
+    public String getFWing() {
+        return FWing;
+    }
+
+    public void setFWing(String FWing) {
+        this.FWing = FWing;
+    }
+
+    public String getRWing() {
+        return RWing;
+    }
+
+    public void setRWing(String RWing) {
+        this.RWing = RWing;
+    }
+
+    public String getEng() {
+        return Eng;
+    }
+
+    public void setEng(String Eng) {
+        this.Eng = Eng;
+    }
+
+    public String getBra() {
+        return Bra;
+    }
+
+    public void setBra(String Bra) {
+        this.Bra = Bra;
+    }
+
+    public String getGear() {
+        return Gear;
+    }
+
+    public void setGear(String Gear) {
+        this.Gear = Gear;
+    }
+
+    public String getSusp() {
+        return Susp;
+    }
+
+    public void setSusp(String Susp) {
+        this.Susp = Susp;
+    }
+
+    public String getTyres() {
+        return Tyres;
+    }
+
+    public void setTyres(String Tyres) {
+        this.Tyres = Tyres;
+    }
+
 }
