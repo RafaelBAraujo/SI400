@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class RaceSDAO extends SDAO<Race>{
 
-    public static RaceSDAO instance;
+    private static RaceSDAO instance;
     private final String fileName = "races.ser";
     
     
