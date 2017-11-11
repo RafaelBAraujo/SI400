@@ -469,7 +469,12 @@ public class Scraper {
         String[] substrings = rank.get(1).getText().split(" - ");
         r.setRank(substrings[0]);
         r.setRankDivision(Integer.parseInt(substrings[1]));
-
+        
+        //read manager's name
+        List<WebElement> managersUsername = h.getDriver().findElements(By.cssSelector("#item-1 table tbody tr:nth-child(1) td:nth-child(2) span"));
+        r.setManagerUsername(managersUsername.get(0).getAttribute("title"));
+        
+        
         h.openRaceAnalisys();
 
         List<WebElement> info = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));

@@ -28,6 +28,8 @@ public class RaceSDAO extends SDAO<Race>{
 
     public static RaceSDAO instance;
     private final String fileName = "races.ser";
+    
+    
     TreeMap<Integer, Race> races;    
     
     public RaceSDAO(){
@@ -102,7 +104,7 @@ public class RaceSDAO extends SDAO<Race>{
         s.add(b.getSeason());
         s.add(b.getRank());
         s.add(b.getRankDivision());
-        //s.add(b.getTrack().getTrackName());
+        s.add(b.getManagerUsername());
         if(!this.races.isEmpty()){
             for (Map.Entry<Integer, Race> entry : this.races.entrySet()) {
                 if (entry.getKey().equals(s)) {

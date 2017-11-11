@@ -38,6 +38,7 @@ public class Race implements java.io.Serializable {
     private int raceNumber;
     private String rank;
     private int rankDivision;
+    private String managerUsername;
     private String moneyEarned;
     private Track track;
     private RaceForecast raceForecast;
@@ -116,6 +117,14 @@ public class Race implements java.io.Serializable {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    public String getManagerUsername() {
+        return managerUsername;
+    }
+
+    public void setManagerUsername(String managerUsername) {
+        this.managerUsername = managerUsername;
     }
 
 }
