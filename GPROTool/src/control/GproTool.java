@@ -19,22 +19,67 @@ public class GproTool {
     
     public static void main(String args[]){
         
+
         ConnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
         Testing t = new Testing();
         //Manager m = s.readManager();
 
-        s.readTesting();
+        //s.readTesting();
         
         /*try {
             dao.add(m);
+            Manager readManager = (Manager) dao.get("Rafael Araújo");
+        //ConnectionHandler handler = new ConnectionHandler();
+        //Scraper s = new Scraper();
+        //Manager m = s.readManager();
+        
+        //Qualifyings qfs = new Qualifyings();
+        //qfs = s.readQualifying();
+        
+        //qfs.getQ1().setWeather(s.readQ1Weather());
+        //qfs.getQ2().setWeather(s.readQ2Weather());
+        
+        RaceAnalysis ra = new RaceAnalysis();
+        //ra.setRace(s.readRace());
+        //ra.getRace().setRaceForecast(s.readForecast());
+        
+        HashSet addingRaceAnalysis = new HashSet();
+        addingRaceAnalysis.add(61);
+        addingRaceAnalysis.add("Amateur");
+        addingRaceAnalysis.add(87);
+        addingRaceAnalysis.add(13);
+        addingRaceAnalysis.add("barbaroto96@gmail.com");
+        addingRaceAnalysis.add("Sunny");
+        addingRaceAnalysis.add(36);
+        addingRaceAnalysis.add(6);
+        
+        System.out.println("tamanho é::" + addingRaceAnalysis.size());
+        
+        /*
+            Temp: 39°C
+            Humidity: 38%
+        */
+        
+        DAO dao = RaceAnalysisSDAO.getInstance();
+        /*
+        try {
+            //dao.add(ra);
+            ra = (RaceAnalysis) dao.get(addingRaceAnalysis);
+            if(ra != null){
+                System.out.println(ra.getRace().getMoneyEarned());
+
+            }
+            else{
+                System.out.println("nao encontrei o marcelo");
+            }
             Manager readManager = (Manager) dao.get("Rafael Araújo");
             if(readManager != null){
                 System.out.println(readManager.getUsername());
             }
             else{
                 System.out.println("nao encontrei o marcelo");
-            }
+            } */
             
             //Race r = s.readRace();
             //Car myCar = s.readCar();
