@@ -94,6 +94,15 @@ public class Testing implements java.io.Serializable {
     
     private TestingLap[] stints;
     private Weather testingWeather;
+    private Weather testingDescription;
+
+    public Weather getTestingDescription() {
+        return testingDescription;
+    }
+
+    public void setTestingDescription(Weather testingDescription) {
+        this.testingDescription = testingDescription;
+    }
     
     public Testing(){
         stints = new TestingLap[10];

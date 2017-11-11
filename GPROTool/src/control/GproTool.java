@@ -19,6 +19,17 @@ public class GproTool {
     
     public static void main(String args[]){
         
+
+        ConnectionHandler handler = new ConnectionHandler();
+        Scraper s = new Scraper();
+        Testing t = new Testing();
+        //Manager m = s.readManager();
+
+        //s.readTesting();
+        
+        /*try {
+            dao.add(m);
+            Manager readManager = (Manager) dao.get("Rafael Araújo");
         //ConnectionHandler handler = new ConnectionHandler();
         //Scraper s = new Scraper();
         //Manager m = s.readManager();
@@ -51,7 +62,7 @@ public class GproTool {
         */
         
         DAO dao = RaceAnalysisSDAO.getInstance();
-        
+        /*
         try {
             //dao.add(ra);
             ra = (RaceAnalysis) dao.get(addingRaceAnalysis);
@@ -62,7 +73,7 @@ public class GproTool {
             else{
                 System.out.println("nao encontrei o marcelo");
             }
-            /* Manager readManager = (Manager) dao.get("Rafael Araújo");
+            Manager readManager = (Manager) dao.get("Rafael Araújo");
             if(readManager != null){
                 System.out.println(readManager.getUsername());
             }
@@ -80,10 +91,10 @@ public class GproTool {
             HashSet hs = new HashSet();
             hs.add(61);
             hs.add("Rookie");
-            hs.add(59);*/
+            hs.add(59);
         } catch (Exception ex) {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         Login loginScreen = new Login();
         loginScreen.setVisible(true);

@@ -1,12 +1,111 @@
 package model;
 
+import java.awt.font.OpenType;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Scraper {
+
+    public Testing readTesting() {
+
+        TestingLap tl = new TestingLap();
+        TestingLap[] stints = new TestingLap[10];
+        Testing t = new Testing();
+        Weather w = new Weather();
+        Setup lapSetup = new Setup();
+
+        ConnectionHandler h = ConnectionHandler.getHandler();
+        h.openTesting();
+        int x = 4;
+
+        //#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(4)
+        //#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(5)
+        List<WebElement> testingWeather = h.getDriver().findElements(By.cssSelector("#formQual div.column.thirtyfive.nomargin table:nth-child(9) tbody tr td img"));
+        List<WebElement> testingDescription = h.getDriver().findElements(By.cssSelector("#formQual div.column.thirtyfive.nomargin table:nth-child(9) tbody tr td"));
+
+        w.setWeather(testingWeather.get(0).getAttribute("title"));
+        t.setTestingWeather(w);
+
+        w.setDescription(testingDescription.get(0).getText());
+        t.setTestingDescription(w);
+
+        //System.out.println(testingWeather.get(0).getAttribute("title"));
+        //System.out.println(testingDescription.get(0).getText());
+        while (x < 10) {
+            try {
+                int i = 0;
+                List<WebElement> testingAll = h.getDriver().findElements(By.cssSelector("#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(" + x + ")"));
+                String s = testingAll.get(0).getText();
+                String[] subS = s.split(" ");
+                /*int tam = subS.length;
+                System.out.println(s);
+                for (String string : subS) {
+                    System.out.println(string + " - > " + tam);
+                    tam--;
+                }*/
+                //System.out.println(subS[21]);
+                
+                stints[i] = new TestingLap();
+
+                stints[i].setLapsDone(subS[2]);
+                stints[i].setBestlap(subS[5]);
+                stints[i].setMean(subS[8]);
+                stints[i].setLapSetup(lapSetup);
+
+                lapSetup.setFWing(subS[10]);
+                lapSetup.setRWing(subS[11]);
+                lapSetup.setEng(subS[12]);
+                lapSetup.setBra(subS[13]);
+                lapSetup.setGear(subS[14]);
+                lapSetup.setSusp(subS[15]);
+
+                if (subS[16].compareTo("Extra") == 0) {
+                    lapSetup.setTyres(subS[16] + " " + subS[17]);
+                } else {
+                    lapSetup.setTyres(subS[16]);
+                }
+
+                stints[i].setLapSetup(lapSetup);
+
+                if (subS[16].compareTo("Extra") == 0) {
+
+                    stints[i].setTyres(subS[16] + " " + subS[17]);
+                    stints[i].setFuel(subS[18]);                    
+                    stints[i].setTyresCond(subS[19]);
+                    stints[i].setFuelLeft(subS[20]);
+
+                } else {
+
+                    stints[i].setTyres(subS[16]);
+                    stints[i].setFuel(subS[17]);
+                    stints[i].setTyresCond(subS[18]);
+                    stints[i].setFuelLeft(subS[19]);
+
+                }
+
+                t.setStints(stints);
+                
+                /*System.out.println(stints[i].getBestlap());
+                System.out.println(stints[i].getLapSetup().getTyres());
+                for (TestingLap testL : stints) {
+                    System.out.println(testL);
+                }*/
+
+            } catch (IndexOutOfBoundsException e) {
+                //System.out.println(e);
+            }
+            x++;
+        }
+
+        /*for(int i = 0; i < testingAll.size(); i++){
+            System.out.println(testingAll.get(i).getText() + i);
+        }*/
+        return t;
+    }
 
     public Practice readPractice() {
 
@@ -89,11 +188,11 @@ public class Scraper {
         return rw;
 
     }
-    
-    public Manager readManager(){
-    
+
+    public Manager readManager() {
+
         ConnectionHandler h = ConnectionHandler.getHandler();
-        
+
         Manager ma = new Manager();
 
         List<WebElement> m = h.getDriver().findElements(By.cssSelector("#item-1 h1 a.nobold"));
@@ -103,22 +202,22 @@ public class Scraper {
             System.out.println(m3.get(i).getAttribute("title"));
         }*/
         ma.setUsername(m3.get(0).getAttribute("title"));
-        
+
         String href = m.get(0).getAttribute("href");
         String[] subStrings = href.split("/");
         String link = "//a[@href='" + subStrings[subStrings.length - 1] + "']";
-        
+
         //System.out.println(m.get(0).getAttribute("href"));
         h.getDriver().findElement(By.xpath(link)).click();
-        
+
         List<WebElement> m1 = h.getDriver().findElements(By.cssSelector("div.column.left.thirty.nomargin.height250 table tbody tr:nth-child(1) td"));
         //System.out.println(m1.get(0).getText());
         ma.setName(m1.get(0).getText());
-        
+
         List<WebElement> m2 = h.getDriver().findElements(By.cssSelector("div.column.left.forty.nomargin.height170 div.right.eighty.leftalign table tbody tr:nth-child(3) td a"));
         //System.out.println(m2.get(0).getText());
         ma.setCoutry(m2.get(0).getText());
-   
+
         return ma;
     }
 
@@ -367,7 +466,7 @@ public class Scraper {
 
             ConnectionHandler h = ConnectionHandler.getHandler();
             h.openHome();
-            
+
             // getting ID - season, rank, rankDivision, manager's name
             List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
 
@@ -375,10 +474,10 @@ public class Scraper {
             String[] substrings = rank.get(1).getText().split(" - ");
             myCar.setRank(substrings[0]);
             myCar.setRankDivision(Integer.parseInt(substrings[1]));
-            
+
             List<WebElement> managersName = h.getDriver().findElements(By.cssSelector("#item-1 h1 a.nobold"));
             myCar.setManagerName(managersName.get(0).getText());
- 
+
             h.openRaceAnalisys();
 
             List<WebElement> seasonNumber = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));
@@ -469,12 +568,11 @@ public class Scraper {
         String[] substrings = rank.get(1).getText().split(" - ");
         r.setRank(substrings[0]);
         r.setRankDivision(Integer.parseInt(substrings[1]));
-        
+
         //read manager's name
         List<WebElement> managersUsername = h.getDriver().findElements(By.cssSelector("#item-1 table tbody tr:nth-child(1) td:nth-child(2) span"));
         r.setManagerUsername(managersUsername.get(0).getAttribute("title"));
-        
-        
+
         h.openRaceAnalisys();
 
         List<WebElement> info = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));
@@ -526,7 +624,7 @@ public class Scraper {
         return r;
 
     }
-    
+
     public Tracks readTracks() {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
@@ -586,20 +684,19 @@ public class Scraper {
         return t;
     }
 
-    public static Integer readTrackListSize(){
-        
+    public static Integer readTrackListSize() {
+
         Integer size;
-        
+
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openTrackList();
 
         List<WebElement> trackList = h.getDriver().findElements(
                 By.cssSelector("table.styled.borderbottom.flag tbody td"));
-        
+
         size = trackList.size() / 10;
-        
+
         return size;
     }
-    
-    
+
 }
