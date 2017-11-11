@@ -9,10 +9,7 @@ import control.GproToolController;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import java.awt.Dimension;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.ConnectionHandler;
 
 /**
  *

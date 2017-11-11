@@ -12,8 +12,8 @@ public class Scraper {
 
     public Testing readTesting() {
 
-        TestingLap tl = new TestingLap();
-        TestingLap[] stints = new TestingLap[10];
+        TestingStint tl = new TestingStint();
+        TestingStint[] stints = new TestingStint[10];
         Testing t = new Testing();
         Weather w = new Weather();
         Setup lapSetup = new Setup();
@@ -49,7 +49,7 @@ public class Scraper {
                 }*/
                 //System.out.println(subS[21]);
                 
-                stints[i] = new TestingLap();
+                stints[i] = new TestingStint();
 
                 stints[i].setLapsDone(subS[2]);
                 stints[i].setBestlap(subS[5]);
@@ -91,7 +91,7 @@ public class Scraper {
                 
                 /*System.out.println(stints[i].getBestlap());
                 System.out.println(stints[i].getLapSetup().getTyres());
-                for (TestingLap testL : stints) {
+                for (TestingStint testL : stints) {
                     System.out.println(testL);
                 }*/
 

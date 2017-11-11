@@ -8,7 +8,10 @@ package control;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.*;
+import model.ConnectionHandler;
+import model.DAO;
+import model.Race;
+import model.RaceSDAO;
 import view.Login;
 
 /**

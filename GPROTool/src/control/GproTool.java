@@ -20,12 +20,31 @@ public class GproTool {
     public static void main(String args[]){
         
 
-        ConnectionHandler handler = new ConnectionHandler();
+        //onnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
-        Testing t = new Testing();
         //Manager m = s.readManager();
-
-        //s.readTesting();
+        /*RaceAnalysis ra = new RaceAnalysis();
+        System.out.println("Reading race...");
+        ra.setRace(s.readRace());
+        System.out.println("Reading forecast...");
+        ra.getRace().setRaceForecast(s.readForecast());
+        System.out.println("Reading car...");
+        ra.setCar(s.readCar());
+        System.out.println("Reading pilot...");
+        ra.setPilot(s.readPilot());
+        System.out.println("Reading pitstops...");
+        ra.setPitstop(s.readPitStops());
+        System.out.println("Reading practice...");
+        ra.setPractice(s.readPractice());
+        System.out.println("Reading wear...");
+        ra.setRaceWear(s.readRaceWear());
+        System.out.println("Reading strategy...");
+        ra.setStrategy(s.readStrategy());
+        System.out.println("Reading qualifyings...");
+        ra.setQualifyings(s.readQualifying());
+        System.out.println("Reading qualifyings's weather...");
+        ra.getQualifyings().getQ1().setWeather(s.readQ1Weather());
+        ra.getQualifyings().getQ2().setWeather(s.readQ2Weather());*/
         
         /*try {
             dao.add(m);
@@ -40,9 +59,6 @@ public class GproTool {
         //qfs.getQ1().setWeather(s.readQ1Weather());
         //qfs.getQ2().setWeather(s.readQ2Weather());
         
-        RaceAnalysis ra = new RaceAnalysis();
-        //ra.setRace(s.readRace());
-        //ra.getRace().setRaceForecast(s.readForecast());
         
         HashSet addingRaceAnalysis = new HashSet();
         addingRaceAnalysis.add(61);
@@ -62,6 +78,13 @@ public class GproTool {
         */
         
         DAO dao = RaceAnalysisSDAO.getInstance();
+        
+        try{
+            //dao.add(ra);
+        } catch (Exception ex) {
+            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         /*
         try {
             //dao.add(ra);
