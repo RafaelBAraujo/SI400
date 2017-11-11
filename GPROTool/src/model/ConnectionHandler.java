@@ -24,7 +24,7 @@ public class ConnectionHandler {
     private static String email;
     private static String password;
 
-    public ConnectionHandler() throws LoginException {
+    public ConnectionHandler(){
 
         driver = new SilentHtmlUnitDriver();
         driver.get("https://www.gpro.net/gb/gpro.asp");
@@ -33,13 +33,13 @@ public class ConnectionHandler {
         passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
         passw.sendKeys("2xxbff3823");
         passw.submit();
-        if(driver.getCurrentUrl().matches(".+Login.asp?Redirect=gpro.asp")){
+        /*if(driver.getCurrentUrl().matches(".+Login.asp?Redirect=gpro.asp")){
             throw new LoginException();
-        }
+        }*/
 
     }
 
-    public static ConnectionHandler getHandler() throws LoginException {
+    public static ConnectionHandler getHandler() /*throws LoginException*/ {
         if (handler == null) {
             handler = new ConnectionHandler();
             return handler;
