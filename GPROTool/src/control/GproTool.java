@@ -20,8 +20,14 @@ public class GproTool {
     public static void main(String args[]){
         
 
-        //onnectionHandler handler = new ConnectionHandler();
+        ConnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
+        
+        Testing t = s.readTesting();
+        TestingStint[] stints = t.getStints();
+        System.out.println(stints[1].getTyres());
+                
+        
         //Manager m = s.readManager();
         /*RaceAnalysis ra = new RaceAnalysis();
         System.out.println("Reading race...");
@@ -77,7 +83,7 @@ public class GproTool {
             Humidity: 38%
         */
         
-        DAO dao = RaceAnalysisSDAO.getInstance();
+        //DAO dao = RaceAnalysisSDAO.getInstance();
         
         try{
             //dao.add(ra);

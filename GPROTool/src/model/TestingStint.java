@@ -13,6 +13,7 @@ public class TestingStint implements java.io.Serializable {
     
     private static final long serialVersionUID = 1473415859796723863L;
     
+    private int stint;
     private String lapsDone;
     private String bestlap;
     private String mean;
@@ -22,6 +23,15 @@ public class TestingStint implements java.io.Serializable {
     private String fuelLeft;
     private String tyresCond;
 
+    public int getStint() {
+        return stint;
+    }
+
+    public void setStint(int stint) {
+        this.stint = stint;
+    }
+
+    
     public String getLapsDone() {
         return lapsDone;
     }
