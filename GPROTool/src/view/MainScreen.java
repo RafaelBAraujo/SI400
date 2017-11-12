@@ -5,8 +5,11 @@
  */
 package view;
 
+import control.GproToolController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import model.Race;
 
 /**
  *
@@ -14,10 +17,13 @@ import java.awt.Toolkit;
  */
 public class MainScreen extends javax.swing.JFrame {
 
+    private GproToolController baseController;
+    
     /**
      * Creates new form MainScreen
      */
-    public MainScreen() {
+    public MainScreen(GproToolController controller) {
+        this.baseController = controller;
         centreWindow();
         initComponents();
     }
@@ -103,7 +109,14 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadRaceActionPerformed
-
+        if(this.baseController == null){
+            JOptionPane.showMessageDialog(null, "Error at program's controller");
+            dispose();
+        }
+        else{
+            ReadRaceScreen readScreen = new ReadRaceScreen(this.baseController);
+            readScreen.setVisible(true);
+        }
     }//GEN-LAST:event_btnReadRaceActionPerformed
     
     public void centreWindow(){
@@ -112,7 +125,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     private void btnPastRacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastRacesActionPerformed
-        SearchRaceScreen src = new SearchRaceScreen();
+        SearchRaceScreen src = new SearchRaceScreen(this.baseController);
         src.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPastRacesActionPerformed

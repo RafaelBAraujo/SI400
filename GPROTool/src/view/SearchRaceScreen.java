@@ -22,16 +22,17 @@ import model.Race;
  */
 public class SearchRaceScreen extends javax.swing.JFrame {
 
-    GproToolController baseController;
+    private GproToolController baseController;
     
     /**
      * Creates new form MainScreen
      */
-    public SearchRaceScreen() {
-        baseController = new GproToolController();
+    public SearchRaceScreen(GproToolController controller) {
+        baseController = controller;
         setLookAndFeel();
         centreWindow();
         initComponents();
+        addRankDivisions();
     }
 
     /**
@@ -64,8 +65,11 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         jLabel1.setText("Rank");
 
         cmbRank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rookie", "Amateur", "Pro", "Master", "Elite" }));
-
-        cmbRankDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "59", "87" }));
+        cmbRank.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbRankItemStateChanged(evt);
+            }
+        });
 
         lblRankDivision.setText("Division");
 
@@ -116,15 +120,13 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                             .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSeason))
                         .addGap(40, 40, 40)
+                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(76, 76, 76)
-                                .addComponent(lblRankDivision))
-                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                                .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbRankDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbRankDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRankDivision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(34, 34, 34)
                         .addComponent(btnSearch))
                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
@@ -182,39 +184,9 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchRaceScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchRaceScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchRaceScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchRaceScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new SearchRaceScreen().setVisible(true);
-        });
-    }
+    private void cmbRankItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRankItemStateChanged
+        addRankDivisions();
+    }//GEN-LAST:event_cmbRankItemStateChanged
 
     public static void setLookAndFeel() {
         try {
@@ -229,6 +201,42 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         this.setLocation(dim.width / 2 - this.getSize().width / 2 - 150, dim.height / 2 - this.getSize().height / 2 - 150);
     }
     
+    public void addRankDivisions(){
+        
+        String rank = (String) cmbRank.getSelectedItem();
+        
+        if(rank.compareTo("Rookie") == 0){
+            cmbRankDivision.removeAllItems();
+            for(int i = 1; i < 201; i++){
+                cmbRankDivision.addItem(String.valueOf(i));
+            }
+        }
+        else if(rank.compareTo("Amateur") == 0){
+            cmbRankDivision.removeAllItems();
+            for(int i = 1; i < 126; i++){
+                cmbRankDivision.addItem(String.valueOf(i));
+            }
+        }
+        else if (rank.compareTo("Pro") == 0) {
+            cmbRankDivision.removeAllItems();
+            for (int i = 1; i < 26; i++) {
+                cmbRankDivision.addItem(String.valueOf(i));
+            }
+        }
+        else if (rank.compareTo("Master") == 0) {
+            cmbRankDivision.removeAllItems();
+            for (int i = 1; i < 6; i++) {
+                cmbRankDivision.addItem(String.valueOf(i));
+            }
+        }
+        else if (rank.compareTo("Elite") == 0) {
+            cmbRankDivision.removeAllItems();
+            for (int i = 1; i < 2; i++) {
+                cmbRankDivision.addItem(String.valueOf(i));
+            }
+        }
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbRank;

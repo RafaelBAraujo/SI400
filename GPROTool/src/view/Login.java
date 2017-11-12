@@ -6,12 +6,9 @@
 package view;
 
 import control.GproToolController;
-import exception.LoginException;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,7 +128,7 @@ public class Login extends javax.swing.JFrame {
         
         try {
             if(this.baseController.autUsuario(email, passwd)){
-                MainScreen ms = new MainScreen();
+                MainScreen ms = new MainScreen(this.baseController);
                 ms.setVisible(true);
                 dispose();
             }
