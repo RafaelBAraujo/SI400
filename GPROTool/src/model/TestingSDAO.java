@@ -58,6 +58,7 @@ public class TestingSDAO extends SDAO<Testing>{
                             HashSet currentTe = new HashSet();
                             currentTe.add(entry.getValue().getRace().getSeason());
                             if(currentTe.equals(querySet)){
+                                System.out.println(entry.getValue());
                                 return entry.getValue();
                             }
                         }
@@ -140,15 +141,23 @@ public class TestingSDAO extends SDAO<Testing>{
 
     @Override
     public void add(Testing b) throws Exception {
-        Testing t = (Testing) b;
+        HashSet addingTesting = new HashSet();
+        addingTesting.add(b.getRace().getSeason());
+        addingTesting.add(b.getRace().getRank());
+        addingTesting.add(b.getRace().getRankDivision());
+        addingTesting.add(b.getRace().getRaceNumber());
+        addingTesting.add(b.getRace().getManagerUsername());
+        addingTesting.add(b.getStints());
+        addingTesting.add(b.getTestingDescription().getDescription());
+        addingTesting.add(b.getTestingWeather().getWeather());
         if(!this.testing.isEmpty()){
             for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                if(entry.getValue().getTestingWeather()== t.getTestingWeather()){
+                if(entry.getKey().equals(addingTesting)){
                     return;
                 }
             }
-            //stints eh do tipo TestingStints[]
-            //this.testing.put(b.getTestingWeather().getWeather(), t);
+            Integer lastKey = this.testing.lastKey();
+            this.testing.put(lastKey + 1, b);
             try{
                 FileOutputStream fileOut = new FileOutputStream(this.fileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -158,7 +167,7 @@ public class TestingSDAO extends SDAO<Testing>{
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }   
         }
-        //this.testing.put(b.getTestingWeather().getWeather(), t);
+        this.testing.put(1, b);
             try{
                 FileOutputStream fileOut = new FileOutputStream(this.fileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -183,7 +192,7 @@ public class TestingSDAO extends SDAO<Testing>{
             try{
                 boolean createNewFile = f.createNewFile();
                 if(createNewFile){
-                    System.out.println("peguei aqui");
+                    System.out.println("got here");
                 }
             } catch(IOException exl) {
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, exl);

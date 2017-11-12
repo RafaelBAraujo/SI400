@@ -23,13 +23,35 @@ public class GproTool {
         ConnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
         
-        DAO dao = TestingSDAO.getInstance();
+        
         Testing t = s.readTesting();
         TestingStint[] stints = t.getStints();
         
+        DAO dao = TestingSDAO.getInstance();
+        //Manager m = s.readManager();
+
+        /*System.out.println("Reading race...");
+        t.setRace(s.readRace());
+        System.out.println("Reading forecast...");
+        t.getRace().setRaceForecast(s.readForecast());
+*/
+        HashSet addingTesting = new HashSet();
+        addingTesting.add(61);
+        addingTesting.add("Amateur");
+        addingTesting.add(87);
+        addingTesting.add(13);
+        addingTesting.add("barbaroto96@gmail.com");
+
+        
         //String str = s.readTesting().getTestingWeather().getWeather();
         try {
-            dao.get(t);
+            //dao.add(m);
+            //Manager readManager = (Manager) dao.get("Rafael Araújo");
+            t = (Testing) dao.get(addingTesting);
+            if(t != null){
+                System.out.println(stints[1].getMean());
+
+            }
         } catch (Exception ex) {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
         }
