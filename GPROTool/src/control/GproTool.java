@@ -18,14 +18,14 @@ import view.Login;
 public class GproTool {
     
     public static void main(String args[]){
-        
 
-        ConnectionHandler handler = new ConnectionHandler();
+
+        //ConnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
         
         
-        Testing t = s.readTesting();
-        TestingStint[] stints = t.getStints();
+        //Testing t = s.readTesting();
+        //TestingStint[] stints = t.getStints();
         
         DAO dao = TestingSDAO.getInstance();
         //Manager m = s.readManager();
@@ -44,7 +44,7 @@ public class GproTool {
 
         
         //String str = s.readTesting().getTestingWeather().getWeather();
-        try {
+        /*try {
             //dao.add(m);
             //Manager readManager = (Manager) dao.get("Rafael Araújo");
             t = (Testing) dao.get(addingTesting);
@@ -54,7 +54,7 @@ public class GproTool {
             }
         } catch (Exception ex) {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         
         /*Testing t = s.readTesting();
@@ -159,8 +159,12 @@ public class GproTool {
             Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
         }*/
         
-        Login loginScreen = new Login();
+        //Login loginScreen = new Login();
         //loginScreen.setVisible(true);
+
+        GproToolController baseController = new GproToolController();
+        baseController.start();
+
         
     }
     

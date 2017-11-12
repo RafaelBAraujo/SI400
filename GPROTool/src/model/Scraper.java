@@ -1,5 +1,6 @@
 package model;
 
+import exception.LoginException;
 import java.awt.font.OpenType;
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import org.openqa.selenium.WebElement;
 
 public class Scraper {
 
-    public Testing readTesting() {
+    public Testing readTesting(ConnectionHandler h)  {
 
         TestingStint tl = new TestingStint();
         TestingStint[] stints = new TestingStint[10];
@@ -18,7 +19,7 @@ public class Scraper {
         Weather w = new Weather();
         Setup lapSetup = new Setup();
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openTesting();
         int x = 4, i = 0;
 
@@ -107,9 +108,9 @@ public class Scraper {
         return t;
     }
 
-    public Practice readPractice() {
+    public Practice readPractice(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> training = h.getDriver().findElements(By.cssSelector("tr.pointerhand td"));
@@ -147,9 +148,9 @@ public class Scraper {
         return p;
     }
 
-    public RaceWear readRaceWear() {
+    public RaceWear readRaceWear(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> carWear = h.getDriver().findElements(By.cssSelector("div.column.right.fiftyfive table.styled.bordered.center tbody tr td"));
@@ -189,9 +190,9 @@ public class Scraper {
 
     }
 
-    public Manager readManager() {
+    public Manager readManager(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
 
         Manager ma = new Manager();
 
@@ -221,9 +222,9 @@ public class Scraper {
         return ma;
     }
 
-    public Qualifyings readQualifying() {
+    public Qualifyings readQualifying(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> qualifying = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
@@ -269,9 +270,9 @@ public class Scraper {
 
     }
 
-    public Strategy readStrategy() {
+    public Strategy readStrategy(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> qualifying = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
@@ -315,9 +316,9 @@ public class Scraper {
 
     }
 
-    public Pilot readPilot() {
+    public Pilot readPilot(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> stats = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
@@ -381,9 +382,8 @@ public class Scraper {
 
     }
 
-    public void readWeather(Qualifyings qual, Race race) {
+    public void readWeather(ConnectionHandler h, Qualifyings qual, Race race)  {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
 
         WebElement weather = h.getDriver().findElement(By.name("WeatherQ"));
@@ -408,9 +408,9 @@ public class Scraper {
 
     }
 
-    public Weather readQ1Weather() {
+    public Weather readQ1Weather(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         WebElement weather = h.getDriver().findElement(By.name("WeatherQ"));
@@ -425,9 +425,9 @@ public class Scraper {
         return q1;
     }
 
-    public Weather readQ2Weather() {
+    public Weather readQ2Weather(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         WebElement weather = h.getDriver().findElement(By.name("WeatherR"));
@@ -441,14 +441,13 @@ public class Scraper {
         return q2;
     }
 
-    public RaceForecast readForecast() {
-
-        ConnectionHandler h = ConnectionHandler.getHandler();
+    public RaceForecast readForecast(ConnectionHandler h) {
+     
         h.openRaceAnalisys();
 
         RaceForecast rf = new RaceForecast();
 
-        Weather raceStart = this.readQ2Weather();
+        Weather raceStart = this.readQ2Weather(h);
         rf.setWeather(raceStart);
 
         List<WebElement> weathers = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table.styled.bordered.center tbody tr td"));
@@ -460,12 +459,12 @@ public class Scraper {
         return rf;
     }
 
-    public Car readCar() {
+    public Car readCar(ConnectionHandler h) {
+
+        
+        h.openHome();
 
         try {
-
-            ConnectionHandler h = ConnectionHandler.getHandler();
-            h.openHome();
 
             // getting ID - season, rank, rankDivision, manager's name
             List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
@@ -528,9 +527,9 @@ public class Scraper {
         }
     }
 
-    public PitStop readPitStops() {
+    public PitStop readPitStops(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openRaceAnalisys();
 
         List<WebElement> pit = h.getDriver().findElements(By.cssSelector("div.column.left.fortyfive.nomargin div.inner table#Table4.styled.bordered.leftalign tbody tr td"));
@@ -557,9 +556,9 @@ public class Scraper {
 
     }
 
-    public Race readRace() {
+    public Race readRace(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openHome();
 
         List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
@@ -625,9 +624,9 @@ public class Scraper {
 
     }
 
-    public Tracks readTracks() {
+    public Tracks readTracks(ConnectionHandler h) {
 
-        ConnectionHandler h = ConnectionHandler.getHandler();
+        
         h.openTrackList();
 
         List<WebElement> trackList = h.getDriver().findElements(
@@ -684,11 +683,10 @@ public class Scraper {
         return t;
     }
 
-    public static Integer readTrackListSize() {
+    public static Integer readTrackListSize(ConnectionHandler h) {
 
         Integer size;
-
-        ConnectionHandler h = ConnectionHandler.getHandler();
+       
         h.openTrackList();
 
         List<WebElement> trackList = h.getDriver().findElements(

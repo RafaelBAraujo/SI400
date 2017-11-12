@@ -5,6 +5,7 @@
  */
 package model;
 
+import exception.LoginException;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,17 +73,21 @@ public class TrackSDAO extends SDAO<Track> {
     }    
     
     private void checkIfUpdated(){
-        if(this.numTracks.compareTo(Scraper.readTrackListSize()) != 0){
-            System.out.println("Reading tracks...");
-            Scraper s = new Scraper();
-            Tracks updatedTracks = s.readTracks();
-            this.tracks = new TreeMap<>();
-            Integer id = 0;
-            for(Track t : updatedTracks.getTracks()){
-                tracks.put(id, t);
-                id++;
+        try {
+            if(this.numTracks.compareTo(Scraper.readTrackListSize(ConnectionHandler.getHandler())) != 0){
+                System.out.println("Reading tracks...");
+                Scraper s = new Scraper();
+                Tracks updatedTracks = s.readTracks(ConnectionHandler.getHandler());
+                this.tracks = new TreeMap<>();
+                Integer id = 0;
+                for(Track t : updatedTracks.getTracks()){
+                    tracks.put(id, t);
+                    id++;
+                }
+                this.updateList();
             }
-            this.updateList();
+        } catch (LoginException ex) {
+            Logger.getLogger(TrackSDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

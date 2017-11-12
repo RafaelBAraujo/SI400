@@ -57,7 +57,6 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
                 }
             } catch (IOException ex1) {
                 Logger.getLogger(RaceAnalysisSDAO.class.getName()).log(Level.SEVERE, null, ex1);

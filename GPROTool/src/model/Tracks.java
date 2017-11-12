@@ -1,5 +1,6 @@
 package model;
 
+import exception.LoginException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class Tracks implements java.io.Serializable {
         this.tracks = new ArrayList<>();
     }
 
-    public void checkUpdate() {
+    public void checkUpdate() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openTrackList();
@@ -70,7 +71,7 @@ public class Tracks implements java.io.Serializable {
 
     }
 
-    public void update(Connection dbConn) {
+    public void update(Connection dbConn) throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openTrackList();
