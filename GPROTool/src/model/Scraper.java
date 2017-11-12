@@ -1,5 +1,6 @@
 package model;
 
+import exception.LoginException;
 import java.awt.font.OpenType;
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import org.openqa.selenium.WebElement;
 
 public class Scraper {
 
-    public Testing readTesting() {
+    public Testing readTesting() throws LoginException {
 
         TestingStint tl = new TestingStint();
         TestingStint[] stints = new TestingStint[10];
@@ -107,7 +108,7 @@ public class Scraper {
         return t;
     }
 
-    public Practice readPractice() {
+    public Practice readPractice() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -147,7 +148,7 @@ public class Scraper {
         return p;
     }
 
-    public RaceWear readRaceWear() {
+    public RaceWear readRaceWear() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -189,7 +190,7 @@ public class Scraper {
 
     }
 
-    public Manager readManager() {
+    public Manager readManager() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
 
@@ -221,7 +222,7 @@ public class Scraper {
         return ma;
     }
 
-    public Qualifyings readQualifying() {
+    public Qualifyings readQualifying() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -269,7 +270,7 @@ public class Scraper {
 
     }
 
-    public Strategy readStrategy() {
+    public Strategy readStrategy() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -315,7 +316,7 @@ public class Scraper {
 
     }
 
-    public Pilot readPilot() {
+    public Pilot readPilot() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -381,7 +382,7 @@ public class Scraper {
 
     }
 
-    public void readWeather(Qualifyings qual, Race race) {
+    public void readWeather(Qualifyings qual, Race race) throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -408,7 +409,7 @@ public class Scraper {
 
     }
 
-    public Weather readQ1Weather() {
+    public Weather readQ1Weather() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -425,7 +426,7 @@ public class Scraper {
         return q1;
     }
 
-    public Weather readQ2Weather() {
+    public Weather readQ2Weather() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -441,7 +442,7 @@ public class Scraper {
         return q2;
     }
 
-    public RaceForecast readForecast() {
+    public RaceForecast readForecast() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -460,12 +461,12 @@ public class Scraper {
         return rf;
     }
 
-    public Car readCar() {
+    public Car readCar() throws LoginException {
+
+        ConnectionHandler h = ConnectionHandler.getHandler();
+        h.openHome();
 
         try {
-
-            ConnectionHandler h = ConnectionHandler.getHandler();
-            h.openHome();
 
             // getting ID - season, rank, rankDivision, manager's name
             List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
@@ -528,7 +529,7 @@ public class Scraper {
         }
     }
 
-    public PitStop readPitStops() {
+    public PitStop readPitStops() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openRaceAnalisys();
@@ -557,7 +558,7 @@ public class Scraper {
 
     }
 
-    public Race readRace() {
+    public Race readRace() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openHome();
@@ -625,7 +626,7 @@ public class Scraper {
 
     }
 
-    public Tracks readTracks() {
+    public Tracks readTracks() throws LoginException {
 
         ConnectionHandler h = ConnectionHandler.getHandler();
         h.openTrackList();
@@ -684,7 +685,7 @@ public class Scraper {
         return t;
     }
 
-    public static Integer readTrackListSize() {
+    public static Integer readTrackListSize() throws LoginException {
 
         Integer size;
 

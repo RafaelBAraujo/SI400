@@ -5,6 +5,7 @@
  */
 package control;
 
+import exception.LoginException;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,18 +26,18 @@ public class GproToolController {
     }
     
     public void start(){
-        Login loginScreen = new Login();
+        Login loginScreen = new Login(this);
         loginScreen.setVisible(true);
     }
     
-    public boolean autUsuario(String email, String pass) throws Exception {
+    public boolean autUsuario(String email, String pass) throws LoginException {
         
         ConnectionHandler.setEmail(email);
         ConnectionHandler.setPassword(pass);
         
         ConnectionHandler handler = ConnectionHandler.getHandler();
         
-        return false;
+        return true;
     }
     
     public boolean searchRace(Integer season, String rank, Integer rankDivision){
