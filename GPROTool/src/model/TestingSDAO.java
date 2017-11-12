@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ public class TestingSDAO extends SDAO<Testing>{
     private final String fileName = "testing.ser";
     
     
-    private TreeMap<TestingStint[], Testing> testing;
+    private TreeMap<Integer, Testing> testing;
     
     public TestingSDAO(){
         this.testing = new TreeMap<>();
@@ -45,22 +46,91 @@ public class TestingSDAO extends SDAO<Testing>{
             
     @Override
     public Testing get(Object o) throws Exception {
-        if(o instanceof Testing){
-            Testing t = (Testing) o;
-            for(Map.Entry<TestingStint[], Testing> entry : this.testing.entrySet()){
-                if(entry.getValue().getTestingWeather()== t.getTestingWeather()){
-                    return entry.getValue();
-                    
+        if (!this.testing.isEmpty()) {
+            if (o instanceof HashSet) {
+                HashSet querySet;
+                querySet = (HashSet) o;
+                switch(querySet.size()){
+                        
+                    // seek for season
+                    case 1:
+                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getRace().getSeason());
+                            if(currentTe.equals(querySet)){
+                                return entry.getValue();
+                            }
+                        }
+                        break;
+                        
+                    // seek for rank
+                    case 2:
+                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getRace().getSeason());
+                            currentTe.add(entry.getValue().getRace().getRank());
+                            if(currentTe.equals(querySet)){
+                                return entry.getValue();
+                            }
+                        }
+                        break;
+                    // seek for rank division
+                    case 3:
+                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getRace().getSeason());
+                            currentTe.add(entry.getValue().getRace().getRank());
+                            currentTe.add(entry.getValue().getRace().getRankDivision());
+                            if(currentTe.equals(querySet)){
+                                return entry.getValue();
+                            }
+                        }
+                        break;
+                        
+                    // seek for race number / manager
+                    case 5:
+                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getRace().getSeason());
+                            currentTe.add(entry.getValue().getRace().getRank());
+                            currentTe.add(entry.getValue().getRace().getRankDivision());
+                            currentTe.add(entry.getValue().getRace().getRaceNumber());
+                            currentTe.add(entry.getValue().getRace().getManagerUsername());
+                            if(currentTe.equals(querySet)){
+                                return entry.getValue();
+                            }
+                        }
+                        break;
+                        
+                        // seek for weatherDesc / temp / hum
+                    case 8:
+                        for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getRace().getSeason());
+                            currentTe.add(entry.getValue().getRace().getRank());
+                            currentTe.add(entry.getValue().getRace().getRankDivision());
+                            currentTe.add(entry.getValue().getRace().getRaceNumber());
+                            currentTe.add(entry.getValue().getRace().getManagerUsername());
+                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getDescription());
+                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getTemperature());
+                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getHumidity());
+                            if (currentTe.equals(querySet)) {
+                                return entry.getValue();
+                            }
+                        }
+                        break;
+                    default:
+                        System.out.println("Query not yet implemented.");
                 }
             }
-            return null;
+            
         }
         return null;
     }
 
     @Override
     public void delete(Testing b) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -72,13 +142,13 @@ public class TestingSDAO extends SDAO<Testing>{
     public void add(Testing b) throws Exception {
         Testing t = (Testing) b;
         if(!this.testing.isEmpty()){
-            for(Map.Entry<TestingStint[], Testing> entry : this.testing.entrySet()){
+            for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                 if(entry.getValue().getTestingWeather()== t.getTestingWeather()){
                     return;
                 }
             }
             //stints eh do tipo TestingStints[]
-            this.testing.put(b.getStints(), t);
+            //this.testing.put(b.getTestingWeather().getWeather(), t);
             try{
                 FileOutputStream fileOut = new FileOutputStream(this.fileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -88,7 +158,7 @@ public class TestingSDAO extends SDAO<Testing>{
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }   
         }
-        this.testing.put(b.getStints(), t);
+        //this.testing.put(b.getTestingWeather().getWeather(), t);
             try{
                 FileOutputStream fileOut = new FileOutputStream(this.fileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -103,8 +173,8 @@ public class TestingSDAO extends SDAO<Testing>{
         try{
             FileInputStream fileIn = new FileInputStream(this.fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            TreeMap<TestingStint[], Testing> testingFile;
-            testingFile = (TreeMap<TestingStint[], Testing>) in.readObject();
+            TreeMap<Integer, Testing> testingFile;
+            testingFile = (TreeMap<Integer, Testing>) in.readObject();
             fileIn.close();
             in.close();
             this.testing = testingFile;

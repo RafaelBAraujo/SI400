@@ -23,10 +23,22 @@ public class GproTool {
         ConnectionHandler handler = new ConnectionHandler();
         Scraper s = new Scraper();
         
+        DAO dao = TestingSDAO.getInstance();
         Testing t = s.readTesting();
         TestingStint[] stints = t.getStints();
+        
+        //String str = s.readTesting().getTestingWeather().getWeather();
+        try {
+            dao.get(t);
+        } catch (Exception ex) {
+            Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        /*Testing t = s.readTesting();
+        TestingStint[] stints = t.getStints();
         System.out.println(stints[1].getTyres());
-                
+        */        
         
         //Manager m = s.readManager();
         /*RaceAnalysis ra = new RaceAnalysis();
@@ -126,7 +138,7 @@ public class GproTool {
         }*/
         
         Login loginScreen = new Login();
-        loginScreen.setVisible(true);
+        //loginScreen.setVisible(true);
         
     }
     

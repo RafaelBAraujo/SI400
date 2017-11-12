@@ -13,10 +13,19 @@ public class Testing implements java.io.Serializable {
     
     private static final long serialVersionUID = -2729487164148785749L;
     
+    private Race race;
     private TestingStint[] stints;
     private Weather testingWeather;
     private Weather testingDescription;
 
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+    
     public Weather getTestingDescription() {
         return testingDescription;
     }
