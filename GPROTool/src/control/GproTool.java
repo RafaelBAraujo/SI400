@@ -22,7 +22,6 @@ public class GproTool {
 
     public static void main(String args[]) {
 
-<<<<<<< HEAD
         /*DAO dao = RaceAnalysisSDAO.getInstance();
 =======
         
@@ -83,7 +82,6 @@ public class GproTool {
         //ConnectionHandler handler = new ConnectionHandler();
         //Scraper s = new Scraper();
         //Manager m = s.readManager();
->>>>>>> d45ca4b3fb44abec6f436de6a1f3ae3a6d5672a5
         
         RaceQuery rq = new RaceQuery();
         

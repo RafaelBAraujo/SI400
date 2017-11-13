@@ -48,30 +48,31 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnPastRaces" min="-2" pref="127" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnReadRace" max="32767" attributes="0"/>
-                          <Component id="btnTestings" max="32767" attributes="0"/>
-                          <Component id="btnPilotHistory" min="-2" pref="127" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="btnReadRace" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPastRaces" alignment="2" min="-2" pref="127" max="-2" attributes="0"/>
+                      <Component id="btnTestings" alignment="2" min="-2" pref="129" max="-2" attributes="0"/>
+                      <Component id="btnPilotHistory" alignment="2" min="-2" pref="127" max="-2" attributes="0"/>
+                      <Component id="btnReadTesting" alignment="2" min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                  <EmptySpace pref="121" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="btnReadRace" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnPastRaces" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnReadTesting" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnTestings" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnPilotHistory" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,6 +106,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pilot history"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnReadTesting">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Read last testing"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReadTestingActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -13,11 +13,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -190,7 +192,7 @@ public class TestingSDAO extends SDAO<Testing>{
             TreeMap<Integer, Testing> result = this.searchTesting((TestingQuery) o);
             return result;
         } catch (Exception ex) {
-            Logger.getLogger(RaceAnalysisSDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -221,12 +223,35 @@ public class TestingSDAO extends SDAO<Testing>{
     }
     
     public TreeMap<Integer, Testing> searchTesting(TestingQuery query) throws Exception {
-
-        TreeMap<Integer, Testing> result = new TreeMap<>();
+        
+        if(query.isEmpty()){
+            System.out.println("it is TRUEEEE");
+            return this.testing;
+        }
+        
+        TreeMap<Integer, Testing> resultLambda = 
+                new TreeMap<Integer, Testing>((HashMap<Integer, Testing>)this.testing.entrySet().stream()
+                .filter(
+                        v -> v.getValue().getTrack().matches(query.getNameTrack()) &&
+                        v.getValue().getManagerUsername().matches(query.getManagerUsername()) &&
+                        String.valueOf(v.getValue().getSeason()).matches(query.getSeason()) &&
+                        v.getValue().getRank().matches(query.getRank()) &&
+                        String.valueOf(v.getValue().getRankDivision()).matches(query.getRankDivision())
+                        //v.getValue().getTyres().matches(query.getTyres())
+                        /*v.getValue().getRace().getRaceForecast().getWeather().getDescription().matches(query.getWeather()) &&
+                        String.valueOf(v.getValue().getRace().getRaceForecast().getWeather().getTemperature()).matches(query.getTemperature()) &&*/                        
+                        )
+                .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
+        
+        
+        
+        
+        System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
+        /*TreeMap<Integer, Testing> result = new TreeMap<>();
 
         if(query.getSeason() != null){
-            TreeMap<Integer, Integer> seasonIndex = new TreeMap<>(this.loadIndexFromFile("season_index.ser"));
-            for(Map.Entry<Integer, Integer> entry : seasonIndex.entrySet()){
+            TreeMap<Integer, String> seasonIndex = new TreeMap<>(this.loadIndexFromFile("season_index.ser"));
+            for(Map.Entry<Integer, String> entry : seasonIndex.entrySet()){
                 if(entry.getValue().compareTo(query.getSeason()) == 0){
                     result.put(entry.getKey(), this.get(entry.getKey()));
                 }
@@ -243,8 +268,8 @@ public class TestingSDAO extends SDAO<Testing>{
         }
         
         if(query.getRankDivision() != null){
-            TreeMap<Integer, Integer> rankDivisionIndex = new TreeMap<>(this.loadIndexFromFile("rankDiv_index.ser"));
-            for(Map.Entry<Integer, Integer> entry : rankDivisionIndex.entrySet()){
+            TreeMap<Integer, String> rankDivisionIndex = new TreeMap<>(this.loadIndexFromFile("rankDiv_index.ser"));
+            for(Map.Entry<Integer, String> entry : rankDivisionIndex.entrySet()){
                 if(entry.getValue().compareTo(query.getRankDivision()) == 0){
                     result.put(entry.getKey(), this.get(entry.getKey()));
                 }
@@ -276,9 +301,9 @@ public class TestingSDAO extends SDAO<Testing>{
                     result.put(entry.getKey(), this.get(entry.getKey()));
                 }
             }
-        }
+        }*/
         
-        return result;
+        return resultLambda;
     }
     
     public void saveIndexToFile(Map index, String fileName) {

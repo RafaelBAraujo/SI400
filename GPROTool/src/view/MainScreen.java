@@ -42,6 +42,7 @@ public class MainScreen extends javax.swing.JFrame {
         btnPastRaces = new javax.swing.JButton();
         btnTestings = new javax.swing.JButton();
         btnPilotHistory = new javax.swing.JButton();
+        btnReadTesting = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main menu");
@@ -70,32 +71,41 @@ public class MainScreen extends javax.swing.JFrame {
 
         btnPilotHistory.setText("Pilot history");
 
+        btnReadTesting.setText("Read last testing");
+        btnReadTesting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadTestingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlMainScreenLayout = new javax.swing.GroupLayout(pnlMainScreen);
         pnlMainScreen.setLayout(pnlMainScreenLayout);
         pnlMainScreenLayout.setHorizontalGroup(
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainScreenLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
-                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnReadRace)
                     .addComponent(btnPastRaces, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnReadRace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTestings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(btnTestings, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReadTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         pnlMainScreenLayout.setVerticalGroup(
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(btnReadRace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPastRaces, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReadTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTestings, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,17 +155,31 @@ public class MainScreen extends javax.swing.JFrame {
             dispose();
         }
         else{
-            ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
-            readScreen.setVisible(true);
-        }
+            SearchTestingScreen src = new SearchTestingScreen(this.baseController);
+            src.setVisible(true);
+            }     
                 
         
     }//GEN-LAST:event_btnTestingsActionPerformed
+
+    private void btnReadTestingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadTestingActionPerformed
+        // TODO add your handling code here:
+        if(this.baseController == null){
+            JOptionPane.showMessageDialog(null, "Error at program's controller");
+            dispose();
+        }
+        else{
+            ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
+            readScreen.setVisible(true);
+        }
+            
+    }//GEN-LAST:event_btnReadTestingActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPastRaces;
     private javax.swing.JButton btnPilotHistory;
     private javax.swing.JButton btnReadRace;
+    private javax.swing.JButton btnReadTesting;
     private javax.swing.JButton btnTestings;
     private javax.swing.JPanel pnlMainScreen;
     // End of variables declaration//GEN-END:variables

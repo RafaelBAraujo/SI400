@@ -49,9 +49,10 @@ public class Scraper {
         List<WebElement> testingWeather = h.getDriver().findElements(By.cssSelector("#formQual div.column.thirtyfive.nomargin table:nth-child(9) tbody tr td img"));
         List<WebElement> testingDescription = h.getDriver().findElements(By.cssSelector("#formQual div.column.thirtyfive.nomargin table:nth-child(9) tbody tr td"));
         List<WebElement> trackName = h.getDriver().findElements(By.cssSelector("#formQual h1"));
+        String sT = trackName.get(0).getText();
+        String[] subT = sT.split(" ");
+        t.setTrack(subT[1]);
 
-        t.setTrack(trackName.get(0).getText());
-        
         w.setWeather(testingWeather.get(0).getAttribute("title"));
         t.setTestingWeather(w);
 

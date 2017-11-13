@@ -8,8 +8,10 @@ package view;
 import control.GproToolController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import model.TestingQuery;
 import static view.Login.setLookAndFeel;
 
 /**
@@ -100,9 +102,9 @@ public class SearchTestingScreen extends javax.swing.JFrame {
             }
         });
 
-        cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Zolder" }));
 
-        cmbTyres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTyres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Extra Soft", "Soft", "Medium", "Hard", "Rain" }));
 
         cmbTemp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
 
@@ -133,7 +135,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
 
         lblRank1.setText("Division");
 
-        cmbRankDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "87", "59" }));
+        cmbRankDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,19 +239,40 @@ public class SearchTestingScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        TestingQuery query = new TestingQuery();
         
-        String season = (String) cmbSeason.getSelectedItem();
-        String rank = (String) cmbRank.getSelectedItem();
-        String rankDivision = (String) cmbRankDivision.getSelectedItem();
+        if(String.valueOf(cmbTrack.getSelectedItem()).compareTo("Any") != 0)
+            query.setNameTrack(String.valueOf(cmbTrack.getSelectedItem()));
         
-        if (this.baseController.searchTesting(Integer.parseInt(season), rank, Integer.parseInt(rankDivision))){
+        if(String.valueOf(cmbTyres.getSelectedItem()).compareTo("Any") != 0)
+            query.setTyres(String.valueOf(cmbTyres.getSelectedItem()));
+        
+        if(String.valueOf(cmbSeason.getSelectedItem()).compareTo("Any") != 0)
+            query.setSeason(String.valueOf(cmbSeason.getSelectedItem()));        
+
+        if(String.valueOf(cmbRank.getSelectedItem()).compareTo("Any") != 0)
+            query.setRank(String.valueOf(cmbRank.getSelectedItem()));
+        
+        if(String.valueOf(cmbRankDivision.getSelectedItem()).compareTo("Any") != 0)
+            query.setRankDivision(String.valueOf(cmbRankDivision.getSelectedItem()));
+        
+        if(String.valueOf(cmbWeather.getSelectedItem()).compareTo("Any") != 0)
+            query.setWeather(String.valueOf(cmbWeather.getSelectedItem()));
+
+        DefaultTableModel model = (DefaultTableModel) tblResults.getModel();
+        if(!this.baseController.searchTesting(query, model)){
+            JOptionPane.showMessageDialog(null, "No testings were found.");
+        }
+        
+        /*if (this.baseController.searchRace(Integer.parseInt(season), rank, Integer.parseInt(rankDivision))){
             System.out.println("ENCONTREI");
             DefaultTableModel model = (DefaultTableModel) tblResults.getModel();
             model.addRow(new Object[]{"S" + season + " " + rank + rankDivision});
         }
         else{
             System.out.println("NAO ENCONTREI");
-        }
+        }*/
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cmbRankItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRankItemStateChanged
@@ -305,30 +328,35 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         
         if(rank.compareTo("Rookie") == 0 || rank.compareTo("Any") == 0){
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for(int i = 1; i < 201; i++){
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if(rank.compareTo("Amateur") == 0){
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for(int i = 1; i < 126; i++){
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Pro") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 26; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Master") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 6; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Elite") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 2; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }

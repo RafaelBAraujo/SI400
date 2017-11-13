@@ -26,6 +26,7 @@ import model.RaceQuery;
 import model.RaceSDAO;
 import model.Scraper;
 import model.Testing;
+import model.TestingQuery;
 import model.TestingSDAO;
 import model.Track;
 import model.TrackSDAO;
@@ -137,9 +138,6 @@ public class GproToolController {
             TestingDAO.add(test);
             System.out.println("Passou");
             window.dispose();
-            GproToolController c = new GproToolController();
-            SearchTestingScreen src = new SearchTestingScreen(c);
-            src.setVisible(true);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Failed to read testing.");
@@ -163,6 +161,26 @@ public class GproToolController {
             for(Map.Entry<Integer, RaceAnalysis> entry : result.entrySet()){
                 model.addRow(new Object[]{"S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
                         entry.getValue().getRace().getRankDivision()});
+            }
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean searchTesting(TestingQuery query, DefaultTableModel model){
+        
+        DAO dao = TestingSDAO.getInstance();
+        TreeMap<Integer, Testing> result = (TreeMap<Integer, Testing>) dao.search(query);
+        
+        System.out.println("SearchTesting result size: " + result.size());
+        
+        model.setRowCount(0); // clears table
+        
+        if(result.size() > 0){
+            for(Map.Entry<Integer, Testing> entry : result.entrySet()){
+                model.addRow(new Object[]{"S" + entry.getValue().getSeason() + " " + entry.getValue().getRank() + 
+                        entry.getValue().getRankDivision()});
             }
             return true;
         }
