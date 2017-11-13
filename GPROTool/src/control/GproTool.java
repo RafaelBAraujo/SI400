@@ -5,6 +5,7 @@
  */
 package control;
 
+import exception.LoginException;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,17 +18,10 @@ import view.Login;
  */
 public class GproTool {
     
-    public static void main(String args[]){
+    public static void main(String args[]) throws LoginException{
 
-
-        //ConnectionHandler handler = new ConnectionHandler();
-        Scraper s = new Scraper();
         
         
-        //Testing t = s.readTesting();
-        //TestingStint[] stints = t.getStints();
-        
-        DAO dao = TestingSDAO.getInstance();
         //Manager m = s.readManager();
 
         /*System.out.println("Reading race...");

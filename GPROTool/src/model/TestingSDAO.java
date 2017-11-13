@@ -89,7 +89,7 @@ public class TestingSDAO extends SDAO<Testing>{
                         break;
                         
                     // seek for manager
-                    case 5:
+                    case 4:
                         for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                             HashSet currentTe = new HashSet();
                             currentTe.add(entry.getValue().getSeason());
@@ -101,6 +101,20 @@ public class TestingSDAO extends SDAO<Testing>{
                             }
                         }
                         break;
+                        
+                    case 5:
+                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                            HashSet currentTe = new HashSet();
+                            currentTe.add(entry.getValue().getSeason());
+                            currentTe.add(entry.getValue().getRank());
+                            currentTe.add(entry.getValue().getRankDivision());
+                            currentTe.add(entry.getValue().getManagerUsername());
+                            currentTe.add(entry.getValue().getStints());
+                            if(currentTe.equals(querySet)){
+                                return entry.getValue();
+                            }
+                        }
+                        break;    
 
                     default:
                         System.out.println("Query not yet implemented.");

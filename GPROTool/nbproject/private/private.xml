@@ -3,13 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceForecast.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/Weather.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/Scraper.java</file>
-        </group>
-        <group>
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Weather.java</file>
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/PilotSDAO.java</file>
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/ConnectionHandler.java</file>
@@ -26,6 +19,18 @@
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/SDAO.java</file>
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
             <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/DAO.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/ReadRaceScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Weather.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/TestingSDAO.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/Login.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Wear.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/ReadTestingScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/ConnectionHandler.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/MainScreen.java</file>
         </group>
     </open-files>
 </project-private>
