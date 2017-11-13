@@ -7,9 +7,15 @@ package view;
 
 import control.GproToolController;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.TestingQuery;
 import static view.Login.setLookAndFeel;
@@ -31,6 +37,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         centreWindow();
         initComponents();
         addRankDivisions();
+        initSelfListeners(baseController);
         
     }
 
@@ -42,6 +49,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -124,6 +132,15 @@ public class SearchTestingScreen extends javax.swing.JFrame {
                 "Testing"
             }
         ));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblResults, org.jdesktop.beansbinding.ObjectProperty.create(), tblResults, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
+        tblResults.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblResultsMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblResults);
 
         btnSearch.setText("Search");
@@ -235,6 +252,8 @@ public class SearchTestingScreen extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -243,7 +262,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         TestingQuery query = new TestingQuery();
         
         if(String.valueOf(cmbTrack.getSelectedItem()).compareTo("Any") != 0)
-            query.setNameTrack(String.valueOf(cmbTrack.getSelectedItem()));
+            query.setNameTrack(String.valueOf(cmbTrack.getSelectedItem()));  
         
         if(String.valueOf(cmbTyres.getSelectedItem()).compareTo("Any") != 0)
             query.setTyres(String.valueOf(cmbTyres.getSelectedItem()));
@@ -279,11 +298,32 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         addRankDivisions();
     }//GEN-LAST:event_cmbRankItemStateChanged
+        
+    private void tblResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultsMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblResultsMouseClicked
 
     /**
      * @param args the command line arguments
      */
-
+private void initSelfListeners(GproToolController controller){
+        
+        this.tblResults.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2) {
+                    Integer key = Integer.parseInt(String.valueOf(model.getDataVector().elementAt(table.getSelectedRow())).split("[\\[\\]]")[1].split(",")[0]);
+                    TestingScreen ts = new TestingScreen(controller, key);
+                    ts.setVisible(true);
+                }
+            }
+        });
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
@@ -308,6 +348,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblTyres;
     private javax.swing.JLabel lblWeather;
     private javax.swing.JTable tblResults;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     public static void setLookAndFeel() {

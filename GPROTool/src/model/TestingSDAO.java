@@ -52,80 +52,10 @@ public class TestingSDAO extends SDAO<Testing>{
     @Override
     public Testing get(Object o) throws Exception {
         if (!this.testing.isEmpty()) {
-            if (o instanceof HashSet) {
-                HashSet querySet;
-                querySet = (HashSet) o;
-                switch(querySet.size()){
-                        
-                    // seek for season
-                    case 1:
-                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getSeason());
-                            if(currentTe.equals(querySet)){
-                                System.out.println(entry.getValue());
-                                return entry.getValue();
-                            }
-                        }
-                        break;
-                        
-                    // seek for rank
-                    case 2:
-                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getSeason());
-                            currentTe.add(entry.getValue().getRank());
-                            if(currentTe.equals(querySet)){
-                                return entry.getValue();
-                            }
-                        }
-                        break;
-                    // seek for rank division
-                    case 3:
-                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getSeason());
-                            currentTe.add(entry.getValue().getRank());
-                            currentTe.add(entry.getValue().getRankDivision());
-                            if(currentTe.equals(querySet)){
-                                return entry.getValue();
-                            }
-                        }
-                        break;
-                        
-                    // seek for manager
-                    case 4:
-                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getSeason());
-                            currentTe.add(entry.getValue().getRank());
-                            currentTe.add(entry.getValue().getRankDivision());
-                            currentTe.add(entry.getValue().getManagerUsername());
-                            if(currentTe.equals(querySet)){
-                                return entry.getValue();
-                            }
-                        }
-                        break;
-                        
-                    case 5:
-                        for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getSeason());
-                            currentTe.add(entry.getValue().getRank());
-                            currentTe.add(entry.getValue().getRankDivision());
-                            currentTe.add(entry.getValue().getManagerUsername());
-                            currentTe.add(entry.getValue().getStints());
-                            if(currentTe.equals(querySet)){
-                                return entry.getValue();
-                            }
-                        }
-                        break;    
-
-                    default:
-                        System.out.println("Query not yet implemented.");
-                }
+            if(o instanceof Integer){
+                return this.testing.get((Integer) o);
             }
-            
+
         }
         return null;
     }

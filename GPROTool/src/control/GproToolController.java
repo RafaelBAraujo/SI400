@@ -28,6 +28,7 @@ import model.Scraper;
 import model.Testing;
 import model.TestingQuery;
 import model.TestingSDAO;
+import model.TestingStint;
 import model.Track;
 import model.TrackSDAO;
 import view.Login;
@@ -168,6 +169,52 @@ public class GproToolController {
         return false;
     }
     
+    public void resultTesting(DefaultTableModel model){
+        
+        TestingStint t = new TestingStint();
+        DAO dao = TestingSDAO.getInstance();
+        SearchTestingScreen sts = new SearchTestingScreen(this);
+        
+        try {
+            model.addRow(new Object []{dao.get(t.getLapsDone()), dao.get(t.getBestlap())});
+            // TreeMap<Integer, Testing> result = (TreeMap<Integer, Testing>) dao.search(query);
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public Testing searchTesting(Integer TestingKey){
+        
+        DAO dao = TestingSDAO.getInstance();
+        try {
+            Testing t = (Testing) dao.get(TestingKey);
+            return t;
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public void displayTesting(Integer key, DefaultTableModel modelResults){
+        
+        Testing testing = this.searchTesting(key);
+        
+        for(TestingStint stint : testing.getStints()){
+            //System.out.println(stint.getLapSetup().getSusp());
+            try{
+            modelResults.addRow(new Object[]{stint.getLapsDone(), stint.getLapsDone(), stint.getBestlap(), stint.getMean(), stint.getLapSetup().getFWing(), 
+                stint.getLapSetup().getRWing(), stint.getLapSetup().getEng(), stint.getLapSetup().getBra(), stint.getLapSetup().getGear(),
+                stint.getLapSetup().getSusp(), stint.getTyres(), stint.getFuel(), stint.getTyresCond(), stint.getFuelLeft()});
+            }
+            catch(NullPointerException e){
+                break;
+            }
+        
+        }
+        
+    }
+    
     public boolean searchTesting(TestingQuery query, DefaultTableModel model){
         
         DAO dao = TestingSDAO.getInstance();
@@ -179,7 +226,7 @@ public class GproToolController {
         
         if(result.size() > 0){
             for(Map.Entry<Integer, Testing> entry : result.entrySet()){
-                model.addRow(new Object[]{"S" + entry.getValue().getSeason() + " " + entry.getValue().getRank() + 
+                model.addRow(new Object[]{entry.getKey(), "S" + entry.getValue().getSeason() + " " + entry.getValue().getRank() + 
                         entry.getValue().getRankDivision()});
             }
             return true;
