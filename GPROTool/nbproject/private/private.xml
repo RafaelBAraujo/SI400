@@ -3,19 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproToolController.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceSDAO.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceQuery.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/DAO.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/CarSDAO.java</file>
-            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceAnalysis.java</file>
         </group>
         <group>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/view/SearchRaceScreen.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/SDAO.java</file>
             <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceQuery.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/Scraper.java</file>
         </group>
     </open-files>
 </project-private>
