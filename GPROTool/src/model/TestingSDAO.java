@@ -34,6 +34,9 @@ public class TestingSDAO extends SDAO<Testing>{
     public TestingSDAO(){
         this.testing = new TreeMap<>();
         this.getAll();
+        System.out.println("Starting...");
+        this.updateIndexes();
+        System.out.println("Ended...");
     }
     
     public static TestingSDAO getInstance(){
@@ -142,13 +145,22 @@ public class TestingSDAO extends SDAO<Testing>{
         addingTesting.add(b.getRank());
         addingTesting.add(b.getRankDivision());
         addingTesting.add(b.getManagerUsername());
+        addingTesting.add(b.getTrack());
         addingTesting.add(b.getStints());
         addingTesting.add(b.getTestingDescription().getDescription());
         addingTesting.add(b.getTestingWeather().getWeather());
-        
         if(!this.testing.isEmpty()){
             for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
-                if(entry.getKey().equals(addingTesting)){
+                HashSet currentTesting = new HashSet();
+                currentTesting.add(entry.getValue().getSeason());
+                currentTesting.add(entry.getValue().getRank());
+                currentTesting.add(entry.getValue().getRankDivision());
+                currentTesting.add(entry.getValue().getManagerUsername());
+                currentTesting.add(entry.getValue().getTrack());
+                currentTesting.add(entry.getValue().getStints());
+                currentTesting.add(entry.getValue().getTestingDescription().getDescription());
+                currentTesting.add(entry.getValue().getTestingWeather().getWeather());
+                if(currentTesting.equals(addingTesting)){
                     return;
                 }
             }
@@ -159,6 +171,7 @@ public class TestingSDAO extends SDAO<Testing>{
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(this.testing);
                 fileOut.close();
+                out.close();
             }catch(IOException ex){
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -169,11 +182,23 @@ public class TestingSDAO extends SDAO<Testing>{
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(this.testing);
                 fileOut.close();
+                out.close();
             }catch(IOException ex){
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
 
+    @Override
+    public Object search(Object o){
+        try {
+            TreeMap<Integer, Testing> result = this.searchTesting((TestingQuery) o);
+            return result;
+        } catch (Exception ex) {
+            Logger.getLogger(RaceAnalysisSDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     private void getAll() {
         try{
             FileInputStream fileIn = new FileInputStream(this.fileName);
@@ -199,6 +224,210 @@ public class TestingSDAO extends SDAO<Testing>{
         
     }
     
+    public TreeMap<Integer, Testing> searchTesting(TestingQuery query) throws Exception {
+
+        TreeMap<Integer, Testing> result = new TreeMap<>();
+
+        if(query.getSeason() != null){
+            TreeMap<Integer, Integer> seasonIndex = new TreeMap<>(this.loadIndexFromFile("season_index.ser"));
+            for(Map.Entry<Integer, Integer> entry : seasonIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getSeason()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        if(query.getRank() != null){
+            TreeMap<Integer, String> rankIndex = new TreeMap<>(this.loadIndexFromFile("rank_index.ser"));
+            for(Map.Entry<Integer, String> entry : rankIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getRank()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        if(query.getRankDivision() != null){
+            TreeMap<Integer, Integer> rankDivisionIndex = new TreeMap<>(this.loadIndexFromFile("rankDiv_index.ser"));
+            for(Map.Entry<Integer, Integer> entry : rankDivisionIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getRankDivision()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        if(!query.getNameTrack().isEmpty()){
+            TreeMap<Integer, String> trackIndex = new TreeMap<>(this.loadIndexFromFile("trackName_index.ser"));
+            for(Map.Entry<Integer, String> entry : trackIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getNameTrack()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        if(!query.getTyres().isEmpty()){
+            TreeMap<Integer, String> tyresIndex = new TreeMap<>(this.loadIndexFromFile("tyres_index.ser"));
+            for(Map.Entry<Integer, String> entry : tyresIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getTyres()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        if(!query.getManagerUsername().isEmpty()){
+            TreeMap<Integer, String> managerIndex = new TreeMap<>(this.loadIndexFromFile("manager_index.ser"));
+            for(Map.Entry<Integer, String> entry : managerIndex.entrySet()){
+                if(entry.getValue().compareTo(query.getManagerUsername()) == 0){
+                    result.put(entry.getKey(), this.get(entry.getKey()));
+                }
+            }
+        }
+        
+        return result;
+    }
     
+    public void saveIndexToFile(Map index, String fileName) {
+
+        FileOutputStream fileOut;
+        try {
+            fileOut = new FileOutputStream(fileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(index);
+            fileOut.close();
+            out.close();
+        } catch (FileNotFoundException ex) {
+            File f = new File(fileName);
+            try {
+                f.createNewFile();
+                fileOut = new FileOutputStream(fileName);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(index);
+                fileOut.close();
+                out.close();
+            } catch (IOException ex1) {
+                Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     
+    public Map loadIndexFromFile(String fileName) {
+
+        try {
+            FileInputStream fileIn = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Map m = (Map) in.readObject();
+            fileIn.close();
+            in.close();
+            return m;
+        } catch (IOException ex) {
+            Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+    
+    public void createSeasonIndex() {
+
+        TreeMap<Integer, Integer> seasonIndex = new TreeMap<>();
+
+        if (!this.testing.isEmpty()) {
+
+            for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                seasonIndex.put(entry.getKey(), entry.getValue().getSeason());
+            }
+
+        }
+
+        this.saveIndexToFile(seasonIndex, "season_index.ser");
+
+    }
+    public void createRankIndex() {
+
+        TreeMap<Integer, String> seasonIndex = new TreeMap<>();
+        if (!this.testing.isEmpty()) {
+
+            for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                seasonIndex.put(entry.getKey(), entry.getValue().getRank());
+            }
+
+        }
+
+        this.saveIndexToFile(seasonIndex, "rank_index.ser");
+
+    }
+    public void createRankDivisionIndex() {
+
+        TreeMap<Integer, Integer> seasonIndex = new TreeMap<>();
+        if (!this.testing.isEmpty()) {
+
+            for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                seasonIndex.put(entry.getKey(), entry.getValue().getRankDivision());
+            }
+
+        }
+
+        this.saveIndexToFile(seasonIndex, "rankDiv_index.ser");
+
+    }
+    public void createNameTrackIndex() {
+
+        TreeMap<Integer, String> seasonIndex = new TreeMap<>();
+        if (!this.testing.isEmpty()) {
+
+            for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                seasonIndex.put(entry.getKey(), entry.getValue().getTrack().getTrackName());
+            }
+
+        }
+        
+        this.saveIndexToFile(seasonIndex, "trackName_index.ser");
+
+    }
+    public void createStintIndex() {
+
+        TreeMap<Integer, TestingStint> stintIndex = new TreeMap<>();
+        if (!this.testing.isEmpty()) {
+
+            for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
+                for(TestingStint stint : entry.getValue().getStints()){
+                    stintIndex.put(entry.getKey(), stint);
+                }
+            }
+
+        }
+
+        this.saveIndexToFile(stintIndex, "tyres_index.ser");
+
+    }
+    public void createManagerIndex(){
+        
+        TreeMap<Integer, String> managerIndex = new TreeMap<>();
+        if (!this.testing.isEmpty()) {
+
+            for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
+                managerIndex.put(entry.getKey(), entry.getValue().getManagerUsername());
+            }
+
+        }
+
+        this.saveIndexToFile(managerIndex, "manager_index.ser");
+        
+    }
+    
+        public void updateIndexes(){
+     
+        this.createSeasonIndex();
+        this.createRankIndex();
+        this.createRankDivisionIndex();
+        this.createNameTrackIndex();
+        this.createManagerIndex();
+        this.createStintIndex();
+
+        
+    }
 }

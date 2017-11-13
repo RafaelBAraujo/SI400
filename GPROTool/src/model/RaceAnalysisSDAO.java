@@ -343,7 +343,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                 this.searchRaces((RaceQuery) o);
             }
             if (o instanceof Integer) {
-                this.raceAnalysiss.get((Integer) o);
+                return this.raceAnalysiss.get((Integer) o); 
             }
             else if (o instanceof HashSet) {
                 HashSet querySet;

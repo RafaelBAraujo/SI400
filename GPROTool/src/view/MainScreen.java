@@ -5,22 +5,11 @@
  */
 package view;
 
-import control.GproTool;
 import control.GproToolController;
-import exception.LoginException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.ConnectionHandler;
-import model.DAO;
 import model.Race;
-import model.Scraper;
-import model.Testing;
-import model.TestingSDAO;
-import model.TestingStint;
 
 /**
  *
@@ -53,7 +42,6 @@ public class MainScreen extends javax.swing.JFrame {
         btnPastRaces = new javax.swing.JButton();
         btnTestings = new javax.swing.JButton();
         btnPilotHistory = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main menu");
@@ -74,20 +62,8 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         btnTestings.setText("Testings");
-        btnTestings.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestingsActionPerformed(evt);
-            }
-        });
 
         btnPilotHistory.setText("Pilot history");
-
-        jButton1.setText("Teste");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlMainScreenLayout = new javax.swing.GroupLayout(pnlMainScreen);
         pnlMainScreen.setLayout(pnlMainScreenLayout);
@@ -121,13 +97,13 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlMainScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlMainScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -157,68 +133,11 @@ public class MainScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnPastRacesActionPerformed
 
-    private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
-        // TODO add your handling code here:
-        if(this.baseController == null){
-            JOptionPane.showMessageDialog(null, "Error at program's controller");
-            dispose();
-        }
-        else{
-            ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
-            readScreen.setVisible(true);
-        }
-    }//GEN-LAST:event_btnTestingsActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        try {
-            ConnectionHandler handler;
-            handler = ConnectionHandler.getHandler();
-            Scraper s = new Scraper();
-        
-        Testing t = s.readTesting(handler);
-        TestingStint[] stints = t.getStints();
-        
-        HashSet addingRaceAnalysis = new HashSet();
-        addingRaceAnalysis.add(61);
-        addingRaceAnalysis.add("Rookie");
-        addingRaceAnalysis.add(59);
-        addingRaceAnalysis.add("marceloasf952@gmail.com");
-        addingRaceAnalysis.add(stints);
-        
-        DAO dao = TestingSDAO.getInstance();
-
-        try {
-            dao.add(t);
-            t = (Testing) dao.get(addingRaceAnalysis);
-            if(t != null){
-                System.out.println(t.getRank());
-                System.out.println(t.getRankDivision());
-                System.out.println(t.getSeason());
-                System.out.println(t.getManagerUsername());
-                System.out.println(stints[0].getTyres());
-                System.out.println(stints[1].getBestlap());
-
-            }
-            else{
-                System.out.println("nao encontrei o marcelo");
-            }
-        } catch (Exception ex) {
-            //Logger.getLogger(GproTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        } catch (LoginException ex) {
-            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPastRaces;
     private javax.swing.JButton btnPilotHistory;
     private javax.swing.JButton btnReadRace;
     private javax.swing.JButton btnTestings;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel pnlMainScreen;
     // End of variables declaration//GEN-END:variables
 }

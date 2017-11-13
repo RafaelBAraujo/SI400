@@ -15,7 +15,7 @@ import javax.swing.SwingWorker;
 
 /**
  *
- * @author Rafael
+ * @author Rafael, Marcelo
  */
 public class ReadTestingScreen extends javax.swing.JFrame {
 
