@@ -11,24 +11,24 @@ package model;
  */
 public class RaceQuery {
     
-    private Integer season;
+    private String season;
     private String rank;
-    private Integer rankDivision;
-    private Integer raceNumber;
+    private String rankDivision;
+    private String raceNumber;
     private String managerUsername;
     private String tyres;
     private String weather;
-    private Integer temperature;
+    private String temperature;
     private String track;
     
-    private Integer startPosition;
-    private Integer finishPosition;
+    private String startPosition;
+    private String finishPosition;
     
-    private Integer CTDry;
-    private Integer CTWet;
-    private Integer overtake;
-    private Integer defend;
-    private Integer malfunc;
+    private String CTDry;
+    private String CTWet;
+    private String overtake;
+    private String defend;
+    private String malfunc;
     
     private Pilot pilot;
     private Wear wear;
@@ -46,42 +46,82 @@ public class RaceQuery {
     private String elec;
     
     public RaceQuery(){
-        this.season = null;
-        this.rank = "";
-        this.rankDivision = null;
-        this.raceNumber = null;
-        this.managerUsername = "";
-        this.tyres = "";
-        this.weather = "";
-        this.temperature = null;
-        this.track = "";
-        this.startPosition = null;
-        this.finishPosition = null;
-        this.CTDry = null;
-        this.CTWet = null;
-        this.overtake = null;
-        this.defend = null;
-        this.malfunc = null;
+        this.season = ".*";
+        this.rank = ".*";
+        this.rankDivision = ".*";
+        this.raceNumber = ".*";
+        this.managerUsername = ".*";
+        this.tyres = ".*";
+        this.weather = ".*";
+        this.temperature = ".*";
+        this.track = ".*";
+        this.startPosition = ".*";
+        this.finishPosition = ".*";
+        this.CTDry = ".*";
+        this.CTWet = ".*";
+        this.overtake = ".*";
+        this.defend = ".*";
+        this.malfunc = ".*";
         this.pilot = null;
         this.wear = null;
-        this.cha = null;
-        this.eng = null;
-        this.fWing = null;
-        this.rWing = null;
-        this.underb = null;
-        this.sidep = null;
-        this.cool = null;
-        this.gear = null;
-        this.bra = null;
-        this.susp = null;
-        this.elec = null;
+        this.cha = ".*";
+        this.eng = ".*";
+        this.fWing = ".*";
+        this.rWing = ".*";
+        this.underb = ".*";
+        this.sidep = ".*";
+        this.cool = ".*";
+        this.gear = ".*";
+        this.bra = ".*";
+        this.susp = ".*";
+        this.elec = ".*";
     }
 
-    public Integer getSeason() {
+    public boolean isEmpty(){
+        
+        if(
+           this.season.compareTo(".*") == 0 &&
+           this.rank.compareTo(".*") == 0 &&
+                this.rankDivision.compareTo(".*") == 0 &&
+                this.raceNumber.compareTo(".*") == 0 &&
+                this.managerUsername.compareTo(".*") == 0 &&
+                this.tyres.compareTo(".*") == 0 &&
+                this.weather.compareTo(".*") == 0 &&
+                this.temperature.compareTo(".*") == 0 &&
+                this.track.compareTo(".*") == 0 &&
+                this.startPosition.compareTo(".*") == 0 &&
+                this.finishPosition.compareTo(".*") == 0 &&
+                this.CTDry.compareTo(".*") == 0 &&
+                this.CTWet.compareTo(".*") == 0 &&
+                this.overtake.compareTo(".*") == 0 &&
+                this.defend.compareTo(".*") == 0 &&
+                this.malfunc.compareTo(".*") == 0 &&
+                this.pilot == null &&
+                this.wear == null &&
+                this.cha.compareTo(".*") == 0 &&
+                this.eng.compareTo(".*") == 0 &&
+                this.fWing.compareTo(".*") == 0 &&
+                this.rWing.compareTo(".*") == 0 &&
+                this.underb.compareTo(".*") == 0 &&
+                this.sidep.compareTo(".*") == 0 &&
+                this.cool.compareTo(".*") == 0 &&
+                this.gear.compareTo(".*") == 0 &&
+                this.bra.compareTo(".*") == 0 &&
+                this.susp.compareTo(".*") == 0 &&
+                this.elec.compareTo(".*") == 0
+          ){
+            return true;
+        }
+        else{
+            return false;
+        }   
+    }
+    
+    public String getSeason() {
         return season;
     }
 
-    public void setSeason(Integer season) {
+    public void setSeason(String season) {
         this.season = season;
     }
 
@@ -93,19 +133,19 @@ public class RaceQuery {
         this.rank = rank;
     }
 
-    public Integer getRankDivision() {
+    public String getRankDivision() {
         return rankDivision;
     }
 
-    public void setRankDivision(Integer rankDivision) {
+    public void setRankDivision(String rankDivision) {
         this.rankDivision = rankDivision;
     }
 
-    public Integer getRaceNumber() {
+    public String getRaceNumber() {
         return raceNumber;
     }
 
-    public void setRaceNumber(Integer raceNumber) {
+    public void setRaceNumber(String raceNumber) {
         this.raceNumber = raceNumber;
     }
 
@@ -133,11 +173,11 @@ public class RaceQuery {
         this.weather = weather;
     }
 
-    public Integer getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Integer temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
@@ -149,59 +189,59 @@ public class RaceQuery {
         this.track = track;
     }
 
-    public Integer getStartPosition() {
+    public String getStartPosition() {
         return startPosition;
     }
 
-    public void setStartPosition(Integer startPosition) {
+    public void setStartPosition(String startPosition) {
         this.startPosition = startPosition;
     }
 
-    public Integer getFinishPosition() {
+    public String getFinishPosition() {
         return finishPosition;
     }
 
-    public void setFinishPosition(Integer finishPosition) {
+    public void setFinishPosition(String finishPosition) {
         this.finishPosition = finishPosition;
     }
 
-    public Integer getCTDry() {
+    public String getCTDry() {
         return CTDry;
     }
 
-    public void setCTDry(Integer CTDry) {
+    public void setCTDry(String CTDry) {
         this.CTDry = CTDry;
     }
 
-    public Integer getCTWet() {
+    public String getCTWet() {
         return CTWet;
     }
 
-    public void setCTWet(Integer CTWet) {
+    public void setCTWet(String CTWet) {
         this.CTWet = CTWet;
     }
 
-    public Integer getOvertake() {
+    public String getOvertake() {
         return overtake;
     }
 
-    public void setOvertake(Integer overtake) {
+    public void setOvertake(String overtake) {
         this.overtake = overtake;
     }
 
-    public Integer getDefend() {
+    public String getDefend() {
         return defend;
     }
 
-    public void setDefend(Integer defend) {
+    public void setDefend(String defend) {
         this.defend = defend;
     }
 
-    public Integer getMalfunc() {
+    public String getMalfunc() {
         return malfunc;
     }
 
-    public void setMalfunc(Integer malfunc) {
+    public void setMalfunc(String malfunc) {
         this.malfunc = malfunc;
     }
 

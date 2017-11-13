@@ -11,10 +11,12 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import model.Race;
+import model.RaceQuery;
 
 /**
  *
@@ -76,9 +78,9 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cmbTyres1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        txtStart1 = new javax.swing.JTextField();
+        cmbWeather = new javax.swing.JComboBox<>();
+        lblTemp = new javax.swing.JLabel();
+        txtTemp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -129,7 +131,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
 
         lblTrack.setText("Track");
 
-        cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Interlagos" }));
         cmbTrack.setMaximumSize(new java.awt.Dimension(56, 20));
 
         jLabel2.setText("Tyres");
@@ -192,12 +194,12 @@ public class SearchRaceScreen extends javax.swing.JFrame {
 
         jLabel4.setText("Weather");
 
-        cmbTyres1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
-        cmbTyres1.setMaximumSize(new java.awt.Dimension(56, 20));
+        cmbWeather.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbWeather.setMaximumSize(new java.awt.Dimension(56, 20));
 
-        jLabel5.setText("Temp");
+        lblTemp.setText("Temp");
 
-        txtStart1.setText("0");
+        txtTemp.setText("0");
 
         javax.swing.GroupLayout pnlMainScreenLayout = new javax.swing.GroupLayout(pnlMainScreen);
         pnlMainScreen.setLayout(pnlMainScreenLayout);
@@ -220,27 +222,27 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                                 .addGap(19, 19, 19)
                                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTrack)
+                                            .addComponent(cmbTrack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
                                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblSeason))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
                                             .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(cmbRankDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblRankDivision)))
-                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblTrack)
-                                            .addComponent(cmbTrack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(40, 40, 40)
+                                            .addComponent(lblRankDivision))))
+                                .addGap(28, 28, 28)
                                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
                                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbTyres1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel4))
                                         .addGap(18, 18, 18))
                                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
@@ -259,8 +261,8 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addComponent(lblCTWet1))
                             .addComponent(txtOvertake, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTemp))
                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlMainScreenLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -284,7 +286,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtFinish, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
@@ -305,7 +307,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                     .addComponent(lblStart)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(lblTemp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,8 +316,8 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                         .addComponent(cmbTyres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtFinish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbTyres1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtStart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -380,19 +382,40 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        RaceQuery query = new RaceQuery();
         
-        String season = (String) cmbSeason.getSelectedItem();
-        String rank = (String) cmbRank.getSelectedItem();
-        String rankDivision = (String) cmbRankDivision.getSelectedItem();
+        if(String.valueOf(cmbTrack.getSelectedItem()).compareTo("Any") != 0)
+            query.setTrack(String.valueOf(cmbTrack.getSelectedItem()));
         
-        if (this.baseController.searchRace(Integer.parseInt(season), rank, Integer.parseInt(rankDivision))){
+        if(String.valueOf(cmbTyres.getSelectedItem()).compareTo("Any") != 0)
+            query.setTyres(String.valueOf(cmbTyres.getSelectedItem()));
+        
+        if(String.valueOf(cmbSeason.getSelectedItem()).compareTo("Any") != 0)
+            query.setSeason(String.valueOf(cmbSeason.getSelectedItem()));        
+
+        if(String.valueOf(cmbRank.getSelectedItem()).compareTo("Any") != 0)
+            query.setRank(String.valueOf(cmbRank.getSelectedItem()));
+        
+        if(String.valueOf(cmbRankDivision.getSelectedItem()).compareTo("Any") != 0)
+            query.setRankDivision(String.valueOf(cmbRankDivision.getSelectedItem()));
+        
+        if(String.valueOf(cmbWeather.getSelectedItem()).compareTo("Any") != 0)
+            query.setWeather(String.valueOf(cmbWeather.getSelectedItem()));
+
+        DefaultTableModel model = (DefaultTableModel) tblResults.getModel();
+        if(!this.baseController.searchRace(query, model)){
+            JOptionPane.showMessageDialog(null, "No races were found.");
+        }
+        
+        /*if (this.baseController.searchRace(Integer.parseInt(season), rank, Integer.parseInt(rankDivision))){
             System.out.println("ENCONTREI");
             DefaultTableModel model = (DefaultTableModel) tblResults.getModel();
             model.addRow(new Object[]{"S" + season + " " + rank + rankDivision});
         }
         else{
             System.out.println("NAO ENCONTREI");
-        }
+        }*/
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -423,30 +446,35 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         
         if(rank.compareTo("Rookie") == 0 || rank.compareTo("Any") == 0){
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for(int i = 1; i < 201; i++){
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if(rank.compareTo("Amateur") == 0){
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for(int i = 1; i < 126; i++){
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Pro") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 26; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Master") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 6; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }
         }
         else if (rank.compareTo("Elite") == 0) {
             cmbRankDivision.removeAllItems();
+            cmbRankDivision.addItem("Any");
             for (int i = 1; i < 2; i++) {
                 cmbRankDivision.addItem(String.valueOf(i));
             }
@@ -460,7 +488,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbSeason;
     private javax.swing.JComboBox<String> cmbTrack;
     private javax.swing.JComboBox<String> cmbTyres;
-    private javax.swing.JComboBox<String> cmbTyres1;
+    private javax.swing.JComboBox<String> cmbWeather;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -468,7 +496,6 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCTDry;
     private javax.swing.JLabel lblCTWet;
@@ -478,6 +505,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblRankDivision;
     private javax.swing.JLabel lblSeason;
     private javax.swing.JLabel lblStart;
+    private javax.swing.JLabel lblTemp;
     private javax.swing.JLabel lblTrack;
     private javax.swing.JPanel pnlMainScreen;
     private javax.swing.JTable tblResults;
@@ -488,6 +516,6 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtMalfunc;
     private javax.swing.JTextField txtOvertake;
     private javax.swing.JTextField txtStart;
-    private javax.swing.JTextField txtStart1;
+    private javax.swing.JTextField txtTemp;
     // End of variables declaration//GEN-END:variables
 }

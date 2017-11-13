@@ -14,11 +14,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -34,9 +37,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
     public RaceAnalysisSDAO() {
         this.raceAnalysiss = new TreeMap<>();
         this.getAll();
-        System.out.println("starting...");
-        this.updateIndexes();
-        System.out.println("ENDED...");
+        //this.updateIndexes();
     }
 
     public static RaceAnalysisSDAO getInstance() {
@@ -72,9 +73,40 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
 
     public TreeMap<Integer, RaceAnalysis> searchRaces(RaceQuery query) throws Exception {
 
-        TreeMap<Integer, RaceAnalysis> result = new TreeMap<>();
+        if(query.isEmpty()){
+            System.out.println("it is TRUEEEE");
+            return this.raceAnalysiss;
+        }
+        
+        TreeMap<Integer, RaceAnalysis> resultLambda = 
+                new TreeMap<Integer, RaceAnalysis>((HashMap<Integer, RaceAnalysis>)this.raceAnalysiss.entrySet().stream()
+                .filter(
+                        v -> v.getValue().getRace().getTrack().getTrackName().matches(query.getTrack()) &&
+                        v.getValue().getRace().getManagerUsername().matches(query.getManagerUsername()) &&
+                        String.valueOf(v.getValue().getRace().getSeason()).matches(query.getSeason()) &&
+                        v.getValue().getRace().getRank().matches(query.getRank()) &&
+                        String.valueOf(v.getValue().getRace().getRankDivision()).matches(query.getRankDivision()) &&
+                        String.valueOf(v.getValue().getRace().getRaceNumber()).matches(query.getRaceNumber()) &&
+                        v.getValue().getStrategy().getRaceSetup().getTyres().matches(query.getTyres()) &&
+                        /*v.getValue().getRace().getRaceForecast().getWeather().getDescription().matches(query.getWeather()) &&
+                        String.valueOf(v.getValue().getRace().getRaceForecast().getWeather().getTemperature()).matches(query.getTemperature()) &&*/
+                        String.valueOf(v.getValue().getStrategy().getCtDry()).matches(query.getCTDry()) &&
+                        String.valueOf(v.getValue().getStrategy().getCtWet()).matches(query.getCTWet()) &&
+                        String.valueOf(v.getValue().getStrategy().getOvertake()).matches(query.getOvertake()) &&
+                        String.valueOf(v.getValue().getStrategy().getDefend()).matches(query.getDefend()) &&
+                        String.valueOf(v.getValue().getStrategy().getMalfunc()).matches(query.getMalfunc())
+                        
+                        )
+                .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
+        
+        
+        
+        
+        System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
+        
+        //TreeMap<Integer, RaceAnalysis> result = new TreeMap<>();
 
-        if(query.getSeason() != null){
+        /*if(query.getSeason() != null){
             TreeMap<Integer, Integer> seasonIndex = new TreeMap<>(this.loadIndexFromFile("season_index.ser"));
             for(Map.Entry<Integer, Integer> entry : seasonIndex.entrySet()){
                 if(entry.getValue().compareTo(query.getSeason()) == 0){
@@ -146,15 +178,10 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                     }
                 }
             }
-        }
-        return result;
+        }*/
+        return resultLambda;
     }
 
-    /*public RaceAnalysis get(HashSet query) throws Exception {
-
-        return null;
-    }*/
-    
     public void saveIndexToFile(Map index, String fileName) {
 
         FileOutputStream fileOut;
@@ -323,6 +350,64 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
         
     }
     
+    public void createWeatherIndex(){
+        
+        TreeMap<Integer, String> weatherIndex = new TreeMap<>();
+        if (!this.raceAnalysiss.isEmpty()) {
+
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                weatherIndex.put(entry.getKey(), entry.getValue().getRace().getRaceForecast().getWeather().getDescription());
+            }
+
+        }
+
+        this.saveIndexToFile(weatherIndex, "raceweather_index.ser");
+        
+    }
+    
+    public void createRisksIndex(){
+        
+        TreeMap<Integer, String> risksIndex = new TreeMap<>();
+        if (!this.raceAnalysiss.isEmpty()) {
+
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                risksIndex.put(entry.getKey(), entry.getValue().getStrategy().getCtDry());
+            }
+            this.saveIndexToFile(risksIndex, "ctdry_index.ser");
+            
+            risksIndex.clear();
+            
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                risksIndex.put(entry.getKey(), entry.getValue().getStrategy().getCtWet());
+            }
+            this.saveIndexToFile(risksIndex, "ctwet_index.ser");
+            
+            risksIndex.clear();
+            
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                risksIndex.put(entry.getKey(), entry.getValue().getStrategy().getOvertake());
+            }
+            this.saveIndexToFile(risksIndex, "overtake_index.ser");
+            
+            risksIndex.clear();
+            
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                risksIndex.put(entry.getKey(), entry.getValue().getStrategy().getDefend());
+            }
+            this.saveIndexToFile(risksIndex, "defend_index.ser");
+            
+            risksIndex.clear();
+
+            for (Map.Entry<Integer, RaceAnalysis> entry : this.raceAnalysiss.entrySet()) {
+                risksIndex.put(entry.getKey(), entry.getValue().getStrategy().getMalfunc());
+            }
+            this.saveIndexToFile(risksIndex, "malfunc_index.ser");
+
+        }
+
+        
+    }
+    
     public void updateIndexes(){
      
         this.createSeasonIndex();
@@ -333,6 +418,8 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
         this.createManagerIndex();
         this.createTyresIndex();
         this.createPilotIndex();
+        //this.createWeatherIndex();
+        this.createRisksIndex();
         
     }
     
@@ -343,7 +430,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                 this.searchRaces((RaceQuery) o);
             }
             if (o instanceof Integer) {
-                this.raceAnalysiss.get((Integer) o);
+                return this.raceAnalysiss.get((Integer) o);
             }
             else if (o instanceof HashSet) {
                 HashSet querySet;
@@ -462,13 +549,15 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                 }
             }
             Integer lastKey = this.raceAnalysiss.lastKey();
-            this.raceAnalysiss.put(lastKey + 1, b);
+            lastKey += 1;
+            this.raceAnalysiss.put(lastKey, b);
             try {
                 FileOutputStream fileOut = new FileOutputStream(this.fileName);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(this.raceAnalysiss);
                 fileOut.close();
                 out.close();
+                return;
             } catch (IOException ex) {
                 Logger.getLogger(RaceAnalysisSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }

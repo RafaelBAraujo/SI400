@@ -163,6 +163,8 @@ public class TestingSDAO extends SDAO<Testing>{
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(this.testing);
                 fileOut.close();
+                out.close();
+                return;
             }catch(IOException ex){
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -173,6 +175,7 @@ public class TestingSDAO extends SDAO<Testing>{
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(this.testing);
                 fileOut.close();
+                out.close();
             }catch(IOException ex){
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }

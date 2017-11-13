@@ -7,11 +7,14 @@ package control;
 
 import exception.LoginException;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import model.ConnectionHandler;
@@ -19,6 +22,7 @@ import model.DAO;
 import model.Race;
 import model.RaceAnalysis;
 import model.RaceAnalysisSDAO;
+import model.RaceQuery;
 import model.RaceSDAO;
 import model.Scraper;
 import model.Track;
@@ -67,6 +71,26 @@ public class GproToolController {
                 return true;
         } catch (Exception ex) {
             Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+    public boolean searchRace(RaceQuery query, DefaultTableModel model){
+        
+        DAO dao = RaceAnalysisSDAO.getInstance();
+        TreeMap<Integer, RaceAnalysis> result = (TreeMap<Integer, RaceAnalysis>) dao.search(query);
+        
+        System.out.println("SearchRace result size: " + result.size());
+        
+        model.setRowCount(0); // clears table
+        
+        if(result.size() > 0){
+            for(Map.Entry<Integer, RaceAnalysis> entry : result.entrySet()){
+                model.addRow(new Object[]{"S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
+                        entry.getValue().getRace().getRankDivision()});
+            }
+            return true;
         }
         
         return false;
