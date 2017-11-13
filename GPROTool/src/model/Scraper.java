@@ -4,6 +4,8 @@ import exception.LoginException;
 import java.awt.font.OpenType;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -592,7 +594,24 @@ public class Scraper {
         r.setManagerUsername(managersUsername.get(0).getAttribute("title"));
 
         h.openRaceAnalisys();
-
+        List<WebElement> track = h.getDriver().findElements(By.cssSelector("#contentinner div div:nth-child(3) h1 a"));
+        String[] trackSubStrings = track.get(0).getText().split(" ");
+        DAO dao = TrackSDAO.getInstance();
+        /*
+            *************************************************************************************
+            ALERTA! NAO DA PRA CONFIAR NISSO! NAO DA! POSSIVEL PROBLEMA FUTURO NAS TRACKS DE RACE
+            *************************************************************************************
+        */
+        try {
+            r.setTrack((Track) dao.get(trackSubStrings[0]));
+        } catch (Exception ex) {
+            Logger.getLogger(Scraper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        /*r.setTrack(this.readTrack(h, trackSubStrings[0]));*/
+        
+        h.openHome();
+        h.openRaceAnalisys();
         List<WebElement> info = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));
 
         substrings = info.get(0).getText().split(" - ");
@@ -645,7 +664,6 @@ public class Scraper {
 
     public Tracks readTracks(ConnectionHandler h) {
 
-        
         h.openTrackList();
 
         List<WebElement> trackList = h.getDriver().findElements(
@@ -702,6 +720,69 @@ public class Scraper {
         return t;
     }
 
+    public Track readTrack(ConnectionHandler h, String trackName){
+        
+        h.openHome();
+        h.openTrackList();
+
+        List<WebElement> trackList = h.getDriver().findElements(
+                By.cssSelector("table.styled.borderbottom.flag tbody td"));
+
+        Track newTrack;
+
+        int x = 0;
+        for (int i = 0; i < ((trackList.size() + 1) / 10); i++) {
+
+            List<WebElement> trackList2 = h.getDriver().findElements(
+                    By.cssSelector("table.styled.borderbottom.flag tbody td"));
+
+            newTrack = new Track();
+            System.out.println("uma pista, 2 pista...");
+            if(trackName.compareTo(trackList2.get(x).getText()) == 0){
+                
+                System.out.println("uma pista, 2 pista...");
+                newTrack.setTrackName(trackList2.get(x).getText());
+                newTrack.setLocation(trackList2.get(x + 1).getText());
+                newTrack.setRaceDistance(trackList2.get(x + 2).getText());
+                newTrack.setLaps(trackList2.get(x + 3).getText());
+                newTrack.setLapDistance(trackList2.get(x + 4).getText());
+                newTrack.setCategory(trackList2.get(x + 8).getText());
+                newTrack.setGPHeld(trackList2.get(x + 9).getText());
+                String trackURL = trackList2.get(x + 0).findElement(By.cssSelector("a")).getAttribute("href");
+                String[] parts = trackURL.split(Pattern.quote("."));
+
+                System.out.println(trackList2.get(x).getText());
+
+                h.getDriver().findElement(By.xpath("//a[@href='TrackDetails." + parts[3] + "']")).click();
+
+                List<WebElement> trackInfo = h.getDriver().findElements(
+                        By.cssSelector("div.inner div table.styled tbody tr td table.styled.paddedsmall tbody tr td"));
+
+                newTrack.setDate(trackInfo.get(7).getText());
+                newTrack.setAvgSpeed(trackInfo.get(23).getText());
+                newTrack.setNumOfCorners(trackInfo.get(31).getText());
+                newTrack.setPitTime(trackInfo.get(35).getText());
+                newTrack.setPower(trackInfo.get(5).getAttribute("title"));
+                newTrack.setHandling(trackInfo.get(9).getAttribute("title"));
+                newTrack.setAcceleration(trackInfo.get(13).getAttribute("title"));
+                newTrack.setDownforce(trackInfo.get(17).getText());
+                newTrack.setOvertaking(trackInfo.get(21).getText());
+                newTrack.setSuspRigidity(trackInfo.get(25).getText());
+                newTrack.setFuelConsumption(trackInfo.get(29).getText());
+                newTrack.setTyreWear(trackInfo.get(33).getText());
+                newTrack.setGripLevel(trackInfo.get(37).getText());
+
+                x += 10;
+                h.getDriver().findElement(By.xpath("//a[@href='/gb/gpro.asp']")).click();
+                return newTrack;
+            }
+
+        }
+        
+        return null;
+        
+    }
+    
     public static Integer readTrackListSize(ConnectionHandler h) {
 
         Integer size;

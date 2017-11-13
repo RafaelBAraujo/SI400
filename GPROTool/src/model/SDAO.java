@@ -27,6 +27,11 @@ public abstract class SDAO<T> implements DAO<T, T> {
         //this.in = this.getInputStream(fileName);
     }
     
+    @Override
+    public Object search(Object o){
+        return o;
+    }
+    
     /*protected ObjectOutputStream getOutputStream(String fileName){
         this.fileName = fileName;
         if(out == null){

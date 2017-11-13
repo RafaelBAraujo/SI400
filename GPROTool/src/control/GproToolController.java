@@ -21,8 +21,8 @@ import model.RaceAnalysis;
 import model.RaceAnalysisSDAO;
 import model.RaceSDAO;
 import model.Scraper;
-import model.Testing;
-import model.TestingSDAO;
+import model.Track;
+import model.TrackSDAO;
 import view.Login;
 
 /**
@@ -154,7 +154,7 @@ public class GproToolController {
             race.setPilot(scraper.readPilot(this.handler));
             
             bar.setValue(80);
-            doc.insertString(doc.getLength(), "Reading pilot...\n", null);
+            doc.insertString(doc.getLength(), "Reading pitstops...\n", null);
             race.setPitstop(scraper.readPitStops(this.handler));
             
             bar.setValue(90);
@@ -162,19 +162,26 @@ public class GproToolController {
             race.setPractice(scraper.readPractice(this.handler));
             bar.setValue(100);
         
+            System.out.println(race.getRace().getTrack().getTrackName());
+            
         } catch (BadLocationException ex) {
             Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DAO raceAnalysisDAO = RaceAnalysisSDAO.getInstance();
+        
         
         try{
+            DAO raceAnalysisDAO = RaceAnalysisSDAO.getInstance();
             txp.setText("");
             doc.insertString(doc.getLength(), "Saving to file...\n", null);
             raceAnalysisDAO.add(race);
             window.dispose();
-        } catch (Exception ex) {
+        } catch(org.openqa.selenium.TimeoutException ex) {
+            JOptionPane.showMessageDialog(null, "The connection with GPRO was lost.");
+        } catch (Exception ex) {  
             JOptionPane.showMessageDialog(null, "Failed to read race analysis.");
-            //Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+            window.dispose();
         }
         
         return false;

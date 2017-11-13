@@ -46,8 +46,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="160" max="32767" attributes="0"/>
+=======
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+>>>>>>> 900a774470a1a8272664e7a9a352f9766e756c37
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -65,14 +70,23 @@
                           <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+<<<<<<< HEAD
+=======
                   <EmptySpace pref="123" max="32767" attributes="0"/>
+>>>>>>> 900a774470a1a8272664e7a9a352f9766e756c37
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
+=======
                   <EmptySpace pref="52" max="32767" attributes="0"/>
+>>>>>>> 900a774470a1a8272664e7a9a352f9766e756c37
                   <Component id="btnReadRace" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnPastRaces" min="-2" pref="40" max="-2" attributes="0"/>
