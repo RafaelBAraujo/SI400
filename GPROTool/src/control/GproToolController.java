@@ -84,14 +84,19 @@ public class GproToolController {
             bar.setValue(10);
             doc.insertString(doc.getLength(), "Reading testing...\n", null);
             test = scraper.readTesting(this.handler);
-            bar.setValue(20);
-            bar.setValue(30);
-            bar.setValue(40);
             bar.setValue(50);
-            bar.setValue(60);
-            bar.setValue(70);
-            bar.setValue(80);
+            //Aguarda 1 segundo
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             bar.setValue(90);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             bar.setValue(100);
         
         } catch (BadLocationException ex) {
