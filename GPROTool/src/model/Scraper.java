@@ -23,7 +23,7 @@ public class Scraper {
 
         
         h.openTesting();
-        int x = 4;
+        int x = 4, i = 0;
 
         //#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(4)
         //#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(5)
@@ -40,7 +40,6 @@ public class Scraper {
         //System.out.println(testingDescription.get(0).getText());
         while (x < 10) {
             try {
-                int i = 0;
                 List<WebElement> testingAll = h.getDriver().findElements(By.cssSelector("#formQual div.column.sixtyfive.right div table:nth-child(1) tbody tr:nth-child(" + x + ")"));
                 String s = testingAll.get(0).getText();
                 String[] subS = s.split(" ");
@@ -101,6 +100,7 @@ public class Scraper {
             } catch (IndexOutOfBoundsException e) {
                 //System.out.println(e);
             }
+            i++;
             x++;
         }
 

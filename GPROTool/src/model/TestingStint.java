@@ -21,7 +21,7 @@ public class TestingStint implements java.io.Serializable {
     private String fuel;
     private String fuelLeft;
     private String tyresCond;
-
+    
     public String getLapsDone() {
         return lapsDone;
     }
