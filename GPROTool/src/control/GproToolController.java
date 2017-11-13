@@ -21,6 +21,8 @@ import model.RaceAnalysis;
 import model.RaceAnalysisSDAO;
 import model.RaceSDAO;
 import model.Scraper;
+import model.Testing;
+import model.TestingSDAO;
 import view.Login;
 
 /**
@@ -65,6 +67,47 @@ public class GproToolController {
                 return true;
         } catch (Exception ex) {
             Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+    public boolean readTesting(javax.swing.JProgressBar bar, javax.swing.JTextPane txp, JFrame window){
+    
+        Scraper scraper = new Scraper();
+        Testing test = new Testing();
+        bar.setStringPainted(true);
+        Document doc = txp.getDocument();
+        
+        try{
+            
+            bar.setValue(10);
+            doc.insertString(doc.getLength(), "Reading testing...\n", null);
+            test = scraper.readTesting(this.handler);
+            bar.setValue(20);
+            bar.setValue(30);
+            bar.setValue(40);
+            bar.setValue(50);
+            bar.setValue(60);
+            bar.setValue(70);
+            bar.setValue(80);
+            bar.setValue(90);
+            bar.setValue(100);
+        
+        } catch (BadLocationException ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DAO TestingDAO = TestingSDAO.getInstance();
+        
+        try{
+            txp.setText("");
+            doc.insertString(doc.getLength(), "Saving to file...\n", null);
+            TestingDAO.add(test);
+            window.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Failed to read race analysis.");
+            //Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;

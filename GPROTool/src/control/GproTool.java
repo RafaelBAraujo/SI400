@@ -34,15 +34,7 @@ public class GproTool {
         t.setRace(s.readRace());
         System.out.println("Reading forecast...");
         t.getRace().setRaceForecast(s.readForecast());
-*/
-        HashSet addingTesting = new HashSet();
-        addingTesting.add(61);
-        addingTesting.add("Amateur");
-        addingTesting.add(87);
-        addingTesting.add(13);
-        addingTesting.add("barbaroto96@gmail.com");
-
-        
+        */
         //String str = s.readTesting().getTestingWeather().getWeather();
         /*try {
             //dao.add(m);

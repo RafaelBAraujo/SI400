@@ -56,7 +56,7 @@ public class TestingSDAO extends SDAO<Testing>{
                     case 1:
                         for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                             HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getRace().getSeason());
+                            currentTe.add(entry.getValue().getSeason());
                             if(currentTe.equals(querySet)){
                                 System.out.println(entry.getValue());
                                 return entry.getValue();
@@ -68,8 +68,8 @@ public class TestingSDAO extends SDAO<Testing>{
                     case 2:
                         for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                             HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getRace().getSeason());
-                            currentTe.add(entry.getValue().getRace().getRank());
+                            currentTe.add(entry.getValue().getSeason());
+                            currentTe.add(entry.getValue().getRank());
                             if(currentTe.equals(querySet)){
                                 return entry.getValue();
                             }
@@ -79,47 +79,29 @@ public class TestingSDAO extends SDAO<Testing>{
                     case 3:
                         for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                             HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getRace().getSeason());
-                            currentTe.add(entry.getValue().getRace().getRank());
-                            currentTe.add(entry.getValue().getRace().getRankDivision());
+                            currentTe.add(entry.getValue().getSeason());
+                            currentTe.add(entry.getValue().getRank());
+                            currentTe.add(entry.getValue().getRankDivision());
                             if(currentTe.equals(querySet)){
                                 return entry.getValue();
                             }
                         }
                         break;
                         
-                    // seek for race number / manager
+                    // seek for manager
                     case 5:
                         for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                             HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getRace().getSeason());
-                            currentTe.add(entry.getValue().getRace().getRank());
-                            currentTe.add(entry.getValue().getRace().getRankDivision());
-                            currentTe.add(entry.getValue().getRace().getRaceNumber());
-                            currentTe.add(entry.getValue().getRace().getManagerUsername());
+                            currentTe.add(entry.getValue().getSeason());
+                            currentTe.add(entry.getValue().getRank());
+                            currentTe.add(entry.getValue().getRankDivision());
+                            currentTe.add(entry.getValue().getManagerUsername());
                             if(currentTe.equals(querySet)){
                                 return entry.getValue();
                             }
                         }
                         break;
-                        
-                        // seek for weatherDesc / temp / hum
-                    case 8:
-                        for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
-                            HashSet currentTe = new HashSet();
-                            currentTe.add(entry.getValue().getRace().getSeason());
-                            currentTe.add(entry.getValue().getRace().getRank());
-                            currentTe.add(entry.getValue().getRace().getRankDivision());
-                            currentTe.add(entry.getValue().getRace().getRaceNumber());
-                            currentTe.add(entry.getValue().getRace().getManagerUsername());
-                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getDescription());
-                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getTemperature());
-                            currentTe.add(entry.getValue().getRace().getRaceForecast().getWeather().getHumidity());
-                            if (currentTe.equals(querySet)) {
-                                return entry.getValue();
-                            }
-                        }
-                        break;
+
                     default:
                         System.out.println("Query not yet implemented.");
                 }
@@ -142,14 +124,14 @@ public class TestingSDAO extends SDAO<Testing>{
     @Override
     public void add(Testing b) throws Exception {
         HashSet addingTesting = new HashSet();
-        addingTesting.add(b.getRace().getSeason());
-        addingTesting.add(b.getRace().getRank());
-        addingTesting.add(b.getRace().getRankDivision());
-        addingTesting.add(b.getRace().getRaceNumber());
-        addingTesting.add(b.getRace().getManagerUsername());
+        addingTesting.add(b.getSeason());
+        addingTesting.add(b.getRank());
+        addingTesting.add(b.getRankDivision());
+        addingTesting.add(b.getManagerUsername());
         addingTesting.add(b.getStints());
         addingTesting.add(b.getTestingDescription().getDescription());
         addingTesting.add(b.getTestingWeather().getWeather());
+        
         if(!this.testing.isEmpty()){
             for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                 if(entry.getKey().equals(addingTesting)){

@@ -13,13 +13,32 @@ public class Scraper {
 
     public Testing readTesting(ConnectionHandler h)  {
 
+        h.openHome();
+
+        List<WebElement> rank = h.getDriver().findElements(By.cssSelector("div #columnone #item-1 table tbody tr.even td a"));
+
+        Testing t = new Testing();
+        String[] substrings = rank.get(1).getText().split(" - ");
+        t.setRank(substrings[0]);
+        t.setRankDivision(Integer.parseInt(substrings[1]));
+
+        //read manager's name
+        List<WebElement> managersUsername = h.getDriver().findElements(By.cssSelector("#item-1 table tbody tr:nth-child(1) td:nth-child(2) span"));
+        t.setManagerUsername(managersUsername.get(0).getAttribute("title"));
+
+        h.openRaceAnalisys();
+
+        List<WebElement> info = h.getDriver().findElements(By.cssSelector("div.inner div h1.block.center"));
+
+        substrings = info.get(0).getText().split(" - ");
+
+        t.setSeason(Integer.parseInt(substrings[1].substring(substrings[1].indexOf(" ") + 1)));
+        
         TestingStint tl = new TestingStint();
         TestingStint[] stints = new TestingStint[10];
-        Testing t = new Testing();
         Weather w = new Weather();
         Setup lapSetup = new Setup();
 
-        
         h.openTesting();
         int x = 4, i = 0;
 

@@ -61,6 +61,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         btnTestings.setText("Testings");
+        btnTestings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestingsActionPerformed(evt);
+            }
+        });
 
         btnPilotHistory.setText("Pilot history");
 
@@ -129,6 +134,18 @@ public class MainScreen extends javax.swing.JFrame {
         src.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPastRacesActionPerformed
+
+    private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
+        // TODO add your handling code here:
+        if(this.baseController == null){
+            JOptionPane.showMessageDialog(null, "Error at program's controller");
+            dispose();
+        }
+        else{
+            ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
+            readScreen.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTestingsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPastRaces;
