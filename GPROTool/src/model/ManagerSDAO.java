@@ -55,7 +55,6 @@ public class ManagerSDAO extends SDAO<Manager> {
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
                 }
             } catch (IOException ex1) {
                 Logger.getLogger(ManagerSDAO.class.getName()).log(Level.SEVERE, null, ex1);
@@ -67,7 +66,7 @@ public class ManagerSDAO extends SDAO<Manager> {
     
     @Override
     public Manager get(Object o) throws Exception {
-        System.out.println("Size of tree is: "+this.managers.size());
+        //System.out.println("Size of tree is: "+this.managers.size());
         if(o instanceof String){
             String managerName = (String) o;
             for(Map.Entry<String, Manager> entry : this.managers.entrySet()){

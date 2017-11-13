@@ -73,6 +73,7 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         lblRank1 = new javax.swing.JLabel();
         cmbRankDivision = new javax.swing.JComboBox<>();
+        btnReturn = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,10 +114,20 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Zolder" }));
 
         cmbTyres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Extra Soft", "Soft", "Medium", "Hard", "Rain" }));
+        cmbTyres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTyresActionPerformed(evt);
+            }
+        });
 
-        cmbTemp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTemp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "40", "39", "38", "30", "5" }));
+        cmbTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTempActionPerformed(evt);
+            }
+        });
 
-        cmbWeather.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbWeather.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Sunny", "Cloudy", "Partially Cloudy" }));
 
         btnSetCarLvl.setText("Set car level");
 
@@ -129,9 +140,24 @@ public class SearchTestingScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Testing"
+                "Nº", "Testing"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblResults, org.jdesktop.beansbinding.ObjectProperty.create(), tblResults, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
         bindingGroup.addBinding(binding);
@@ -154,19 +180,26 @@ public class SearchTestingScreen extends javax.swing.JFrame {
 
         cmbRankDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
 
+        btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,11 +225,11 @@ public class SearchTestingScreen extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTemp))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblWeather)
                                     .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnSetPilot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,13 +252,13 @@ public class SearchTestingScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbTyres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTemp)
-                            .addComponent(lblWeather))
+                        .addComponent(lblTemp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cmbTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblWeather)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -248,7 +281,9 @@ public class SearchTestingScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSearch)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(btnReturn))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -278,6 +313,9 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         
         if(String.valueOf(cmbWeather.getSelectedItem()).compareTo("Any") != 0)
             query.setWeather(String.valueOf(cmbWeather.getSelectedItem()));
+        
+        if(String.valueOf(cmbTemp.getSelectedItem()).compareTo("Any") != 0)
+            query.setTemperature(String.valueOf(cmbTemp.getSelectedItem()));
 
         DefaultTableModel model = (DefaultTableModel) tblResults.getModel();
         if(!this.baseController.searchTesting(query, model)){
@@ -304,6 +342,27 @@ public class SearchTestingScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblResultsMouseClicked
 
+    private void cmbTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTempActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTempActionPerformed
+
+    private void cmbTyresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTyresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTyresActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        if(this.baseController == null){
+            JOptionPane.showMessageDialog(null, "Error at program's controller");
+            dispose();
+        }
+        else{
+            MainScreen ms = new MainScreen(this.baseController);
+            ms.setVisible(true);
+            }
+    }//GEN-LAST:event_btnReturnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -326,6 +385,7 @@ private void initSelfListeners(GproToolController controller){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSetCarLvl;
     private javax.swing.JButton btnSetCarWear;

@@ -59,7 +59,6 @@ public class CarSDAO extends SDAO<Car> {
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
                 }
             } catch (IOException ex1) {
                 Logger.getLogger(CarSDAO.class.getName()).log(Level.SEVERE, null, ex1);

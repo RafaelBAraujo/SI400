@@ -36,7 +36,7 @@ public class Practice implements Serializable {
         if (l[n] != null) {
             return l[n];
         } else {
-            System.out.println("nope");
+            //System.out.println("nope");
         }
 
         return null;

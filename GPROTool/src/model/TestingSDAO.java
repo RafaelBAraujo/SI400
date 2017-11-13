@@ -36,9 +36,9 @@ public class TestingSDAO extends SDAO<Testing>{
     public TestingSDAO(){
         this.testing = new TreeMap<>();
         this.getAll();
-        System.out.println("Starting...");
+        //System.out.println("Starting...");
         //this.updateIndexes();
-        System.out.println("Ended...");
+        //System.out.println("Ended...");
     }
     
     public static TestingSDAO getInstance(){
@@ -141,7 +141,7 @@ public class TestingSDAO extends SDAO<Testing>{
             try{
                 boolean createNewFile = f.createNewFile();
                 if(createNewFile){
-                    System.out.println("got here");
+                    //System.out.println("got here");
                 }
             } catch(IOException exl) {
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, exl);
@@ -155,28 +155,39 @@ public class TestingSDAO extends SDAO<Testing>{
     public TreeMap<Integer, Testing> searchTesting(TestingQuery query) throws Exception {
         
         if(query.isEmpty()){
-            System.out.println("it is TRUEEEE");
-            return this.testing;
+            //System.out.println("it is TRUEEEE");
+            return this.testing;  
         }
+        TestingStint stints;
         
-        TreeMap<Integer, Testing> resultLambda = 
-                new TreeMap<Integer, Testing>((HashMap<Integer, Testing>)this.testing.entrySet().stream()
-                .filter(
-                        v -> v.getValue().getTrack().matches(query.getNameTrack()) &&
-                        v.getValue().getManagerUsername().matches(query.getManagerUsername()) &&
-                        String.valueOf(v.getValue().getSeason()).matches(query.getSeason()) &&
-                        v.getValue().getRank().matches(query.getRank()) &&
-                        String.valueOf(v.getValue().getRankDivision()).matches(query.getRankDivision())
-                        //v.getValue().getTyres().matches(query.getTyres())
-                        /*v.getValue().getRace().getRaceForecast().getWeather().getDescription().matches(query.getWeather()) &&
-                        String.valueOf(v.getValue().getRace().getRaceForecast().getWeather().getTemperature()).matches(query.getTemperature()) &&*/                        
-                        )
-                .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
+
+            TreeMap<Integer, Testing> resultLambda = 
+                    new TreeMap<Integer, Testing>((HashMap<Integer, Testing>)this.testing.entrySet().stream()
+                    .filter(
+                            v -> v.getValue().getTrack().matches(query.getNameTrack()) &&
+                            v.getValue().getManagerUsername().matches(query.getManagerUsername()) &&
+                            String.valueOf(v.getValue().getSeason()).matches(query.getSeason()) &&
+                            v.getValue().getRank().matches(query.getRank()) &&
+                            String.valueOf(v.getValue().getRankDivision()).matches(query.getRankDivision()) &&
+                            v.getValue().getTestingWeather().getDescription().matches(query.getWeather()) &&
+                            v.getValue().getTestingWeather().getTemperature().matches(query.getTemperature()) &&
+                            (v.getValue().getStints()[0] != null) ? v.getValue().getStints()[0].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[1] != null) ? v.getValue().getStints()[1].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[2] != null) ? v.getValue().getStints()[2].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[3] != null) ? v.getValue().getStints()[3].getTyres().matches(query.getTyres()) : false &&   
+                            (v.getValue().getStints()[4] != null) ? v.getValue().getStints()[4].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[5] != null) ? v.getValue().getStints()[5].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[6] != null) ? v.getValue().getStints()[6].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[7] != null) ? v.getValue().getStints()[7].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[8] != null) ? v.getValue().getStints()[8].getTyres().matches(query.getTyres()) : false &&
+                            (v.getValue().getStints()[9] != null) ? v.getValue().getStints()[9].getTyres().matches(query.getTyres()) : false                                                                    
+                            )
+                    .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
+            
+
         
         
-        
-        
-        System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
+        //System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
         /*TreeMap<Integer, Testing> result = new TreeMap<>();
 
         if(query.getSeason() != null){

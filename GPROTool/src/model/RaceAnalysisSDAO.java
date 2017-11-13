@@ -74,7 +74,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
     public TreeMap<Integer, RaceAnalysis> searchRaces(RaceQuery query) throws Exception {
 
         if(query.isEmpty()){
-            System.out.println("it is TRUEEEE");
+            //System.out.println("it is TRUEEEE");
             return this.raceAnalysiss;
         }
         
@@ -102,7 +102,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
         
         
         
-        System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
+        //System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
         
         //TreeMap<Integer, RaceAnalysis> result = new TreeMap<>();
 

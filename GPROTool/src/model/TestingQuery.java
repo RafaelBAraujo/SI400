@@ -32,8 +32,8 @@ public class TestingQuery {
     private String Gear;
     private String Susp;
 
-    private String weatherDescription;
     private String weather;
+    private String temperature;
 
     public TestingQuery() {
         this.season = ".*";
@@ -54,9 +54,10 @@ public class TestingQuery {
         this.Bra = ".*";
         this.Gear = ".*";
         this.Susp = ".*";
-        this.weatherDescription = ".*";
         this.weather = ".*";
+        this.temperature = ".*";
     }
+
     
     public boolean isEmpty(){
         
@@ -81,14 +82,21 @@ public class TestingQuery {
                 this.Bra.compareTo(".*") == 0 &&
                 this.Gear.compareTo(".*") == 0 &&
                 this.Susp.compareTo(".*") == 0 &&
-                this.weatherDescription.compareTo(".*") == 0 &&
-                this.weather.compareTo(".*") == 0 
+                this.weather.compareTo(".*") == 0 &&
+                this.temperature.compareTo(".*") == 0 
           ){
             return true;
         }
         else{
             return false;
         }   
+    }
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getManagerUsername() {
@@ -234,15 +242,7 @@ public class TestingQuery {
     public void setSusp(String Susp) {
         this.Susp = Susp;
     }
-
-    public String getWeatherDescription() {
-        return weatherDescription;
-    }
-
-    public void setWeatherDescription(String weatherDescription) {
-        this.weatherDescription = weatherDescription;
-    }
-
+    
     public String getWeather() {
         return weather;
     }

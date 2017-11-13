@@ -53,11 +53,11 @@ public class Scraper {
         String[] subT = sT.split(" ");
         t.setTrack(subT[1]);
 
-        w.setWeather(testingWeather.get(0).getAttribute("title"));
+        w.setWeather(testingDescription.get(0).getText());
         t.setTestingWeather(w);
 
-        w.setDescription(testingDescription.get(0).getText());
-        t.setTestingDescription(w);
+        w.setDescription(testingWeather.get(0).getAttribute("title"));
+        t.setTestingWeather(w);
 
         //System.out.println(testingWeather.get(0).getAttribute("title"));
         //System.out.println(testingDescription.get(0).getText());
@@ -741,10 +741,10 @@ public class Scraper {
                     By.cssSelector("table.styled.borderbottom.flag tbody td"));
 
             newTrack = new Track();
-            System.out.println("uma pista, 2 pista...");
+            //System.out.println("uma pista, 2 pista...");
             if(trackName.compareTo(trackList2.get(x).getText()) == 0){
                 
-                System.out.println("uma pista, 2 pista...");
+                //System.out.println("uma pista, 2 pista...");
                 newTrack.setTrackName(trackList2.get(x).getText());
                 newTrack.setLocation(trackList2.get(x + 1).getText());
                 newTrack.setRaceDistance(trackList2.get(x + 2).getText());

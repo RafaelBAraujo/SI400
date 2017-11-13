@@ -32,7 +32,7 @@ public class PilotSDAO extends SDAO {
     public PilotSDAO(){
         this.pilots = new TreeMap<>();
         this.getAll();
-        System.out.println("Done!");
+        //System.out.println("Done!");
     }
     
     public static PilotSDAO getInstance(){
@@ -60,7 +60,7 @@ public class PilotSDAO extends SDAO {
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
+                    //System.out.println("got here...");
                     //this.checkIfUpdated();
                 }
             } catch (IOException ex1) {
@@ -74,7 +74,7 @@ public class PilotSDAO extends SDAO {
     @Override
     public Object get(Object id) throws Exception {
         if (id instanceof Pilot) {
-            System.out.println("entrei");
+            //System.out.println("entrei");
             Pilot p = (Pilot) id;
             for (Map.Entry<Integer, Pilot> entry : this.pilots.entrySet()) {
                 if (entry.getValue().getName().compareTo(p.getName()) == 0) {

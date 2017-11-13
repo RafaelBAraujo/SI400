@@ -150,6 +150,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
         // TODO add your handling code here:
+        dispose();
         if(this.baseController == null){
             JOptionPane.showMessageDialog(null, "Error at program's controller");
             dispose();

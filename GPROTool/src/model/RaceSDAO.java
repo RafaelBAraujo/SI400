@@ -59,7 +59,7 @@ public class RaceSDAO extends SDAO<Race>{
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
+                    //System.out.println("got here...");
                 }
             } catch (IOException ex1) {
                 Logger.getLogger(TrackSDAO.class.getName()).log(Level.SEVERE, null, ex1);
@@ -71,7 +71,7 @@ public class RaceSDAO extends SDAO<Race>{
     
     @Override
     public Race get(Object o) throws Exception {
-        System.out.println("THE SIZE OF THIS CRAP: " + this.races.size());
+        //System.out.println("THE SIZE OF THIS CRAP: " + this.races.size());
         if(o instanceof HashSet){
             for (Map.Entry<Integer, Race> entry : this.races.entrySet()) {
                 HashSet currentRace = new HashSet();

@@ -36,7 +36,7 @@ public class TrackSDAO extends SDAO<Track> {
         this.tracks = new TreeMap<>();
         this.numTracks = 0;
         this.getAll();
-        System.out.println("Done!");
+        //System.out.println("Done!");
     }
     
     public static TrackSDAO getInstance(){
@@ -60,7 +60,7 @@ public class TrackSDAO extends SDAO<Track> {
             try {
                 boolean createNewFile = f.createNewFile();
                 if (createNewFile) {
-                    System.out.println("got here...");
+                    //System.out.println("got here...");
                     this.checkIfUpdated();
                 }
             } catch (IOException ex1) {

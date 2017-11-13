@@ -137,7 +137,6 @@ public class GproToolController {
             txp.setText("");
             doc.insertString(doc.getLength(), "Saving to file...\n", null);
             TestingDAO.add(test);
-            System.out.println("Passou");
             window.dispose();
 
         } catch (Exception ex) {
