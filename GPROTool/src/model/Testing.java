@@ -17,7 +17,7 @@ public class Testing implements java.io.Serializable {
     private String rank;
     private int rankDivision;
     private String managerUsername;
-    private Track track;
+    private String track;
     private TestingStint[] stints;
     private Weather testingWeather;
     private Weather testingDescription;
@@ -54,15 +54,13 @@ public class Testing implements java.io.Serializable {
         this.managerUsername = managerUsername;
     }
 
-    public Track getTrack() {
+    public String getTrack() {
         return track;
     }
 
-    public void setTrack(Track track) {
+    public void setTrack(String track) {
         this.track = track;
     }
-    
-    
     
     public Weather getTestingDescription() {
         return testingDescription;

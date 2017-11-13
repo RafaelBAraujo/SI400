@@ -35,7 +35,7 @@ public class TestingSDAO extends SDAO<Testing>{
         this.testing = new TreeMap<>();
         this.getAll();
         System.out.println("Starting...");
-        this.updateIndexes();
+        //this.updateIndexes();
         System.out.println("Ended...");
     }
     
@@ -146,9 +146,7 @@ public class TestingSDAO extends SDAO<Testing>{
         addingTesting.add(b.getRankDivision());
         addingTesting.add(b.getManagerUsername());
         addingTesting.add(b.getTrack());
-        addingTesting.add(b.getStints());
-        addingTesting.add(b.getTestingDescription().getDescription());
-        addingTesting.add(b.getTestingWeather().getWeather());
+
         if(!this.testing.isEmpty()){
             for(Map.Entry<Integer, Testing> entry : this.testing.entrySet()){
                 HashSet currentTesting = new HashSet();
@@ -157,9 +155,7 @@ public class TestingSDAO extends SDAO<Testing>{
                 currentTesting.add(entry.getValue().getRankDivision());
                 currentTesting.add(entry.getValue().getManagerUsername());
                 currentTesting.add(entry.getValue().getTrack());
-                currentTesting.add(entry.getValue().getStints());
-                currentTesting.add(entry.getValue().getTestingDescription().getDescription());
-                currentTesting.add(entry.getValue().getTestingWeather().getWeather());
+
                 if(currentTesting.equals(addingTesting)){
                     return;
                 }
@@ -380,7 +376,7 @@ public class TestingSDAO extends SDAO<Testing>{
         if (!this.testing.isEmpty()) {
 
             for (Map.Entry<Integer, Testing> entry : this.testing.entrySet()) {
-                seasonIndex.put(entry.getKey(), entry.getValue().getTrack().getTrackName());
+                seasonIndex.put(entry.getKey(), entry.getValue().getTrack());
             }
 
         }

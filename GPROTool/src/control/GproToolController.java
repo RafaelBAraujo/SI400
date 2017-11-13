@@ -26,6 +26,7 @@ import model.TestingSDAO;
 import model.Track;
 import model.TrackSDAO;
 import view.Login;
+import view.SearchTestingScreen;
 
 /**
  *
@@ -74,6 +75,25 @@ public class GproToolController {
         return false;
     }
     
+    public boolean searchTesting(Integer season, String rank, Integer rankDivision){
+        
+        DAO dao = TestingSDAO.getInstance();
+        HashSet searchingTesting = new HashSet();
+        searchingTesting.add(season);
+        searchingTesting.add(rank);
+        searchingTesting.add(rankDivision);
+        
+        try {
+            Testing foundTesting = (Testing) dao.get(searchingTesting);
+            if(foundTesting != null)
+                return true;
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
     public boolean readTesting(javax.swing.JProgressBar bar, javax.swing.JTextPane txp, JFrame window){
     
         Scraper scraper = new Scraper();
@@ -111,9 +131,15 @@ public class GproToolController {
             txp.setText("");
             doc.insertString(doc.getLength(), "Saving to file...\n", null);
             TestingDAO.add(test);
+            System.out.println("Passou");
             window.dispose();
+            GproToolController c = new GproToolController();
+            SearchTestingScreen src = new SearchTestingScreen(c);
+            src.setVisible(true);
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Failed to read race analysis.");
+            JOptionPane.showMessageDialog(null, "Failed to read testing.");
+            System.out.println(ex.getMessage());
             //Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -179,6 +205,7 @@ public class GproToolController {
             doc.insertString(doc.getLength(), "Saving to file...\n", null);
             raceAnalysisDAO.add(race);
             window.dispose();
+            
         } catch(org.openqa.selenium.TimeoutException ex) {
             JOptionPane.showMessageDialog(null, "The connection with GPRO was lost.");
         } catch (Exception ex) {  

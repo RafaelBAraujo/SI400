@@ -136,6 +136,7 @@ public class ReadTestingScreen extends javax.swing.JFrame {
             public void windowOpened(WindowEvent e) {
                 readTesting r = new readTesting(window, bar, txpLog, controller);
                 r.execute();
+                
             }
 
             @Override

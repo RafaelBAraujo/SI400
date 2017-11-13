@@ -96,6 +96,11 @@ public class SearchRaceScreen extends javax.swing.JFrame {
                 cmbRankItemStateChanged(evt);
             }
         });
+        cmbRank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRankActionPerformed(evt);
+            }
+        });
 
         lblRankDivision.setText("Division");
 
@@ -403,6 +408,10 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private void txtFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFinishActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFinishActionPerformed
+
+    private void cmbRankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRankActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRankActionPerformed
 
     public static void setLookAndFeel() {
         try {
