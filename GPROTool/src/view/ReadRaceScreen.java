@@ -120,6 +120,7 @@ public class ReadRaceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlMainPanelFocusGained
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        Thread.currentThread().interrupt();
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 

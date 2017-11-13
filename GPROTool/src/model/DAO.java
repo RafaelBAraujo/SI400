@@ -17,5 +17,6 @@ public interface DAO<A, B> {
     public void delete(B b);
     public void update(B b);
     public void add(B b) throws Exception;
+    public Object search(Object o);
     
 }

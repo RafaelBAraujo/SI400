@@ -51,20 +51,46 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         cmbRank = new javax.swing.JComboBox<>();
         cmbRankDivision = new javax.swing.JComboBox<>();
         lblRankDivision = new javax.swing.JLabel();
-        btnSearch = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblResults = new javax.swing.JTable();
+        lblTrack = new javax.swing.JLabel();
+        cmbTrack = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cmbTyres = new javax.swing.JComboBox<>();
+        lblStart = new javax.swing.JLabel();
+        txtStart = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtFinish = new javax.swing.JTextField();
+        lblCTDry = new javax.swing.JLabel();
+        txtCTDry = new javax.swing.JTextField();
+        lblCTWet = new javax.swing.JLabel();
+        txtCTWet = new javax.swing.JTextField();
+        txtOvertake = new javax.swing.JTextField();
+        lblCTWet1 = new javax.swing.JLabel();
+        txtDefend = new javax.swing.JTextField();
+        lblDefend = new javax.swing.JLabel();
+        txtMalfunc = new javax.swing.JTextField();
+        lblMalfunc = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cmbTyres1 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtStart1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         lblSeason.setText("Season");
 
-        cmbSeason.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "58", "59", "60", "61" }));
+        cmbSeason.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "58", "59", "60", "61" }));
 
         jLabel1.setText("Rank");
 
-        cmbRank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rookie", "Amateur", "Pro", "Master", "Elite" }));
+        cmbRank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Rookie", "Amateur", "Pro", "Master", "Elite" }));
+        cmbRank.setMaximumSize(new java.awt.Dimension(66, 20));
         cmbRank.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbRankItemStateChanged(evt);
@@ -72,13 +98,6 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         });
 
         lblRankDivision.setText("Division");
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
 
         tblResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,49 +127,240 @@ public class SearchRaceScreen extends javax.swing.JFrame {
             tblResults.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        lblTrack.setText("Track");
+
+        cmbTrack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTrack.setMaximumSize(new java.awt.Dimension(56, 20));
+
+        jLabel2.setText("Tyres");
+
+        cmbTyres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTyres.setMaximumSize(new java.awt.Dimension(56, 20));
+
+        lblStart.setText("Start");
+
+        txtStart.setText("0");
+
+        jLabel3.setText("Finish");
+
+        txtFinish.setText("0");
+        txtFinish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFinishActionPerformed(evt);
+            }
+        });
+
+        lblCTDry.setText("CT Dry");
+
+        txtCTDry.setText("0");
+
+        lblCTWet.setText("CT Wet");
+
+        txtCTWet.setText("0");
+
+        txtOvertake.setText("0");
+
+        lblCTWet1.setText("Overtake");
+
+        txtDefend.setText("0");
+
+        lblDefend.setText("Defend");
+
+        txtMalfunc.setText("0");
+
+        lblMalfunc.setText("Malfunc");
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Set car level");
+        jButton1.setMaximumSize(new java.awt.Dimension(91, 25));
+        jButton1.setMinimumSize(new java.awt.Dimension(91, 25));
+        jButton1.setPreferredSize(new java.awt.Dimension(91, 25));
+
+        jButton2.setText("Set car wear");
+        jButton2.setMaximumSize(new java.awt.Dimension(91, 25));
+        jButton2.setMinimumSize(new java.awt.Dimension(91, 25));
+        jButton2.setPreferredSize(new java.awt.Dimension(73, 20));
+
+        jButton3.setText("Set pilot");
+        jButton3.setPreferredSize(new java.awt.Dimension(73, 20));
+
+        jLabel4.setText("Weather");
+
+        cmbTyres1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        cmbTyres1.setMaximumSize(new java.awt.Dimension(56, 20));
+
+        jLabel5.setText("Temp");
+
+        txtStart1.setText("0");
+
         javax.swing.GroupLayout pnlMainScreenLayout = new javax.swing.GroupLayout(pnlMainScreen);
         pnlMainScreen.setLayout(pnlMainScreenLayout);
         pnlMainScreenLayout.setHorizontalGroup(
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
+                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSeason))
-                        .addGap(40, 40, 40)
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane2))
+                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbTyres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(165, 165, 165))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblSeason))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cmbRankDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblRankDivision)))
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTrack)
+                                            .addComponent(cmbTrack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(40, 40, 40)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbTyres1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4))
+                                        .addGap(18, 18, 18))
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCTDry)
+                                            .addComponent(txtCTDry, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCTWet, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(lblCTWet)))
+                                        .addGap(17, 17, 17)))))
+                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(lblCTWet1))
+                            .addComponent(txtOvertake, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(lblDefend))
+                                    .addComponent(txtDefend, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(lblMalfunc))
+                                    .addComponent(txtMalfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblStart))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtFinish, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbRankDivision, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblRankDivision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(34, 34, 34)
-                        .addComponent(btnSearch))
-                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(19, 19, 19))
+            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlMainScreenLayout.setVerticalGroup(
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblSeason)
-                    .addComponent(lblRankDivision))
+                    .addComponent(lblTrack)
+                    .addComponent(jLabel2)
+                    .addComponent(lblStart)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbRankDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
+                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmbTrack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbTyres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFinish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbTyres1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtStart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lblSeason)
+                                    .addComponent(lblRankDivision))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbRankDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                    .addComponent(lblCTWet)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCTWet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
+                                    .addComponent(lblCTWet1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtOvertake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                    .addComponent(lblDefend)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDefend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                    .addComponent(lblCTDry)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCTDry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                                    .addComponent(lblMalfunc)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtMalfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSearch)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,7 +371,9 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMainScreen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlMainScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -188,6 +400,10 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         addRankDivisions();
     }//GEN-LAST:event_cmbRankItemStateChanged
 
+    private void txtFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFinishActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFinishActionPerformed
+
     public static void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -205,7 +421,7 @@ public class SearchRaceScreen extends javax.swing.JFrame {
         
         String rank = (String) cmbRank.getSelectedItem();
         
-        if(rank.compareTo("Rookie") == 0){
+        if(rank.compareTo("Rookie") == 0 || rank.compareTo("Any") == 0){
             cmbRankDivision.removeAllItems();
             for(int i = 1; i < 201; i++){
                 cmbRankDivision.addItem(String.valueOf(i));
@@ -242,11 +458,36 @@ public class SearchRaceScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbRank;
     private javax.swing.JComboBox<String> cmbRankDivision;
     private javax.swing.JComboBox<String> cmbSeason;
+    private javax.swing.JComboBox<String> cmbTrack;
+    private javax.swing.JComboBox<String> cmbTyres;
+    private javax.swing.JComboBox<String> cmbTyres1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCTDry;
+    private javax.swing.JLabel lblCTWet;
+    private javax.swing.JLabel lblCTWet1;
+    private javax.swing.JLabel lblDefend;
+    private javax.swing.JLabel lblMalfunc;
     private javax.swing.JLabel lblRankDivision;
     private javax.swing.JLabel lblSeason;
+    private javax.swing.JLabel lblStart;
+    private javax.swing.JLabel lblTrack;
     private javax.swing.JPanel pnlMainScreen;
     private javax.swing.JTable tblResults;
+    private javax.swing.JTextField txtCTDry;
+    private javax.swing.JTextField txtCTWet;
+    private javax.swing.JTextField txtDefend;
+    private javax.swing.JTextField txtFinish;
+    private javax.swing.JTextField txtMalfunc;
+    private javax.swing.JTextField txtOvertake;
+    private javax.swing.JTextField txtStart;
+    private javax.swing.JTextField txtStart1;
     // End of variables declaration//GEN-END:variables
 }
