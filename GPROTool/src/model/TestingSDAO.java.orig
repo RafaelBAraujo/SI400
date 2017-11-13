@@ -168,6 +168,10 @@ public class TestingSDAO extends SDAO<Testing>{
                 out.writeObject(this.testing);
                 fileOut.close();
                 out.close();
+<<<<<<< HEAD
+                return;
+=======
+>>>>>>> d45ca4b3fb44abec6f436de6a1f3ae3a6d5672a5
             }catch(IOException ex){
                 Logger.getLogger(TestingSDAO.class.getName()).log(Level.SEVERE, null, ex);
             }   

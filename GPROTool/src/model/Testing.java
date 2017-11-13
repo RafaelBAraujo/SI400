@@ -13,17 +13,53 @@ public class Testing implements java.io.Serializable {
     
     private static final long serialVersionUID = -2729487164148785749L;
     
-    private Race race;
+    private int season;
+    private String rank;
+    private int rankDivision;
+    private String managerUsername;
+    private String track;
     private TestingStint[] stints;
     private Weather testingWeather;
     private Weather testingDescription;
 
-    public Race getRace() {
-        return race;
+    public int getSeason() {
+        return season;
     }
 
-    public void setRace(Race race) {
-        this.race = race;
+    public void setSeason(int season) {
+        this.season = season;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public int getRankDivision() {
+        return rankDivision;
+    }
+
+    public void setRankDivision(int rankDivision) {
+        this.rankDivision = rankDivision;
+    }
+
+    public String getManagerUsername() {
+        return managerUsername;
+    }
+
+    public void setManagerUsername(String managerUsername) {
+        this.managerUsername = managerUsername;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
     }
     
     public Weather getTestingDescription() {

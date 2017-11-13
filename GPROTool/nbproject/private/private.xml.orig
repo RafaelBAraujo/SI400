@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceQuery.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/view/SearchRaceScreen.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/SDAO.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/RaceQuery.java</file>
+            <file>file:/C:/Users/Rafael/Documents/git/SI400/GPROTool/src/model/Scraper.java</file>
+=======
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Weather.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/Login.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Wear.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/ConnectionHandler.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/MainScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/SearchRaceScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Testing.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/ReadRaceScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/Scraper.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/TestingSDAO.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/ReadTestingScreen.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/ReadRaceScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproTool.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/RaceQuery.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/TestingSDAO.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/control/GproToolController.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/SearchTestingScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/RaceAnalysisSDAO.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/MainScreen.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/model/TestingQuery.java</file>
+            <file>file:/C:/Users/Dulcina/Documents/Git/SI400/GPROTool/src/view/SearchRaceScreen.java</file>
+>>>>>>> d45ca4b3fb44abec6f436de6a1f3ae3a6d5672a5
+        </group>
+    </open-files>
+</project-private>

@@ -78,7 +78,24 @@ public class GproToolController {
         
         return false;
     }
-
+    
+<<<<<<< HEAD
+    public boolean searchRace(RaceQuery query, DefaultTableModel model){
+        
+        DAO dao = RaceAnalysisSDAO.getInstance();
+        TreeMap<Integer, RaceAnalysis> result = (TreeMap<Integer, RaceAnalysis>) dao.search(query);
+        
+        System.out.println("SearchRace result size: " + result.size());
+        
+        model.setRowCount(0); // clears table
+        
+        if(result.size() > 0){
+            for(Map.Entry<Integer, RaceAnalysis> entry : result.entrySet()){
+                model.addRow(new Object[]{"S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
+                        entry.getValue().getRace().getRankDivision()});
+            }
+            return true;
+=======
     public boolean searchTesting(Integer season, String rank, Integer rankDivision){
         
         DAO dao = TestingSDAO.getInstance();
@@ -145,26 +162,7 @@ public class GproToolController {
             JOptionPane.showMessageDialog(null, "Failed to read testing.");
             System.out.println(ex.getMessage());
             //Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return false;
-    }
-    
-    public boolean searchRace(RaceQuery query, DefaultTableModel model){
-        
-        DAO dao = RaceAnalysisSDAO.getInstance();
-        TreeMap<Integer, RaceAnalysis> result = (TreeMap<Integer, RaceAnalysis>) dao.search(query);
-        
-        System.out.println("SearchRace result size: " + result.size());
-        
-        model.setRowCount(0); // clears table
-        
-        if(result.size() > 0){
-            for(Map.Entry<Integer, RaceAnalysis> entry : result.entrySet()){
-                model.addRow(new Object[]{"S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
-                        entry.getValue().getRace().getRankDivision()});
-            }
-            return true;
+>>>>>>> d45ca4b3fb44abec6f436de6a1f3ae3a6d5672a5
         }
         
         return false;
@@ -229,6 +227,7 @@ public class GproToolController {
             doc.insertString(doc.getLength(), "Saving to file...\n", null);
             raceAnalysisDAO.add(race);
             window.dispose();
+            
         } catch(org.openqa.selenium.TimeoutException ex) {
             JOptionPane.showMessageDialog(null, "The connection with GPRO was lost.");
         } catch (Exception ex) {  
