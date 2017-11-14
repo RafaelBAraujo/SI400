@@ -2,3 +2,4 @@
 *.class
 private.xml
 oldMain.txt
+/GPROTool/dist/

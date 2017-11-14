@@ -76,7 +76,7 @@ public abstract class SDAO<T> implements DAO<T, T> {
         if(this.out != null)
             return this.out;
         else{
-            System.out.println("UE CARALIO");
+            
             return null;
         }
     }
@@ -85,7 +85,7 @@ public abstract class SDAO<T> implements DAO<T, T> {
         if(this.in != null)
             return this.in;
         else{
-            System.out.println("UE PORRA");
+            
             return null;
         }
     }

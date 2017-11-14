@@ -23,15 +23,17 @@ public class Weather implements java.io.Serializable {
         this.weather = weather;
     }
     
-    public int getTemperature(){
+    public String getTemperature(){
         if(!this.weather.isEmpty()){
             String[] subs = this.weather.split("\n");
             String temp = subs[1] = subs[1].replaceAll("\\D+", "");
+            System.out.println(temp);
             
-            return Integer.parseInt(temp);
+            return temp;
             
         }
-        return -1;
+        return null;
+
     }
     
     public int getHumidity(){

@@ -36,9 +36,13 @@ public class TestingSDAO extends SDAO<Testing>{
     public TestingSDAO(){
         this.testing = new TreeMap<>();
         this.getAll();
+<<<<<<< HEAD
+        //this.updateIndexes();
+=======
         //System.out.println("Starting...");
         //this.updateIndexes();
         //System.out.println("Ended...");
+>>>>>>> 61c1a7f884396086162a85e6f85ced651d56a0f2
     }
     
     public static TestingSDAO getInstance(){
@@ -154,6 +158,11 @@ public class TestingSDAO extends SDAO<Testing>{
     
     public TreeMap<Integer, Testing> searchTesting(TestingQuery query) throws Exception {
         
+<<<<<<< HEAD
+ 
+        
+        TreeMap<Integer, Testing> result = new TreeMap<>();
+=======
         if(query.isEmpty()){
             //System.out.println("it is TRUEEEE");
             return this.testing;  
@@ -189,6 +198,7 @@ public class TestingSDAO extends SDAO<Testing>{
         
         //System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
         /*TreeMap<Integer, Testing> result = new TreeMap<>();
+>>>>>>> 61c1a7f884396086162a85e6f85ced651d56a0f2
 
         if(query.getSeason() != null){
             TreeMap<Integer, String> seasonIndex = new TreeMap<>(this.loadIndexFromFile("season_index.ser"));

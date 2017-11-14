@@ -11,9 +11,9 @@ package model;
  */
 public class TestingQuery {
     
-    private Integer season;
+    private String season;
     private String rank;
-    private Integer rankDivision;
+    private String rankDivision;
     private String nameTrack;
     private String managerUsername;
     
@@ -21,40 +21,82 @@ public class TestingQuery {
     private String bestLap;
     private String mean;
     private String tyres;
-    private Integer fuel;
-    private Integer fuelLeft;
+    private String fuel;
+    private String fuelLeft;
     private String tyresCond;
     
-    private Integer FWing;
-    private Integer RWing;
-    private Integer Eng;
-    private Integer Bra;
-    private Integer Gear;
-    private Integer Susp;
+    private String FWing;
+    private String RWing;
+    private String Eng;
+    private String Bra;
+    private String Gear;
+    private String Susp;
 
-    private String weatherDescription;
     private String weather;
+    private String temperature;
 
     public TestingQuery() {
-        this.season = null;
-        this.rank = "";
-        this.rankDivision = null;
-        this.nameTrack = "";
-        this.lapsDone = "";
-        this.bestLap = "";
-        this.mean = "";
-        this.tyres = "";
-        this.fuel = null;
-        this.fuelLeft = null;
-        this.tyresCond = "";
-        this.FWing = null;
-        this.RWing = null;
-        this.Eng = null;
-        this.Bra = null;
-        this.Gear = null;
-        this.Susp = null;
-        this.weatherDescription = "";
-        this.weather = "";
+        this.season = ".*";
+        this.rank = ".*";
+        this.rankDivision = ".*";
+        this.nameTrack = ".*";
+        this.managerUsername = ".*";
+        this.lapsDone = ".*";
+        this.bestLap = ".*";
+        this.mean = ".*";
+        this.tyres = ".*";
+        this.fuel = ".*";
+        this.fuelLeft = ".*";
+        this.tyresCond = ".*";
+        this.FWing = ".*";
+        this.RWing = ".*";
+        this.Eng = ".*";
+        this.Bra = ".*";
+        this.Gear = ".*";
+        this.Susp = ".*";
+        this.weather = ".*";
+        this.temperature = ".*";
+    }
+
+    
+    public boolean isEmpty(){
+        
+        if(
+           this.season.compareTo(".*") == 0 &&
+           this.rank.compareTo(".*") == 0 &&
+                this.rankDivision.compareTo(".*") == 0 &&
+                this.managerUsername.compareTo(".*") == 0 &&
+                this.tyres.compareTo(".*") == 0 &&
+                this.weather.compareTo(".*") == 0 &&
+                this.nameTrack.compareTo(".*") == 0 &&
+                this.lapsDone.compareTo(".*") == 0 &&
+                this.bestLap.compareTo(".*") == 0 &&
+                this.mean.compareTo(".*") == 0 &&
+                this.tyres.compareTo(".*") == 0 &&
+                this.fuel.compareTo(".*") == 0 &&
+                this.fuelLeft.compareTo(".*") == 0 &&
+                this.tyresCond.compareTo(".*") == 0 &&
+                this.FWing.compareTo(".*") == 0 &&
+                this.RWing.compareTo(".*") == 0 &&
+                this.Eng.compareTo(".*") == 0 &&
+                this.Bra.compareTo(".*") == 0 &&
+                this.Gear.compareTo(".*") == 0 &&
+                this.Susp.compareTo(".*") == 0 &&
+                this.weather.compareTo(".*") == 0 &&
+                this.temperature.compareTo(".*") == 0 
+          ){
+            return true;
+        }
+        else{
+            return false;
+        }   
+    }
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getManagerUsername() {
@@ -65,11 +107,11 @@ public class TestingQuery {
         this.managerUsername = managerUsername;
     }
 
-    public Integer getSeason() {
+    public String getSeason() {
         return season;
     }
 
-    public void setSeason(Integer season) {
+    public void setSeason(String season) {
         this.season = season;
     }
 
@@ -81,11 +123,11 @@ public class TestingQuery {
         this.rank = rank;
     }
 
-    public Integer getRankDivision() {
+    public String getRankDivision() {
         return rankDivision;
     }
 
-    public void setRankDivision(Integer rankDivision) {
+    public void setRankDivision(String rankDivision) {
         this.rankDivision = rankDivision;
     }
 
@@ -129,19 +171,19 @@ public class TestingQuery {
         this.tyres = tyres;
     }
 
-    public Integer getFuel() {
+    public String getFuel() {
         return fuel;
     }
 
-    public void setFuel(Integer fuel) {
+    public void setFuel(String fuel) {
         this.fuel = fuel;
     }
 
-    public Integer getFuelLeft() {
+    public String getFuelLeft() {
         return fuelLeft;
     }
 
-    public void setFuelLeft(Integer fuelLeft) {
+    public void setFuelLeft(String fuelLeft) {
         this.fuelLeft = fuelLeft;
     }
 
@@ -153,62 +195,54 @@ public class TestingQuery {
         this.tyresCond = tyresCond;
     }
 
-    public Integer getFWing() {
+    public String getFWing() {
         return FWing;
     }
 
-    public void setFWing(Integer FWing) {
+    public void setFWing(String FWing) {
         this.FWing = FWing;
     }
 
-    public Integer getRWing() {
+    public String getRWing() {
         return RWing;
     }
 
-    public void setRWing(Integer RWing) {
+    public void setRWing(String RWing) {
         this.RWing = RWing;
     }
 
-    public Integer getEng() {
+    public String getEng() {
         return Eng;
     }
 
-    public void setEng(Integer Eng) {
+    public void setEng(String Eng) {
         this.Eng = Eng;
     }
 
-    public Integer getBra() {
+    public String getBra() {
         return Bra;
     }
 
-    public void setBra(Integer Bra) {
+    public void setBra(String Bra) {
         this.Bra = Bra;
     }
 
-    public Integer getGear() {
+    public String getGear() {
         return Gear;
     }
 
-    public void setGear(Integer Gear) {
+    public void setGear(String Gear) {
         this.Gear = Gear;
     }
 
-    public Integer getSusp() {
+    public String getSusp() {
         return Susp;
     }
 
-    public void setSusp(Integer Susp) {
+    public void setSusp(String Susp) {
         this.Susp = Susp;
     }
-
-    public String getWeatherDescription() {
-        return weatherDescription;
-    }
-
-    public void setWeatherDescription(String weatherDescription) {
-        this.weatherDescription = weatherDescription;
-    }
-
+    
     public String getWeather() {
         return weather;
     }

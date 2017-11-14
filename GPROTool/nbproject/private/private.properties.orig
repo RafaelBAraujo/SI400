@@ -1,0 +1,6 @@
+compile.on.save=true
+<<<<<<< HEAD
+user.properties.file=C:\\Users\\Rafael\\AppData\\Roaming\\NetBeans\\8.2\\build.properties
+=======
+user.properties.file=C:\\Users\\Marcelo\\AppData\\Roaming\\NetBeans\\8.2\\build.properties
+>>>>>>> 61c1a7f884396086162a85e6f85ced651d56a0f2

@@ -75,6 +75,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         btnPilotHistory.setText("Pilot history");
+        btnPilotHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPilotHistoryActionPerformed(evt);
+            }
+        });
 
         btnReadTesting.setText("Read last testing");
         btnReadTesting.addActionListener(new java.awt.event.ActionListener() {
@@ -89,27 +94,28 @@ public class MainScreen extends javax.swing.JFrame {
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainScreenLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
-                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnReadRace)
                     .addComponent(btnPastRaces, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnReadRace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTestings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnReadTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(btnTestings, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReadTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         pnlMainScreenLayout.setVerticalGroup(
             pnlMainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainScreenLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+            .addGroup(pnlMainScreenLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(btnReadRace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPastRaces, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReadTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTestings, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPilotHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +163,26 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+        if (this.baseController == null) {
+            JOptionPane.showMessageDialog(null, "Error at program's controller");
+            dispose();
+        } else {
+            ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
+            readScreen.setVisible(true);
+        }
+
+
+    }//GEN-LAST:event_btnTestingsActionPerformed
+
+    private void btnPilotHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPilotHistoryActionPerformed
+
+        RaceQuery query = new RaceQuery();
+        TreeMap<Integer, RaceAnalysis> result = this.baseController.searchRace(query);
+        PilotHistoryScreen pilotHistoryScreen = new PilotHistoryScreen(this.baseController, result);
+        pilotHistoryScreen.setVisible(true);
+    }//GEN-LAST:event_btnPilotHistoryActionPerformed
+=======
         dispose();
         if(this.baseController == null){
             JOptionPane.showMessageDialog(null, "Error at program's controller");
@@ -180,17 +206,9 @@ public class MainScreen extends javax.swing.JFrame {
             ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
             readScreen.setVisible(true);
         }
-
-
-    }//GEN-LAST:event_btnTestingsActionPerformed
-
-    private void btnPilotHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPilotHistoryActionPerformed
-
-        RaceQuery query = new RaceQuery();
-        TreeMap<Integer, RaceAnalysis> result = this.baseController.searchRace(query);
-        PilotHistoryScreen pilotHistoryScreen = new PilotHistoryScreen(this.baseController, result);
-        pilotHistoryScreen.setVisible(true);
-    }//GEN-LAST:event_btnPilotHistoryActionPerformed
+            
+    }//GEN-LAST:event_btnReadTestingActionPerformed
+>>>>>>> 61c1a7f884396086162a85e6f85ced651d56a0f2
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPastRaces;

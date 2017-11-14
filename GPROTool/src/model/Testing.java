@@ -20,7 +20,6 @@ public class Testing implements java.io.Serializable {
     private String track;
     private TestingStint[] stints;
     private Weather testingWeather;
-    private Weather testingDescription;
 
     public int getSeason() {
         return season;
@@ -60,14 +59,6 @@ public class Testing implements java.io.Serializable {
 
     public void setTrack(String track) {
         this.track = track;
-    }
-    
-    public Weather getTestingDescription() {
-        return testingDescription;
-    }
-
-    public void setTestingDescription(Weather testingDescription) {
-        this.testingDescription = testingDescription;
     }
     
     public Testing(){
