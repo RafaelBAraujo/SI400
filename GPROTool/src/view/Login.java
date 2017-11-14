@@ -9,6 +9,8 @@ import control.GproToolController;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,8 +29,8 @@ public class Login extends javax.swing.JFrame {
     public Login(GproToolController controller) {
         this.baseController = controller;
         setLookAndFeel();
-        centreWindow();
         initComponents();
+        centerFrame();
     }
 
     /**
@@ -164,6 +166,15 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void centerFrame() {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (this.getWidth() / 2),
+                middle.y - (this.getHeight() / 2));
+        this.setLocation(newLocation);
+    }
+    
     public static void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

@@ -141,7 +141,7 @@ public class Scraper {
 
         Practice p = new Practice();
         int x = 0;
-        //int numLaps = 0;
+        int numLaps = 0;
 
         for (int j = 0; j < 8; j++) {
 
@@ -151,7 +151,7 @@ public class Scraper {
                 break;
             }
 
-            //numLaps++;
+            numLaps++;
             l.setLapTime(training.get(x + 1).getText());
             l.setDriverMistake(training.get(x + 2).getText());
             l.setNetTime(training.get(x + 3).getText());
@@ -168,7 +168,7 @@ public class Scraper {
 
         }
 
-        //p.printLaps(numLaps);
+        p.setNumLap(numLaps);
         return p;
     }
 
@@ -395,9 +395,7 @@ public class Scraper {
 
         }
 
-        //for(int d : newPoints){
-        //System.out.println(d);
-        //}
+        myPilot.setNewPts(newPtsStrings);
         List<WebElement> raceEnergy = h.getDriver().findElements(By.cssSelector("div.barLabel"));
         myPilot.setStartEnergy(raceEnergy.get(0).getText());
         myPilot.setEndEnergy(raceEnergy.get(1).getText());

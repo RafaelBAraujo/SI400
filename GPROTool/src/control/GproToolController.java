@@ -6,19 +6,30 @@
 package control;
 
 import exception.LoginException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import model.ConnectionHandler;
 import model.DAO;
+import model.Lap;
+import model.Pilot;
+import model.Pit;
+import model.Practice;
+import model.PracticeLap;
 import model.Race;
 import model.RaceAnalysis;
 import model.RaceAnalysisSDAO;
@@ -29,6 +40,8 @@ import model.Testing;
 import model.TestingSDAO;
 import model.Track;
 import model.TrackSDAO;
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
 import view.Login;
 import view.SearchTestingScreen;
 
@@ -39,7 +52,16 @@ import view.SearchTestingScreen;
 public class GproToolController {
     
     private ConnectionHandler handler;
-    
+    private RaceAnalysis race;
+
+    public RaceAnalysis getRace() {
+        return race;
+    }
+
+    public void setRace(RaceAnalysis race) {
+        this.race = race;
+    }
+
     public GproToolController(){
         
     }
@@ -47,6 +69,37 @@ public class GproToolController {
     public void start(){
         Login loginScreen = new Login(this);
         loginScreen.setVisible(true);
+    }
+    
+    public XYDataset getPilotDataset(TreeMap<Integer, RaceAnalysis> races) {
+
+        DefaultXYDataset ds = new DefaultXYDataset();
+        double[][] pilotOverall = {{}, {}};
+        int x = 0, y = 0;
+        
+        //double[][]
+        
+        Stack<Integer> s = new Stack<>();
+        
+        for(Map.Entry<Integer, RaceAnalysis> entry : races.entrySet()){
+            s.add(Integer.parseInt(entry.getValue().getPilot().getNewPts()[0]));
+        }
+        
+        for (int r = 0; r < pilotOverall.length; r++) {
+            for (int c = 0; c < pilotOverall[r].length; c++) {
+                pilotOverall[r][c] = s.pop();//your value
+            }
+        }
+        
+        
+        
+        double[][] data = {{0.1, 0.2, 0.3},
+                            {1,   2,   3}};
+        
+        //ds.addSeries("series1", data);
+        ds.addSeries("Pilot Overall", pilotOverall);
+
+        return ds;
     }
     
     public boolean autUsuario(String email, String pass) throws LoginException {
@@ -150,24 +203,139 @@ public class GproToolController {
         return false;
     }
     
+    public TreeMap<Integer, RaceAnalysis> searchRace(RaceQuery query){
+        
+        DAO dao = RaceAnalysisSDAO.getInstance();
+        TreeMap<Integer, RaceAnalysis> result = (TreeMap<Integer, RaceAnalysis>) dao.search(query);
+
+        return result;
+    }
+    
     public boolean searchRace(RaceQuery query, DefaultTableModel model){
         
         DAO dao = RaceAnalysisSDAO.getInstance();
         TreeMap<Integer, RaceAnalysis> result = (TreeMap<Integer, RaceAnalysis>) dao.search(query);
         
-        System.out.println("SearchRace result size: " + result.size());
-        
         model.setRowCount(0); // clears table
         
         if(result.size() > 0){
             for(Map.Entry<Integer, RaceAnalysis> entry : result.entrySet()){
-                model.addRow(new Object[]{"S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
+                model.addRow(new Object[]{entry.getKey(), "S" + entry.getValue().getRace().getSeason() + " " + entry.getValue().getRace().getRank() + 
                         entry.getValue().getRace().getRankDivision()});
             }
             return true;
         }
         
         return false;
+    }
+    
+    public RaceAnalysis searchRace(Integer key){
+        
+        DAO dao = RaceAnalysisSDAO.getInstance();
+        
+        RaceAnalysis race = null;
+        try {
+            race = (RaceAnalysis) dao.get(key);
+        } catch (Exception ex) {
+            Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return race;        
+    }
+    
+    public void displayRace(Integer key, DefaultTableModel modelPractice, DefaultTableModel modelLaps, DefaultTableModel modelPistops,
+                            DefaultTableModel modelCar, DefaultTableModel modelCarCarac, DefaultTableModel modelInitialWear,
+                            DefaultTableModel modelFinalWear, DefaultTableModel modelQualifyings, DefaultTableModel modelQSetups,
+                            DefaultTableModel modelForecast, DefaultTableModel modelRisks){
+        
+        RaceAnalysis race = this.searchRace(key);
+
+        Practice p = race.getPractice();
+        
+        for(Integer lap = 0; lap < 8; lap++){
+            try{
+                PracticeLap l = p.getLap(lap);
+                Integer lapNumb = lap + 1;
+                modelPractice.addRow(new Object[] {String.valueOf(lapNumb), l.getLapTime(), l.getDriverMistake(), l.getNetTime(), l.getfWing(),
+                                                    l.getrWing(), l.getEngine(), l.getBrakes(), l.getGear(), l.getSusp(), l.getTyres()});
+            }
+            catch(NullPointerException ex){
+                break;
+            }
+        }
+        
+        race.getRace().getLaps().forEach((lap) -> {
+            modelLaps.addRow(new Object[] {lap.lapNumber, lap.lapTime, lap.pos, lap.tyre, lap.weather, lap.temp, lap.Hum, lap.events});
+        });
+        
+        
+        
+        for(Pit pit : race.getPitstop().getP()){
+            modelPistops.addRow(new Object[]{pit.getPitLap(), pit.getPitReason(), pit.getTyresCond(), pit.getFuelLeft(), pit.getRefill(),
+                                pit.getPitTime()});
+        }
+        
+        modelCar.addRow(new Object[]{race.getCar().getCha(), race.getCar().getEng(), race.getCar().getfWing(), race.getCar().getrWing(),
+            race.getCar().getUnderb(), race.getCar().getCool(), race.getCar().getGear(), race.getCar().getBra(), race.getCar().getSusp(),
+            race.getCar().getElec()});
+        
+        
+        modelInitialWear.addRow(new Object[]{race.getRaceWear().getStartWear().getCha(), race.getRaceWear().getStartWear().getEng(), race.getRaceWear().getStartWear().getfWing(), race.getRaceWear().getStartWear().getrWing(),
+            race.getRaceWear().getStartWear().getUnderb(), race.getRaceWear().getStartWear().getCool(), race.getRaceWear().getStartWear().getGear(), race.getRaceWear().getStartWear().getBra(), race.getRaceWear().getStartWear().getSusp(),
+            race.getRaceWear().getStartWear().getElec()});
+        
+        modelFinalWear.addRow(new Object[]{race.getRaceWear().getFinalWear().getCha(), race.getRaceWear().getFinalWear().getEng(), race.getRaceWear().getFinalWear().getfWing(), race.getRaceWear().getFinalWear().getrWing(),
+            race.getRaceWear().getFinalWear().getUnderb(), race.getRaceWear().getFinalWear().getCool(), race.getRaceWear().getFinalWear().getGear(), race.getRaceWear().getFinalWear().getBra(), race.getRaceWear().getFinalWear().getSusp(),
+            race.getRaceWear().getFinalWear().getElec()});
+        
+        modelCarCarac.addRow(new Object[]{race.getCar().getPower(), race.getCar().getHandling(), race.getCar().getAcceleration()});
+        
+        modelQualifyings.addRow(new Object[]{race.getQualifyings().getQ1().getLapTime(), race.getQualifyings().getQ2().getLapTime()});
+        modelQSetups.addRow(new Object[]{"Q1",race.getQualifyings().getQ1().getSetup().getFWing(), race.getQualifyings().getQ1().getSetup().getRWing(),
+                            race.getQualifyings().getQ1().getSetup().getEng(), race.getQualifyings().getQ1().getSetup().getBra(),
+                            race.getQualifyings().getQ1().getSetup().getGear(), race.getQualifyings().getQ1().getSetup().getSusp(),
+                            race.getQualifyings().getQ1().getSetup().getTyres()});
+        
+        modelQSetups.addRow(new Object[]{"Q2",race.getQualifyings().getQ2().getSetup().getFWing(), race.getQualifyings().getQ2().getSetup().getRWing(),
+                            race.getQualifyings().getQ2().getSetup().getEng(), race.getQualifyings().getQ2().getSetup().getBra(),
+                            race.getQualifyings().getQ2().getSetup().getGear(), race.getQualifyings().getQ2().getSetup().getSusp(),
+                            race.getQualifyings().getQ2().getSetup().getTyres()});
+        
+        modelQSetups.addRow(new Object[]{"Race", race.getStrategy().getRaceSetup().getFWing(), race.getStrategy().getRaceSetup().getRWing(),
+                            race.getStrategy().getRaceSetup().getEng(), race.getStrategy().getRaceSetup().getBra(),
+                            race.getStrategy().getRaceSetup().getGear(), race.getStrategy().getRaceSetup().getSusp(),
+                            race.getStrategy().getRaceSetup().getTyres()});
+
+ 
+        
+        modelForecast.addRow(new Object[]{"Start - 0h30m", race.getRace().getRaceForecast().getRainProb(0)});
+        modelForecast.addRow(new Object[]{"0h30m - 1h", race.getRace().getRaceForecast().getRainProb(1)});
+        modelForecast.addRow(new Object[]{"1h - 1h30m", race.getRace().getRaceForecast().getRainProb(2)});
+        modelForecast.addRow(new Object[]{"1h30m - 2h", race.getRace().getRaceForecast().getRainProb(3)});
+        
+        
+        modelRisks.addRow(new Object[]{race.getStrategy().getOvertake(), race.getStrategy().getDefend(),
+                                       race.getStrategy().getCtDry(), race.getStrategy().getCtWet(),
+                                       race.getStrategy().getMalfunc()});
+       
+        
+    }
+    
+    public ArrayList<String> getTrackList(){
+        
+        DAO dao = TrackSDAO.getInstance();
+        ArrayList<String> trackNames = new ArrayList<>();
+        
+        for(int i = 1; i < Scraper.readTrackListSize(handler)+1; i++){
+            try {
+                Track t = (Track) dao.get(i);
+                trackNames.add(t.getTrackName());
+            } catch (Exception ex) {
+                Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return trackNames;
     }
     
     public boolean readRaceAnalysis(javax.swing.JProgressBar bar, javax.swing.JTextPane txp, JFrame window){
@@ -181,6 +349,7 @@ public class GproToolController {
             bar.setValue(10);
             doc.insertString(doc.getLength(), "Reading race...\n", null);
             race.setRace(scraper.readRace(this.handler));
+            race.getRace().setRaceForecast(scraper.readForecast(handler));
             
             bar.setValue(20);
             race.setRaceWear(scraper.readRaceWear(this.handler));
@@ -213,8 +382,6 @@ public class GproToolController {
             doc.insertString(doc.getLength(), "Reading practice...\n", null);
             race.setPractice(scraper.readPractice(this.handler));
             bar.setValue(100);
-        
-            System.out.println(race.getRace().getTrack().getTrackName());
             
         } catch (BadLocationException ex) {
             Logger.getLogger(GproToolController.class.getName()).log(Level.SEVERE, null, ex);
@@ -238,5 +405,5 @@ public class GproToolController {
         
         return false;
     }
-    
+           
 }

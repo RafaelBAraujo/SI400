@@ -18,6 +18,19 @@ public class Pilot implements java.io.Serializable {
     private int weight;
     private String startEnergy;
     private String endEnergy;
+    String[] newPts;
+    
+    public Pilot(){
+        this.newPts = new String[11];
+    }
+
+    public String[] getNewPts() {
+        return newPts;
+    }
+
+    public void setNewPts(String[] newPts) {
+        this.newPts = newPts;
+    }
 
     public String getName() {
         return name;

@@ -26,20 +26,23 @@ public class ConnectionHandler {
     private static WebElement passw;
     private static String email;
     private static String password;
+    private boolean offline = true;
 
     public ConnectionHandler() throws LoginException{
 
-        driver = new SilentHtmlUnitDriver();
-        driver.get("https://www.gpro.net/gb/gpro.asp");
-        user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
-        user.sendKeys(email);
-        passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
-        passw.sendKeys(password);
-        //System.out.println("Logging in...");
-        passw.submit();
-        if(driver.getCurrentUrl().matches(".+Login\\.asp\\?Redirect=gpro\\.asp")){
-            System.out.println(driver.getCurrentUrl());
-            throw new LoginException("Invalid credentials! Please try again.");
+        if(!offline){
+            driver = new SilentHtmlUnitDriver();
+            driver.get("https://www.gpro.net/gb/gpro.asp");
+            user = driver.findElement(By.name("textLogin")); // gotten by attribute "name" in html
+            user.sendKeys(email);
+            passw = driver.findElement(By.name("textPassword")); // gotten by attribute "name" in html
+            passw.sendKeys(password);
+            //System.out.println("Logging in...");
+            passw.submit();
+            if(driver.getCurrentUrl().matches(".+Login\\.asp\\?Redirect=gpro\\.asp")){
+                System.out.println(driver.getCurrentUrl());
+                throw new LoginException("Invalid credentials! Please try again.");
+            }
         }
 
     }

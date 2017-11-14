@@ -13,11 +13,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -34,9 +36,7 @@ public class TestingSDAO extends SDAO<Testing>{
     public TestingSDAO(){
         this.testing = new TreeMap<>();
         this.getAll();
-        System.out.println("Starting...");
         //this.updateIndexes();
-        System.out.println("Ended...");
     }
     
     public static TestingSDAO getInstance(){
@@ -221,7 +221,9 @@ public class TestingSDAO extends SDAO<Testing>{
     }
     
     public TreeMap<Integer, Testing> searchTesting(TestingQuery query) throws Exception {
-
+        
+ 
+        
         TreeMap<Integer, Testing> result = new TreeMap<>();
 
         if(query.getSeason() != null){

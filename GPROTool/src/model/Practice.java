@@ -11,8 +11,6 @@ public class Practice implements Serializable {
 
     public Practice() {
 
-        numLaps = 0;
-
         for (int j = 0; j < 8; j++) {
             l[j] = null;
         }
@@ -22,13 +20,13 @@ public class Practice implements Serializable {
     public void setId(int id) {
 
     }
+    
+    public void setNumLap(int num){
+        this.numLaps = num;
+    }
 
     public int getNumLaps() {
         return numLaps;
-    }
-
-    public void setNumLaps(int numLaps) {
-        this.numLaps = numLaps;
     }
 
     public PracticeLap getLap(int n) {

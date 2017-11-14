@@ -7,9 +7,13 @@ package view;
 
 import control.GproToolController;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import model.Race;
+import model.RaceAnalysis;
+import model.RaceQuery;
 
 /**
  *
@@ -18,14 +22,15 @@ import model.Race;
 public class MainScreen extends javax.swing.JFrame {
 
     private GproToolController baseController;
-    
+
     /**
      * Creates new form MainScreen
      */
     public MainScreen(GproToolController controller) {
         this.baseController = controller;
-        centreWindow();
+            
         initComponents();
+        centerFrame();
     }
 
     /**
@@ -69,6 +74,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         btnPilotHistory.setText("Pilot history");
+        btnPilotHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPilotHistoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMainScreenLayout = new javax.swing.GroupLayout(pnlMainScreen);
         pnlMainScreen.setLayout(pnlMainScreenLayout);
@@ -117,21 +127,24 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadRaceActionPerformed
-        if(this.baseController == null){
+        if (this.baseController == null) {
             JOptionPane.showMessageDialog(null, "Error at program's controller");
             dispose();
-        }
-        else{
+        } else {
             ReadRaceScreen readScreen = new ReadRaceScreen(this.baseController);
             readScreen.setVisible(true);
         }
     }//GEN-LAST:event_btnReadRaceActionPerformed
-    
-    public void centreWindow(){
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2 - 150, dim.height/2-this.getSize().height/2 - 150);
+
+    private void centerFrame() {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (this.getWidth() / 2),
+                middle.y - (this.getHeight() / 2));
+        this.setLocation(newLocation);
     }
-    
+
     private void btnPastRacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastRacesActionPerformed
         SearchRaceScreen src = new SearchRaceScreen(this.baseController);
         src.setVisible(true);
@@ -140,17 +153,24 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
         // TODO add your handling code here:
-        if(this.baseController == null){
+        if (this.baseController == null) {
             JOptionPane.showMessageDialog(null, "Error at program's controller");
             dispose();
-        }
-        else{
+        } else {
             ReadTestingScreen readScreen = new ReadTestingScreen(this.baseController);
             readScreen.setVisible(true);
         }
-                
-        
+
+
     }//GEN-LAST:event_btnTestingsActionPerformed
+
+    private void btnPilotHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPilotHistoryActionPerformed
+
+        RaceQuery query = new RaceQuery();
+        TreeMap<Integer, RaceAnalysis> result = this.baseController.searchRace(query);
+        PilotHistoryScreen pilotHistoryScreen = new PilotHistoryScreen(this.baseController, result);
+        pilotHistoryScreen.setVisible(true);
+    }//GEN-LAST:event_btnPilotHistoryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPastRaces;

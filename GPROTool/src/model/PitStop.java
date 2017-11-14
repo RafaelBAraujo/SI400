@@ -3,28 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-class Pit implements java.io.Serializable {
-
-    private static final long serialVersionUID = 2243720582258432705L;
-
-    public String pitLap;
-    public String pitReason;
-    public String tyresCond;
-    public String fuelLeft;
-    public String refill;
-    public String pitTime;
-
-    public void printPit() {
-        System.out.println(pitLap);
-        System.out.println(pitReason);
-        System.out.println(tyresCond);
-        System.out.println(fuelLeft);
-        System.out.println(refill);
-        System.out.println(pitTime);
-    }
-
-}
-
 public class PitStop implements java.io.Serializable {
 
     private static final long serialVersionUID = 4908381584223574341L;
@@ -43,6 +21,10 @@ public class PitStop implements java.io.Serializable {
         this.p = p;
     }
 
+    public Pit getPit(Integer p){
+        return this.p.get(p);
+    }
+    
     public void printAllPits() {
 
         for (int i = 0; i < p.size(); i++) {

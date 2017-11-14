@@ -74,7 +74,6 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
     public TreeMap<Integer, RaceAnalysis> searchRaces(RaceQuery query) throws Exception {
 
         if(query.isEmpty()){
-            System.out.println("it is TRUEEEE");
             return this.raceAnalysiss;
         }
         
@@ -88,8 +87,8 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                         String.valueOf(v.getValue().getRace().getRankDivision()).matches(query.getRankDivision()) &&
                         String.valueOf(v.getValue().getRace().getRaceNumber()).matches(query.getRaceNumber()) &&
                         v.getValue().getStrategy().getRaceSetup().getTyres().matches(query.getTyres()) &&
-                        /*v.getValue().getRace().getRaceForecast().getWeather().getDescription().matches(query.getWeather()) &&
-                        String.valueOf(v.getValue().getRace().getRaceForecast().getWeather().getTemperature()).matches(query.getTemperature()) &&*/
+                        v.getValue().getRace().getRaceForecast().getWeather().getDescription().matches(query.getWeather()) &&
+                        String.valueOf(v.getValue().getRace().getRaceForecast().getWeather().getTemperature()).matches(query.getTemperature()) &&
                         String.valueOf(v.getValue().getStrategy().getCtDry()).matches(query.getCTDry()) &&
                         String.valueOf(v.getValue().getStrategy().getCtWet()).matches(query.getCTWet()) &&
                         String.valueOf(v.getValue().getStrategy().getOvertake()).matches(query.getOvertake()) &&
@@ -98,11 +97,7 @@ public class RaceAnalysisSDAO extends SDAO<RaceAnalysis> {
                         
                         )
                 .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
-        
-        
-        
-        
-        System.out.println("TAMANHO DO LIXO: " + resultLambda.size());
+
         
         //TreeMap<Integer, RaceAnalysis> result = new TreeMap<>();
 

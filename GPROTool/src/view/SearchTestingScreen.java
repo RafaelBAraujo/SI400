@@ -7,6 +7,7 @@ package view;
 
 import control.GproToolController;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -26,10 +27,10 @@ public class SearchTestingScreen extends javax.swing.JFrame {
     public SearchTestingScreen(GproToolController controller) {
         baseController = controller;
         setLookAndFeel();
-        centreWindow();
         initComponents();
         addRankDivisions();
         
+        centerFrame();
     }
 
     /**
@@ -295,9 +296,13 @@ public class SearchTestingScreen extends javax.swing.JFrame {
         }
     }
     
-    private void centreWindow() {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2 - 150, dim.height / 2 - this.getSize().height / 2 - 150);
+    private void centerFrame() {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (this.getWidth() / 2),
+                middle.y - (this.getHeight() / 2));
+        this.setLocation(newLocation);
     }
 
     private void addRankDivisions() {

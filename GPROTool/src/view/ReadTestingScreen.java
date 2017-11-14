@@ -7,6 +7,7 @@ package view;
 
 import control.GproToolController;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -26,8 +27,8 @@ public class ReadTestingScreen extends javax.swing.JFrame {
      */
     public ReadTestingScreen(GproToolController controller) {
         this.baseController = controller;
-        centreWindow();
         initComponents();
+        centerFrame();
         initSelfListeners(this, this.prgProgress, this.baseController);
     }
 
@@ -123,9 +124,13 @@ public class ReadTestingScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    public void centreWindow() {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2 - 150, dim.height / 2 - this.getSize().height / 2 - 150);
+    private void centerFrame() {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (this.getWidth() / 2),
+                middle.y - (this.getHeight() / 2));
+        this.setLocation(newLocation);
     }
 
     private void initSelfListeners(javax.swing.JFrame window, javax.swing.JProgressBar bar, GproToolController controller) {
